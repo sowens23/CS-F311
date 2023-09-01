@@ -15,6 +15,8 @@ Week 1
 2023-09-01
   Start classes with a capital letter ie. TimeOfDay
   Start function with lowercase, then capital ie. calculateTime
+  Const is a qualifier (Like virtual and mutable*)
+  Name Data Members (Usually in the private area of classe) in a particular way ie. _secs
 
   Steps to creating a program
     1) Create header and source
