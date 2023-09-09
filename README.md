@@ -9,6 +9,64 @@ Big Notes
   Compiling: g++ -std=c++17 -o program program.cpp
 
 ### Week-2
+#### 2023-09-08
+  (Todays Material is not in HW01)
+  ###### Invisible Functions I
+  - You can also pass && R_values to R_values.
+  - R_Values prefer to be passed by reference
+    - voice g(Foo && p); Mutable.
+    - void g(const Foo & p); Non-mutable variable
+
+  | | By Value | By Reference | By Reference-to-Const | By Rvalue Reference |
+  | Makes a copy | Yes :( | No :) | No :) | NO :) |
+  | Allows for polymorphism | No :( | Yes :) | Yes :) | Yes :) |
+  | Allows implicit type conversions | Yes :) | No :( | Yes :) | Yes :) |
+  | Allows passing of: | Any copyable value :) | Non-const Lvalues :(? | Any value* :) | Non-const Rvalues* |
+  * Rvalues prefer to be passed by Rvalue reference.
+
+  - Every class has the Big five member functions
+    - Default constructor (Not counting)
+      - Written for you when you declare no constructor
+    - Below (The big 5)
+      - If you do anything with one of these, do all of them. This is the "Rule of Five"
+
+      - Deconstructr
+      - Copy constructor
+      - Copy assignment operator
+      - Move constructor
+      - Move assignment operator
+  
+  - When you compile a class you have four options (You can write these 6 functions yourself, delete them, or set them to default)
+    1) Define it explicitly
+    2) =delete it: Foo(const Foo & other) = delete;
+    3) =default it: Foo(const Foo & other) = default;
+    4) Do nothing.
+
+  ###### Managing Resources
+  ```
+  int n;
+  int * p = &n // p is a pointer. '&' is the "address-of" operator
+  p = nullptr; // A null pointer does not point at anything. 
+                // You can also check for it: if (p == nullptr)
+  p = new int; // Dynamc Allocation
+  delete p; // Deallocation
+  ```
+  - For each ''new'' there must be a ''delete''
+  - When destructors are executed:
+    - Automatic objects are deconstructed when they go out of scope
+    - Static objects are deconstructed when the program ends
+    - non-static member objects are deconstructed when the object it is a member of is destroyed
+  
+    - This means that 'dynamic' objects are the only objects that need to be manually  managed.
+  - Resource Acquisition Is Initialization (RAII)
+    - This is a programmng idiom
+    - It means we always deallocate in the destructor - if the memory in question has not been deallocated by that point.
+
+  -
+
+  - Terminology
+    - Pass by Rvalue reference: For low level code
+
 #### 2023-09-06
   - The general difference between your .h, and .hpp files are that the .hpp signifies that the H for header file is for c Plus Plus .hpp.
   - Every function gets it's asserts
