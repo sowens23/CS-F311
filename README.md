@@ -12,16 +12,17 @@ int main() {
 ## Class Repositories and References
   - [sowens23-GitHub](https://github.com/sowens23)
   - [GitHubPortal](https://github.com/sowens23/Newbie-Gains/blob/main/README.md)
-  - [Class Homepage](https://www.cs.uaf.edu/~chappell/class/2023_fall/cs311/)
-  - [Class Git Repository](https://github.com/ggchappell/cs311-2023-03)
+  - [CS-F311 Class Homepage](https://www.cs.uaf.edu/~chappell/class/2023_fall/cs311/)
+  - [CS-F311 Class Git Repository](https://github.com/ggchappell/cs311-2023-03)
+  - [Weekly In-Class Coding](https://github.com/sowens23/CS-F311/tree/main/inclasscoding)
   - [CPP Reference Page](https://en.cppreference.com/w/)
 
 ## Notes, Assignments, and Labs
-  - | Weekly Notes | Assignments | Other Notes |
-    | --- | --- | --- |
-    | [Week-1](#Week-1) | [HW00](https://github.com/sowens23/CS-F301/blob/main/week1/hw00.cpp) | |
-    | [Week-2](#Week-2) | [HW01](https://github.com/sowens23/CS-F301/blob/main/week2/hw01.asm) | |
-    | [Week-3](#Week-3) | | |
+  | Weekly Notes | Assignments | Other Notes |
+  | --- | --- | --- |
+  | [Week-1](#Week-1) | [HW01](https://github.com/sowens23/CS-F311/tree/main/homework/assignment1) | |
+  | [Week-2](#Week-2) | [HW02](https://github.com/sowens23/CS-F311/tree/main/homework/assignment2) | |
+  | [Week-3](#Week-3) | | |
 
 # Big Notes
   - Compiling: g++ -std=c++17 -o program program.cpp
