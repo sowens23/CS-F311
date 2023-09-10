@@ -1,15 +1,34 @@
-# CS-F311
- Data Structures and Algorithms
+# CS-F311 Data Structures and Algorithms
+## Class Notes and Homework Repository :dizzy: :earth_americas:
+ 
+```
+#include <iostream>
+int main() {
+	std::cout << "Hello traveller, here's a towel for protection. Take care of yourself out there." << std::endl;
+  return 0;
+}
+```
 
-Class Homepage: https://www.cs.uaf.edu/~chappell/class/2023_fall/cs311/
-CPP Reference Page: https://en.cppreference.com/w/
-Class Git Repository: https://github.com/ggchappell/cs311-2023-03
+## Class Repositories and References
+  - [sowens23-GitHub](https://github.com/sowens23)
+  - [GitHubPortal](https://github.com/sowens23/Newbie-Gains/blob/main/README.md)
+  - [Class Homepage](https://www.cs.uaf.edu/~chappell/class/2023_fall/cs311/)
+  - [Class Git Repository](https://github.com/ggchappell/cs311-2023-03)
+  - [CPP Reference Page](https://en.cppreference.com/w/)
 
-Big Notes
-  Compiling: g++ -std=c++17 -o program program.cpp
+## Notes, Assignments, and Labs
+  - | Weekly Notes | Assignments | Other Notes |
+    | --- | --- | --- |
+    | [Week-1](#Week-1) | [HW00](https://github.com/sowens23/CS-F301/blob/main/week1/hw00.cpp) | |
+    | [Week-2](#Week-2) | [HW01](https://github.com/sowens23/CS-F301/blob/main/week2/hw01.asm) | |
+    | [Week-3](#Week-3) | | |
 
-### Week-2
-#### 2023-09-08
+# Big Notes
+  - Compiling: g++ -std=c++17 -o program program.cpp
+
+# Week-2
+[Top](#TOP)
+### 2023-09-08
   (Todays Material is not in HW01)
   ###### Invisible Functions I
   - You can also pass && R_values to R_values.
@@ -67,7 +86,7 @@ Big Notes
   - Terminology
     - Pass by Rvalue reference: For low level code
 
-#### 2023-09-06
+### 2023-09-06
   - The general difference between your .h, and .hpp files are that the .hpp signifies that the H for header file is for c Plus Plus .hpp.
   - Every function gets it's asserts
   - Avoid duplication of code
@@ -106,8 +125,9 @@ Big Notes
     - Member Initializers are generally preferred to assignment of data memebers.
   - Unit Testing - tests
 
-### Week-1 
-#### 2023-09-01
+# Week-1
+[Top](#TOP)
+### 2023-09-01
   - Start classes with a capital letter ie. TimeOfDay
   - Start function with lowercase, then capital ie. calculateTime
   - Const is a qualifier (Like virtual and mutable*)
@@ -139,7 +159,7 @@ Big Notes
     - Assertion: is a statement made in code that something must be true - or else the code is not working properly
     - Boolean expression: Something True or False
 
-#### 2023-08-30
+### 2023-08-30
   - Terminology
     - Abstraction: Considering how a software component in terms of how and why it's used
     - Component: is just a general term for a thing: function, class, package, etc
@@ -147,7 +167,7 @@ Big Notes
     - User: is a person
     - Functional Abstraction: 
 
-#### 2023-08-28
+### 2023-08-28
   - Expressions are things with values
     - Every expression has a type
     - Every expression is either an Lvalue or an Rvalue
