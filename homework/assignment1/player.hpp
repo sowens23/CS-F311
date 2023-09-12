@@ -23,6 +23,7 @@ class Player{
 
 	// ***** Player: Constructors and Deconstructors *****
 	public: 
+
 		// Default Constructor
 		Player() {
 			createPlayer("UNKNOWN", "UNKNOWN", 0);
@@ -30,11 +31,13 @@ class Player{
 
 		// Constructor using strings realname, username, and games
 		Player(std::string realname, std::string username, int games) {
+			//setRealName(realname);
 			createPlayer(realname, username, games);
 		}
 
 	// ***** Player: General Public Operators *****
 	public:
+
 		// Operator ++ [Pre] to move games one forward
 		Player & operator++() {
 			++_games;
@@ -74,6 +77,7 @@ class Player{
 
 	// ***** Player: General Public Functions *****
 	public:
+
 		// createPlayer
 		// Set realname, username, games
 		// Function defined in source file.
@@ -113,6 +117,7 @@ class Player{
 
 	// ***** Player: Data Members *****
 	private:
+	
 		std::string _realname;
 		std::string _username;
 		int _games;

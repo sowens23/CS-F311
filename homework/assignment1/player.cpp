@@ -30,6 +30,9 @@
 	using std::string;
 #include <ostream>
 	using std::ostream;
+
+// Run this next line to DISABLE ASSERT DEBUG MODE
+//#define NDEBUG
 #include <cassert>
 
 // ***** ***** ***** ***** ***** ***** //
@@ -38,9 +41,12 @@
 
 	// createPlayer: Set realname, username, games
 	void Player::createPlayer (std::string realname, std::string username, int games) {
-		_realname = realname;
+		setRealName(realname);
+		setUsername(username);
+		setGames(games);
+		/* _realname = realname;
 		_username = username;
-		_games = games;
+		_games = games */;
 	}
 
 	// getRealName: to return realname of Player
@@ -76,7 +82,9 @@
 
 	// setGames: to set game count of Player
 	void Player::setGames (int games) {
+		assert(games < 0);
 		_games = games;
+		
 	}
 
 	// toString: To return a string value identical to cout << player
@@ -101,48 +109,11 @@
 	}
 
 
-/* int main () {
+int main () {
 
 	const Player player1;
-	Player player2("Spencer", "Straleos", 42);
-
-	std::string testr;
-	std::string testu;
-	std::string testss;
-	int testg;
-
-	testr = player2.getRealName();
-	testu = player2.getUsername();
-	testg = player2.getGames();
-	
-	std::cout << "1) Test Print\n";
-	std::cout << testr << " (" << testu << ") : " << testg << std::endl;
-	std::cout << player2 << "\n\n";
-
-	std::cout << "2) Set games to 3, then incremement by 2, and decriment by 2\n";
-	player2.setGames(3);
-	player2++;
-	++player2;
-	player2--;
-	--player2;
-	std::cout << player2 << "\n\n";
-
-	std::cout << "3) Set games to 0, decriment by 1\n";
-	player2.setGames(0);
-	player2--;
-	std::cout << player2 << "\n\n";
-
-	std::cout << "4) Using == and !=\n\n";
-	// player1 = player2;
-	if (player1 == player2) std::cout << "P1 & P2 are identical\n\n";
-	if (player1 != player2) std::cout << "P1 & P2 are not identical\n\n";
-
-	std::cout << "5) Using toString, and inactive\n\n";
-	testr = player2.toString();
-	std::cout << testr << "\n";
-	player2.setGames(0);
-	std::cout << player2.inactive() << "\n\n";
-
+	Player player2("42", "Straleos", -3);
+	std::cout << player2 << std::endl;
 
 	return 0;
-} */
+}
