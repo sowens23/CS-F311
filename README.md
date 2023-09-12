@@ -27,6 +27,85 @@ int main() {
 # Big Notes
   - Compiling: g++ -std=c++17 -o program program.cpp
 
+# Week-3
+### 2023-09-11
+  ###### Containers and Iterators
+  - A type is first class if it is dynamically mutable, can be passed and returned and stored
+  - std::vector is a first class array
+    - This is a class template, not a class
+    - We can call std::vector a smart array
+  - Operations available on an iterator match the underlying data 
+    - Random Access data can be dealt with in any order
+    - Sequential Access data
+      - bidirectional: accessible in both forward and backward
+      - forward-only: accessible in only forward
+  - An iterator can be used as a 'wrapper', which can make it look like a container
+    ```
+    int a[10];
+    func(a);
+    func(&a[0]) // Same as above
+    // func cannot tell the size of the array it receives
+    ```
+  - Iterators are fundamental to the range-based for-loop, a flow-of-control construct
+  - 
+
+  - We can specify a range by using two iterators
+    ```
+    #include <algorithm>
+    using std::sort;
+    sort(begin(v)+2, begin(v)+6); // Sort v[2]..v[5]
+    sort(begin(v), end(v)); // Sort all of v
+    ```
+
+  - Terminology
+    - Container: is a data structure that can hold multiple items, usually all of the same type
+    - Generic Container: can hold items of a client-specified tyoe
+      - C++ built-in array is a generic container
+      - There are atleast 14; vector, basic_string, array, list, forward_list, deque, map, set, unordered_map, unordered_set, multimap, multiset, unordered_multimap, unordered_multiset
+      - All of the above have an interface that involve iterators
+      - 3 Questions for implementations
+        - ?
+        - ?
+        - ?
+    - C++ Standard Template Library (STL for short)
+    - Iterator: Refers to an item in a container
+      ```
+      vector<int> v(7);
+      vector<int>::iterator iter1 = begin(v); // member function 'begin' will return an iterator to the first item in the container
+      v[0] = 3;
+      cout << *iter; // Prints "3"
+      *iter = 5; // Set v[0] to 5
+      ```
+    - 
+
+
+  ###### Managing Resources in a Class
+  ###### Review
+  - We do not pass by Rvalue reference very often.
+  - Except- ions may cause a functon to exit, even if there is no return
+  - "To Own Memory/Object" is to be responsible for releasing (deallocating) that memory
+  - Prevent memory leaks with RAII
+    - Define, =delete, or =default for each of the Big Five
+
+
+  - Terminology
+    - The Rule of Five, if you define one, define the others explicitely 
+      - Dctor, Copy ctor, copy assignment operator, move ctor, move assignment operator
+    - Dynamically Allocated memory & objects need clean-up when we are done with them
+      - If we never deallocate, then there is a memory leak
+    -RAII: Resource Acquisition Is Initialization
+      - Resource Acquisition
+      - Resource Usage
+      - Resource Release
+
+  ###### Continued
+  - If a resource is never released, then we have a resource leak
+  - the Owner of a resource is responsible for releasing it
+
+  - Terminology
+    - Acquire a resource: get access and control
+    - Release a resource: clean it up and relingquish control
+
 # Week-2
 [Top](#TOP)
 ### 2023-09-08
