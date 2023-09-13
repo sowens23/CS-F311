@@ -30,9 +30,11 @@
 	using std::string;
 #include <ostream>
 	using std::ostream;
+#include <cctype> 
+	using std::isalpha; // Using to test if RealName contains anything but alphabet characters
 
 // Run this next line to DISABLE ASSERT DEBUG MODE
-//#define NDEBUG
+#define NDEBUG
 #include <cassert>
 
 // ***** ***** ***** ***** ***** ***** //
@@ -44,9 +46,6 @@
 		setRealName(realname);
 		setUsername(username);
 		setGames(games);
-		/* _realname = realname;
-		_username = username;
-		_games = games */;
 	}
 
 	// getRealName: to return realname of Player
@@ -70,20 +69,32 @@
 		return games;
 	}
 
+	// isAlpha: To test strings for non alphabet characters
+	bool isAlpha(const std::string & realname_test) {
+		for (char c: realname_test) {
+			if (!isalpha(c)) return false;
+		}
+		return true;
+	}
+
 	// setRealName: to set realname of Player
 	void Player::setRealName (std::string realname) {
+		assert(isAlpha(realname)); // Tests for non alphabet characters
 		_realname = realname;
 	}
 
 	// setUsername: to set username of Player
 	void Player::setUsername (std::string username) {
-		_username = username;
+		_username = username; // No assert here, not sure what string values would break this
 	}
 
 	// setGames: to set game count of Player
 	void Player::setGames (int games) {
-		assert(games < 0);
+		std::cout << games << std::endl;
+		assert(games > 0); // Tests for negative game count, which should be impossible.
 		_games = games;
+		std::cout << games << std::endl;
+		std::cout << _games << std::endl;
 		
 	}
 
@@ -109,11 +120,11 @@
 	}
 
 
-int main () {
+/* int main () {
 
-	const Player player1;
-	Player player2("42", "Straleos", -3);
+	// const Player player1;
+	Player player2("Spencer", "Straleos", -5);
 	std::cout << player2 << std::endl;
 
 	return 0;
-}
+} */
