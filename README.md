@@ -52,18 +52,61 @@ int main() {
         [STL Algorithms](https://en.cppreference.com/w/cpp/algorithm)
         - #include <algorithm>
         - Be familiar with std::copy, std::equal, std::sort, std::fill
-    To-Do [Iterators.cpp]
+      - To-Do [Iterators.cpp](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week3/230913)
+
   ###### Software Engineering Concepts: Invariants
     Basics
-      - 
+      - An Invariant is a condition that is always true at a particular point in a computation
+        - Typically, it says something about the values of variables
+        - Invariants can follow an 'if' statement 
+        ```
+        if (x < 0) return false
+        // Invariant: x will always be greater than 0 at this point
+        ```
     Pre & Post
-      - 
+      - Precondition is an invariant at the beginning of the function
+        - This states what must be true for the function to execute properly
+      - Post condition describes the function's effet using statements about values
+      - A functin offers an operation contract to it's caller
+        " Caller, if you fulfill the preconditions, then I will fulfill the postconditions."
     Class Invariants
-      - 
-    Docs
+      - A class invariant is an invariant that holds for an object of the class, whenever execution is not inside a member function
+        - Class invariants are preconditions for every public member function, except constructors
+        - They are postconditions for every public member function, except the destructor.
+        - Invariants in practice are simply statements about data members that indicate whether an object can be valid and usable.
+    Documentation
+      - Preconditions and class invariants are often identifiable through two kinds of assertions
+        - Assertions about the parameters of a function
+        - Assertions about the data members of an object
+      - Preconditions and class invariants should be documented in comments, however do not restate class invariants before the function(?)
+      - To-Do 
+        - [timeofday.cpp & timeofday.hpp](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week3/230913)
       - 
   ###### Invisible Functions II
-    -
+    - Recall the big five
+      - Deconstructor, Copy Constructor, Copy assignment operator, Move constructor, Move assignment operator
+      - We simply don't like rewriting code that we don't need to read
+      - We do one of four things. Do not write any, or
+        - Delete them, Default them, Define them
+    - To Copy
+      - Create new object, set it's size member, and allocate a memory block of the correct size
+      - Copy array objects into new array
+      - If the array is large, sometimes a copy can fail and cause error
+    - To Move
+      - Set each data member of the new object to the corresponding member
+      - Set the original to a nothing value to be destroyed
+    - To Swap
+      - std::swap (or something) can actuallly swap to values
+        ```
+        private:
+          void mswap(Foo & other) noexcept // noexcept will turn off exceptions for an operator
+          {
+            swap(_a, other._a);
+            swap(_b, other._b);
+          }
+        ```
+    - Once you you have a swap operation, it's easy to write copy and assignment operations. See slide 31
+      
  
 ### 2023-09-11
   ###### Containers and Iterators
