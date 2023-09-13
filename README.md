@@ -28,6 +28,43 @@ int main() {
   - Compiling: g++ -std=c++17 -o program program.cpp
 
 # Week-3
+### 2023-09-13
+  ###### Managing Resources in a Class & Containers and Iterators Review
+    - Some resources need to be cleaned up, we aquire/allocate a resource we release it
+      - If we don't, this is a resource/memory leak.
+    - RAII, concept of owning your objects
+      - Big Five, define one, define all
+        - You have 3 options, Define it, delete it, default it
+    - A container is a data structure that can old multiple items, usually the same type
+      - A generic container is a container that can hold items of a client specified type
+        - std::vector is an example of a generic container 'vector<int>'
+        - std::map
+        - std::list, etc.
+    - An Iterator refers to an item in a container.
+      - All STL containers have iterator interfaces
+      - Iterators points to a location in a container
+      - An iterator may be a wrapper, to make data look like a container
+    - We can specify a range using two iterators
+
+  ###### Containers and Iterators Cont.
+    Generic Algorithms
+      - STL contains many, many algorithms at your disposal. Think excel functions
+        [STL Algorithms](https://en.cppreference.com/w/cpp/algorithm)
+        - #include <algorithm>
+        - Be familiar with std::copy, std::equal, std::sort, std::fill
+    To-Do [Iterators.cpp]
+  ###### Software Engineering Concepts: Invariants
+    Basics
+      - 
+    Pre & Post
+      - 
+    Class Invariants
+      - 
+    Docs
+      - 
+  ###### Invisible Functions II
+    -
+ 
 ### 2023-09-11
   ###### Containers and Iterators
   - A type is first class if it is dynamically mutable, can be passed and returned and stored
