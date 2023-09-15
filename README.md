@@ -28,6 +28,127 @@ int main() {
   - Compiling: g++ -std=c++17 -o program program.cpp
 
 # Week-3
+### 2023-09-15
+  ###### Review: Managing Resources
+    - Containers, Iterators, General Containers.
+    - You can specify ranges using two iterators
+    - Invariants exist as pre/post conditions and in class structures
+    - Excercise, write pre- ad post- conditions for the one-parameter constructor for class Abc
+      ```
+      //  0 <= _n && _n < 100
+      class Abc {
+        public:
+          Abc(int nn)
+            :_n(nn)
+            // Answer -> Precondition: If nn is >= 0, and nn < 100
+          {}
+          [Other stuff here]
+        private:
+          int _n;
+      }; // End class Abc
+      // Answer -> Postcondition: If nn == _n, and 0 <= _n < 100
+      ```
+    - Invisible constructors (6 in total) 1 Constructor & the big 5
+  ###### Thoughts on Assignment 2
+    - FSArray should use RAII
+      - What type to use for the size of FSArray
+    - FSArray is a generic container so it's member functions 'begin' and 'end' return iterators
+    - Document preconditions for each function, and class invariants for each class
+    - You will need to define all of the Big Five
+    - FSArray and all global functions will be templates that go entirely in the header. Do not write a source file
+      : template <typename ABC, typename XYZ>
+      ```
+      // Invariants: ...
+      template <>
+      class FSArray {...}
+        // Pre: ...
+        template
+      ```
+    - Const and non-const versions of operators and functions are permissable to duplicate code.
+  ###### Error Handling
+    Error Conditions
+      - Error condition (often error) is not the same as a bug
+      - Not always a result of bad code, sometimes process failed, or user related
+        - We can prevent error conditions by writing preconditions
+        - We can contain error conditions by handling it in the function
+        - If not, we must then signal the client code after the function
+    Preview...
+      - Three goals must always at the least be acheived when dealing with error conditions (Basic Guarantee)
+      - 3-levels of Safety Guarantees:
+        - Basic Guarantee: Error condition must not wreck the program, Objects must be usable, and resources must not leak
+        - Strong Guarantee: We can successfully complete all operations and/or the error had no effect.
+        - No-Throw Guarantee (No-Fail Guarantee): There is never a need to inform the client of an error.
+    Signaling Client Code
+      - This is when we are unable to resolve errors. We must signal the client code.
+      - Two common strategies are: Return codes and error-checking functions 
+        - But they have downsides
+        - The can be difficult to use in some places where values cannot be returned
+        - Can lead to complicated code
+      - We can throw an exception
+  ###### Using Exceptions
+    Exceptions & Catching
+      - An exception is an object thrown to signal an error condition
+        - 'new' throws 'std::bad_alloc' or a derived class if an allocation fails
+        - To handle an exception, we 'catch' it using 'try... catch'
+        ```
+        #include <new> // for std::bad_alloc
+        Foo * p;
+        bool success - true; 
+        try {
+          p = new Foo;
+        }
+        // e is the exception, catch exceptions by reference
+        catch (std::bad_alloc & e) {
+          success = false;
+          // Standard exception types have a member fucntion 'what' that returns a string
+          cerr << "Allocation failed: " << e.what() << endl;
+        }
+        ```
+      - We are only able to 'catch' an excpetion if we execute the code INSIDE of a 'try/catch' block. Which means if you run p1 = new FOO outside of a try block, it will never return an exception that can be 'caught'
+      - An exception is actually able to always be caught in it's integrated block of catch.
+        - If you run globalP1 = new Foo, inside of a function called by main.cpp
+          - Main can catch this, but this functionality might not be best to lean on
+      - What throws?
+        - Built in operators, other than 'new', including operator[]
+        - Deallocation done by delete
+        - C++ Standard I/O Libraries
+        - Functions written by others may throw, if you right 'throw' it will throw.
+    Throwing
+      - We can throw our own exceptions using 'throw'
+        ```
+        class CC {
+          public:
+            int & operator[](std::size_t ix)
+              // May throw std::out_of_range
+            {
+                if (ix >= _arrsize)
+                  throw std::out_of_range("CC::op[]: bad ix");
+                  return _arr[ix];
+            }
+        }
+        ```
+      - Always use or derive from one of the standard exception types
+      - Standard exceptions have string members accessible using the what() function.
+    Catch all & Rethrow
+      - You can use catch(...) to catch all exceptions
+    Exceptions, Deconstructors, noexcept
+      - Fact 1: An objects dctor is called when it goes out of scope, even if an exception is thrown
+      - Fact 2: If an exception is thrown, and a dctor is called before it calls, the program terminates
+      - Thus: Destructors should not throw
+      - Because dctors should not throw, they are generally marked as noexcept implicitly
+        - We can make a dctor that is not noexcept using "noexcept (false)" Never do this.
+    CODE
+      - To-Do [Iterators.cpp](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week3/230915)
+        - Write a function allocate2 that: (See allocate2.cpp)
+          - Attempts to allocate two dynamic objects
+          - Returns pointers to these objects, using referene parameters.
+          - If either allocation fails, throw std::bad_alloc
+          - Had no memory leaks
+        - Look at example code showing how RAII can simplify these situations (See allocate2_raii.cpp)
+      -
+    Final Thoughts
+      - 
+
 ### 2023-09-13
   ###### Managing Resources in a Class & Containers and Iterators Review
     - Some resources need to be cleaned up, we aquire/allocate a resource we release it
