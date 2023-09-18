@@ -32,6 +32,47 @@
 ## 2023-09-22
 ## 2023-09-20
 ## 2023-09-18
+  ### Review: Using Exceptions
+    - Error Conditions (often error) occured during runtime
+      - Use 'try' and 'catch' to throw exceptions
+    - We can 'catch all' by putting the exception logic in the try, if it's caught, then the entire code block in a catch condition, then using the catch to clean up code before we throw an exception
+      - Confusing.
+    - Destructors should not throw, generally they are marked noexcept  
+    - Writing good, robust code that works is **hard work**. Error handling is an absolute part of programming.
+
+  ### Arrays & Linked List
+    - The simplist container data structure is the array.
+    - A Linked List, is similar to an array. It's composed of nodes, each has a single data item, and a pointer. There is a null ptr at the end, and the head is a single data item which points to the first node.
+    | Memory Address | Value | Node Ptr | Note |
+    | -- | -- | -- | -- |
+    | 0x1238123 | NULL | 0x1 | Head with array Length |
+    | 0x1 | 612 | 0x2 | First Node |
+    | 0x2 | 12 | 0x3 | Second Node |
+    | 0x3 | 51223 | NULLPTR | Last Node |
+    - We can't adjust the head to temporarily point farther down the list, because you would lose the addresses to the nodes in front of it.
+    - We can quickly insert if we know the pointer address of one Node
+      - Say, this node now points to new node, new node points to next node.
+    - TODO: [Linked List Example](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week4/230918)
+    - A Doubly Linked List provides two points and a value. This is so it can be bi-directional
+    - A Singly Linked List is your standard Linked List
+
+  ### Introduction to Recursion
+    - A recursive algorithm is one that makes use of itself.
+      - Specifically it 'calls' itself.
+    - return a == 1 ? b : 0;
+      - Confusing '?' syntax. (Need to study)
+    - When writing recursive algorithms, consider the four questions
+      - How can we solve th problem using solutions to one or more smaller problems of the same kind
+      - How much does each recursive call reduce the size of the problem
+      - What instances of the problms can serve as base cases
+      - As the problem size shrinks, will a base case always be reached
+    - Fibonacci Numbers presents a good case of how recursion works
+      - 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, ...
+      - (Fn, for n = 0, 1, 2, ...) 
+        - F0 = 0
+        - F1 = 1
+        - For n >= 2, Fn = Fn-2 + Fn-1
+    - TODO: [Fibonacci](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week4/230918)
 
 # Week-3
 [Top](#TOP)
