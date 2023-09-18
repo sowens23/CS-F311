@@ -25,6 +25,7 @@
   | [Week-1](#Week-1) | [HW01](https://github.com/sowens23/CS-F311/tree/main/homework/assignment1) | |
   | [Week-2](#Week-2) | [HW02](https://github.com/sowens23/CS-F311/tree/main/homework/assignment2) | |
   | [Week-3](#Week-3) | | |
+  | [Week-4](#Week-3) | | |
 
 # Week-4
 [Top](#TOP)
