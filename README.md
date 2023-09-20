@@ -25,54 +25,124 @@
   | [Week-1](#Week-1) | [HW01](https://github.com/sowens23/CS-F311/tree/main/homework/assignment1) | |
   | [Week-2](#Week-2) | [HW02](https://github.com/sowens23/CS-F311/tree/main/homework/assignment2) | |
   | [Week-3](#Week-3) | | |
-  | [Week-4](#Week-3) | | |
+  | [Week-4](#Week-4) | | |
+  | [Week-5](#Week-5) | | |
 
 # Week-4
 [Top](#TOP)
 ## 2023-09-22
 ## 2023-09-20
+  ### Review: Arrays & Linked Lists
+  - Array stores a sequence of items, one after the other.
+  - (Singly) Linked List stores the same kind of data but is made of nodes with pointers
+  - Doubly Linked List stored the same kind of data, but with two points
+  - Recursive algorithms make use of (call) themselves.
+    - Base cases are the smallest problem which we solve directly.
+    - Recursive cases are other problems
+  - Reminder that the fibo.cpp program we worked on yesterday gets really slow, pretty quickly
+
+### Search Algorithms I
+- TODO: [Binary Search](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week4/230920)
+- Binary Search
+  - Finds a given **key** in a sorted **list**
+  - Procedure is to;  
+    - Pick an item in the middle of the list: the **pivot**
+    - Compare the given key with the pivot
+    - Narrow search to top of bottom half of list. Then recurse till you find the **key**
+  - When we are doing a binary search we want to do a few things
+    - Pass two iterators that help reference the range, and the key we are looking for
+    - Think about what we would like to return
+      - Bool saying if it was found
+      - Address of key
+      - key value
+  - C++ Binary Search
+    ```
+    template <typename RAIter, typename ValueType>
+    bool binSearch(RAIter first,      
+                  RAIter last,
+                  const ValueType & findme)
+                  // [first, last) is range to search
+                  // value to find
+    {
+      // BASE CASE (If range is 0)
+        if (last == first) return false;
+        if (last == first+1) return *first == findme;
+
+      // RECURSIVE CASE 
+        auto pivotiter = first + (last-first)/2;
+        if (findme < *pivotiter) {
+            // Recursively search for first half of range
+            return binSearch(first, pivotiter, findme);
+        }
+        else {
+            // Recursively search for second half of range
+            return binSearch(pivotiter, last, findme);
+        }
+    }
+    ```
+- Better Binary Search
+  - How can we improve the above code?
+  - In the above, we are using operater "<" to search, but we are using "==" to check for a match. We call this equality check
+    - Equality: a == b;
+    - Equivalence: !(a < b) && !(b < a)
+  - However, we can check for equivalence, using the "<" for a quicker processing time
+  - We're computing the size frequently by checking the range for 0, and 1
+  - We are also computing two checks to see if the key is in the base case
+  - Random-access iterators can do pointer-style artithmetic 
+      - iter1 = iter2 + 3;
+      - iter1 += 3;
+    - std::advance(iter, n); // Is like iter +=n
+    - std::distance(iter1, iter2); // Is like iter2 - iter1
+      - These two functions are fast for random-access iteratorsl they may be slower for other iterators.
+  - Improvement:
+    - [Better Binary Search](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week4/230920)
+    - Check equivalence in the base case. Never use "==" on the value type.
+    - Computer the size of the range once. Save this for later use
+    - Only check for the base case once 
+    - Replace pointer arithmetic with std::advance & std::distance. Allow the parameters to be forward iterators
+  
 ## 2023-09-18
   ### Review: Using Exceptions
-    - Error Conditions (often error) occured during runtime
-      - Use 'try' and 'catch' to throw exceptions
-    - We can 'catch all' by putting the exception logic in the try, if it's caught, then the entire code block in a catch condition, then using the catch to clean up code before we throw an exception
-      - Confusing.
-    - Destructors should not throw, generally they are marked noexcept  
-    - Writing good, robust code that works is **hard work**. Error handling is an absolute part of programming.
+  - Error Conditions (often error) occured during runtime
+    - Use 'try' and 'catch' to throw exceptions
+  - We can 'catch all' by putting the exception logic in the try, if it's caught, then the entire code block in a catch condition, then using the catch to clean up code before we throw an exception
+    - Confusing.
+  - Destructors should not throw, generally they are marked noexcept  
+  - Writing good, robust code that works is **hard work**. Error handling is an absolute part of programming.
 
   ### Arrays & Linked List
-    - The simplist container data structure is the array.
-    - A Linked List, is similar to an array. It's composed of nodes, each has a single data item, and a pointer. There is a null ptr at the end, and the head is a single data item which points to the first node.
-    | Memory Address | Value | Node Ptr | Note |
-    | -- | -- | -- | -- |
-    | 0x1238123 | NULL | 0x1 | Head with array Length |
-    | 0x1 | 612 | 0x2 | First Node |
-    | 0x2 | 12 | 0x3 | Second Node |
-    | 0x3 | 51223 | NULLPTR | Last Node |
-    - We can't adjust the head to temporarily point farther down the list, because you would lose the addresses to the nodes in front of it.
-    - We can quickly insert if we know the pointer address of one Node
-      - Say, this node now points to new node, new node points to next node.
-    - TODO: [Linked List Example](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week4/230918)
-    - A Doubly Linked List provides two points and a value. This is so it can be bi-directional
-    - A Singly Linked List is your standard Linked List
+  - The simplist container data structure is the array.
+  - A Linked List, is similar to an array. It's composed of nodes, each has a single data item, and a pointer. There is a null ptr at the end, and the head is a single data item which points to the first node.
+  | Memory Address | Value | Node Ptr | Note |
+  | -- | -- | -- | -- |
+  | 0x1238123 | NULL | 0x1 | Head with array Length |
+  | 0x1 | 612 | 0x2 | First Node |
+  | 0x2 | 12 | 0x3 | Second Node |
+  | 0x3 | 51223 | NULLPTR | Last Node |
+  - We can't adjust the head to temporarily point farther down the list, because you would lose the addresses to the nodes in front of it.
+  - We can quickly insert if we know the pointer address of one Node
+    - Say, this node now points to new node, new node points to next node.
+  - TODO: [Linked List Example](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week4/230918)
+  - A Doubly Linked List provides two points and a value. This is so it can be bi-directional
+  - A Singly Linked List is your standard Linked List
 
   ### Introduction to Recursion
-    - A recursive algorithm is one that makes use of itself.
-      - Specifically it 'calls' itself.
-    - return a == 1 ? b : 0;
-      - Confusing '?' syntax. (Need to study)
-    - When writing recursive algorithms, consider the four questions
-      - How can we solve th problem using solutions to one or more smaller problems of the same kind
-      - How much does each recursive call reduce the size of the problem
-      - What instances of the problms can serve as base cases
-      - As the problem size shrinks, will a base case always be reached
-    - Fibonacci Numbers presents a good case of how recursion works
-      - 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, ...
-      - (Fn, for n = 0, 1, 2, ...) 
-        - F0 = 0
-        - F1 = 1
-        - For n >= 2, Fn = Fn-2 + Fn-1
-    - TODO: [Fibonacci](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week4/230918)
+  - A recursive algorithm is one that makes use of itself.
+    - Specifically it 'calls' itself.
+  - return a == 1 ? b : 0;
+    - Confusing '?' syntax. (Need to study)
+  - When writing recursive algorithms, consider the four questions
+    - How can we solve th problem using solutions to one or more smaller problems of the same kind
+    - How much does each recursive call reduce the size of the problem
+    - What instances of the problms can serve as base cases
+    - As the problem size shrinks, will a base case always be reached
+  - Fibonacci Numbers presents a good case of how recursion works
+    - 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, ...
+    - (Fn, for n = 0, 1, 2, ...) 
+      - F0 = 0
+      - F1 = 1
+      - For n >= 2, Fn = Fn-2 + Fn-1
+  - TODO: [Fibonacci](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week4/230918)
 
 # Week-3
 [Top](#TOP)
