@@ -122,6 +122,11 @@ class FSArray {
 			return data_[index];
 		}
 
+		value_type size()
+		{
+			
+		}
+
 		// Equals operator that checks size, and all values
 			// Subsequently the != equals as well
 		// '<' '<=' '>' '>=' operators to compare all values of two arrays
@@ -144,3 +149,43 @@ class FSArray {
 		value_type* data_;
 
 };
+
+    size_type size() const { return size_; }
+
+    value_type* begin() { return data_; }
+    
+    const value_type* begin() const { return data_; }
+
+    value_type* end() { return data_ + size_; }
+    
+    const value_type* end() const { return data_ + size_; }
+
+template <typename T>
+bool operator==(const FSArray<T>& lhs, const FSArray<T>& rhs) {
+    return lhs.size() == rhs.size() && std::equal(lhs.begin(), lhs.end(), rhs.begin());
+}
+
+template <typename T>
+bool operator!=(const FSArray<T>& lhs, const FSArray<T>& rhs) {
+    return !(lhs == rhs);
+}
+
+template <typename T>
+bool operator<(const FSArray<T>& lhs, const FSArray<T>& rhs) {
+    return std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+}
+
+template <typename T>
+bool operator>(const FSArray<T>& lhs, const FSArray<T>& rhs) {
+    return rhs < lhs;
+}
+
+template <typename T>
+bool operator<=(const FSArray<T>& lhs, const FSArray<T>& rhs) {
+    return !(rhs < lhs);
+}
+
+template <typename T>
+bool operator>=(const FSArray<T>& lhs, const FSArray<T>& rhs) {
+    return !(lhs < rhs);
+}
