@@ -32,13 +32,12 @@
 				12)
 */
 
-//#include <iostream>
+#include <iostream>
 //#include <ostream>
 //#include <cassert>
 //#include <string>
 //#include <cctype>
 #include <cstddef>
-using std::size_t;
 
 // 
 // Class Template FSArray
@@ -52,22 +51,87 @@ class FSArray {
 		using size_type = std::size_t;
 
 		// *** Constructors ***
+		// Three constructors [Default, 1-P, 2-P]
 		FSArray() : size_(8), data_(new value_type[size_]) // Default Constructor
 		{}
 		FSArray(size_type size) : size_(size), data_(new value_type[size])
 		{}
-		FSArray(size_type size, const value_type& val) : size_(size), data_(new val[size])
-		{}
+		FSArray(size_type size, const value_type& val) : size_(size), data_(new value_type[size])
+		{
+			// Auto Fill
+			//std::fill(data_, data_ + size_, val);
+			// Manual Fill
+			for (size_type i = 0; i < size; ++i) {
+				data_[i] = val;
+			}
+		}
 
 		// *** The Big Five ***
-		~FSArray(); // Deconstructor
-		FSArray(const FSArray& other); // Copy Constructor
-		FSArray & operator=(const FSArray & other); // Copy Assignment
-		FSArray(FSArray && other); // Move Constructor
-		FSArray & operator=(FSArray && other); // Move Assignment
+		// Deconstructor
+		~FSArray() 
+		{
+			delete[] data_;
+		}
+		// Copy Constructor
+		FSArray(const FSArray& other) 
+		{
+			// Auto Copy
+			//std::copy(other.data_, other.data_ + size_, data_);
+			// Manual Copy
+			for (size_type i = 0; i < size_; ++i) {
+				data_[i] = other.data_[i];
+			}
+		}
+		// Copy Assignment
+		FSArray & operator=(const FSArray & other) 
+		{
+			if (this != &other) {
+				delete[] data_;
+				size_ = other.size_;
+				data_ = new value_type[size_];
+				std::copy(other.data_, other.data_ + size_);
+			}
+			return *this;
+		}
+		// Move Constructor
+		FSArray(FSArray && other) noexcept : size_(other.size_), data_(other.data_) 
+		{
+			other.size = 0;
+			other.data_ = nullptr;
+		}
+		// Move Assignment
+		FSArray & operator=(FSArray && other) noexcept
+		{
+			if (this != &other) {
+				delete[] data_;
+				size_ = other.size_;
+				other.size_ = 0;
+				other.data_ = nullptr;
+			}
+			return *this;
+		}
+}
+		// *** Operators ***
+		// Bracket Operator
+		value_type& operator 
+		{
+			return data_[index];
+		}
+		// Equals operator that checks size, and all values
+			// Subsequently the != equals as well
+		// '<' '<=' '>' '>=' operators to compare all values of two arrays
+			// Quite possibly needs to sort first? Not sure
 
-		// *** Assignment Operators ***
-		FSArray& operator=(const FSArray)
+		// *** Member Functions ***
+		// Size returns the size of a given array
+		size_type size() const {
+			return size_;
+		}
+		// Returns address of item 0
+		value_type* begin() {
+			return data_;
+		} 
+		// void end returns address of one item past last
 
 
 	private:
