@@ -46,11 +46,13 @@
 template <typename ValType>
 class FSArray {
 	public:
-		// *** Member Types ***
+	// *** Member Types ***
+
 		using value_type = ValType;
 		using size_type = std::size_t;
 
-		// *** Constructors ***
+	// *** Constructors ***
+
 		// Three constructors [Default, 1-P, 2-P]
 		FSArray() : size_(8), data_(new value_type[size_]) // Default Constructor
 		{}
@@ -66,14 +68,15 @@ class FSArray {
 			}
 		}
 
-		// *** The Big Five ***
+	// *** The Big Five ***
+
 		// Deconstructor
 		~FSArray() 
 		{
 			delete[] data_;
 		}
 		// Copy Constructor
-		FSArray(const FSArray& other) 
+		FSArray(const FSArray& other) : size_(other.size_), data_(new value_type(size_))
 		{
 			// Auto Copy
 			//std::copy(other.data_, other.data_ + size_, data_);
@@ -89,7 +92,11 @@ class FSArray {
 				delete[] data_;
 				size_ = other.size_;
 				data_ = new value_type[size_];
-				std::copy(other.data_, other.data_ + size_);
+				//std::copy(other.data_, other.data_ + size_);
+				for (size_type i = 0; i < size_; ++i) {
+					data_[i] = other.data_[i];
+				}
+				delete[] other.data_;
 			}
 			return *this;
 		}
@@ -105,12 +112,16 @@ class FSArray {
 			if (this != &other) {
 				delete[] data_;
 				size_ = other.size_;
+				data_ = other.data_;
 				other.size_ = 0;
-				other.data_ = nullptr;
+				delete[] other.data_;
+				//other.data_ = nullptr;
 			}
 			return *this;
 		}
-		// *** Operators ***
+
+	// *** Operators ***
+
 		// Bracket Operator
 		value_type & operator[](size_type index)
 		{
@@ -124,41 +135,40 @@ class FSArray {
 
 		value_type size()
 		{
-			
+			return size_;
 		}
 
-		// Equals operator that checks size, and all values
-			// Subsequently the != equals as well
-		// '<' '<=' '>' '>=' operators to compare all values of two arrays
-			// Quite possibly needs to sort first? Not sure
+	// *** Member Functions ***
 
-		// *** Member Functions ***
 		// Size returns the size of a given array
 		size_type size() const {
 			return size_;
 		}
-		// Returns address of item 0
+		// Begin returns address of item 0
 		value_type* begin() {
 			return data_;
 		} 
-		// void end returns address of one item past last
-
+		// Begin const returns the address of a const array item 0
+		const value_type* begin()  const
+		{
+			return data_;
+		}
+		// End returns address of one item past last
+		value_type* end()
+		{
+			return data_ + size_;
+		}
+		// End const returns address of one item past last
+		const value_type* end() const
+		{
+			return data_ + size_;
+		}
 
 	private:
 		size_type size_;
 		value_type* data_;
 
 };
-
-    size_type size() const { return size_; }
-
-    value_type* begin() { return data_; }
-    
-    const value_type* begin() const { return data_; }
-
-    value_type* end() { return data_ + size_; }
-    
-    const value_type* end() const { return data_ + size_; }
 
 template <typename T>
 bool operator==(const FSArray<T>& lhs, const FSArray<T>& rhs) {
