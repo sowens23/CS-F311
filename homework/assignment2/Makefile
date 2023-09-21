@@ -1,4 +1,4 @@
-Prog = player
+Prog = fsarray
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -Werror
 
