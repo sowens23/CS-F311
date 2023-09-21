@@ -22,6 +22,22 @@ int main () {
 			ia[c] = c * c;
 	}
 	
+	// Range-based for-loop calls FSArray member functions begin, end
+	for (auto x : ia)
+	{
+			cout << "Item :" << x << endl;
+	}
+
+	const FSArray<int> ia2 = ia;  // Copy constructor
+	if (ia2 == ia)                // Condition is true
+			cout << "Equal!" << endl;
+
+	FSArray<double> da2;
+	da2 = da;                     // Copy assignment
+	da2 = ia;                     // DOES NOT COMPILE; different value types
+
+	if (da == ia)                 // DOES NOT COMPILE; different value types
+			cout << "blah blah" << endl;
 
 	return 0;
 }

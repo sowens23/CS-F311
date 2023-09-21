@@ -110,13 +110,18 @@ class FSArray {
 			}
 			return *this;
 		}
-}
 		// *** Operators ***
 		// Bracket Operator
-		value_type& operator 
+		value_type & operator[](size_type index)
 		{
 			return data_[index];
 		}
+
+		const value_type & operator[](size_type index) const
+		{
+			return data_[index];
+		}
+
 		// Equals operator that checks size, and all values
 			// Subsequently the != equals as well
 		// '<' '<=' '>' '>=' operators to compare all values of two arrays
