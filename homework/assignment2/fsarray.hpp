@@ -74,7 +74,7 @@ class FSArray {
 		}
 
 		// Copy Constructor
-		FSArray(const FSArray& other) : size_(other.size_), data_(new ValType(other.size_))
+		FSArray(const FSArray& other) : size_(other.size_), data_(new ValType[other.size_])
 		{
 			for (SizeType i = 0; i < size_; ++i) {
 				data_[i] = other.data_[i];
@@ -197,7 +197,7 @@ class FSArray {
 
 		bool operator>=(const FSArray& other) const
 		{
-				return !(*this > other);
+				return !(*this < other);
 		}
 
 	private:
