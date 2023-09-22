@@ -24,7 +24,7 @@ int main () {
 	}
 
 	// Range-based for-loop calls FSArray member functions begin, end
-	for (auto x : ia)
+	for (auto x : da)
 	{
 			cout << "Item :" << x << endl;
 	}
@@ -33,8 +33,12 @@ int main () {
 	if (ia2 == ia)                // Condition is true
 			cout << "Equal!" << endl;
 
-	FSArray<double> da2;
-	da2 = da;                     // Copy assignment
+	//FSArray<int> iac(40,3);
+	FSArray<int> iab;
+
+
+	//FSArray<double> da2;
+	//da2 = da;                     // Copy assignment
 	
 	return 0;
 }
