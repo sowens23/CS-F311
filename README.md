@@ -31,6 +31,80 @@
 # Week-4
 [Top](#TOP)
 ## 2023-09-22
+  - TODO: [fibo_fast.py](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week4/230920)
+  - TODO: [fibo_formula.cpp](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week4/230920)
+  - TODO: [fibo_fast.cpp](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week4/230920)
+  ### Review: Search Algorithms I
+    - Binary Search finds a given key in a sorted list
+    - Pivot is the item in the middle of a list, you compare the key to
+    - Equality vs. Equivalence may not be the same thing when obkects being compared are not numbers
+      - Equality: a == b
+      - Equivalence: !(a < b) && !(b < a)
+    - When using iterators
+      | Using Operators | Using STL Function Templates |
+      | --- | --- |
+      | Random-access iterators only | Works with all forward iterators |
+      |  | Still fast with random-access |
+      | iter += n | std::advance(iter, n) |
+      | iter + n | std::next(iter, n) |
+      | iter2 - iter1 | std::distance(iter1, iter2) |
+
+  ### Recursion vs. Iteration
+  - Definitions
+    - **Iteration**: Using one or more loops (Iterative)
+    - **Recursion**: When a function calls itself (Recursive)
+  - Fibo Again
+    - Let's take what we have in fibo_first.cpp, then write it iteratively, then recursively.
+      - tuple can contain an arbitrary amount of numbers, it's in #include <tuple>
+      - pair can contain two numbers, it's in #include <utility>
+      ```
+      // fibo_first (Really slow)
+
+      ```
+      ```
+      // fibo_iterative (Very fast)
+
+      ```
+      ```
+      // fibo_recursive (??) Unfinished
+      using bignum = uint_fast64_t;
+      pair <bignum, bignum> fibo_recursive(int n) {
+        // BASE CASE
+          if (n == 0) {
+            //return make_pair<bignum, bignum>(1,0);
+            // Returning prev, and current
+            return (1,0)
+          }
+        // RECURSIVE CASE
+          // Older syntax
+          // pair<bignum, bignum> = 
+          auto [prev, curr] = fibo_recursive(n-1);
+          return { curr, prev + curr };
+      }
+
+      bignum fibo(int n) {
+        auto [prev, curr] = fibo_recursive(n);
+        return curr;
+      }
+      ```
+    - A tree can be used to represent function calls some algorithms make, this can be utilized to ealuate the speed of functions
+    - The 2017 C++ Standard introduced **structured bindings**
+      - Go from ``` pair<bignum, bignum> fibo_recurse(int n);```
+      - To ``` auto [a, b] = fibo_recurse(k);```
+        - a and b are variables of type bignum, a is fibo(k-1) and b is fibo(k)
+  - Function-Call Intervals
+    - A running program makes use of the **call stack**
+      - From the stack, we only deal with the top, utilizing push, and pop controls
+    - Items on the stack are stack frames
+    - When analysing time using we care about calls,
+    - When concerned about space we care about recursion depth, ie. the data piled onto the stack.
+  - Drawbacks of Recursion
+    - Recursive code can be more inefficient than iterative in two ways
+      - function call overhead because recursion will create many articles of the same function, this essentially creates a lot of calls and pushes
+      - The above reason will also utilize much more many
+  - Fibo Yet Again
+    - Dynamic Programming can greatly speed up some recursive algorithms
+
 ## 2023-09-20
   ### Review: Arrays & Linked Lists
   - Array stores a sequence of items, one after the other.
