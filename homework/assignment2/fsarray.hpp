@@ -27,43 +27,40 @@
 				9) Operators <, >, <=, >=.
 					- Two FSArray objects with different value types cannot be compared.
 					- If they can be compared, these operators use lexicographic order, which works like alphabetical order processing all items of each array together 
-				10) Define member types value_type, and size_type publicly
+				10) Define member types ValType, and SizeType publicly
 				11) const FSArray<T> does not does not allow modification (This has implications for how you implement functions behin and end, as well as the bracket operator)
 				12)
 */
 
-#include <iostream>
-//#include <ostream>
-//#include <cassert>
-//#include <string>
-//#include <cctype>
+#ifndef FILE_FSARRAY_HPP_INCLUDED
+#define FILE_FSARRAY_HPP_INCLUDED
+
+#include <algorithm>
+#include <cassert>
 #include <cstddef>
 
 // 
 // Class Template FSArray
 // 
 
-template <typename ValType>
+template <typename ValType, typename SizeType = std::size_t>
 class FSArray {
 	public:
 	// *** Member Types ***
 
 		using value_type = ValType;
-		using size_type = std::size_t;
+		using size_type = SizeType;
 
 	// *** Constructors ***
 
 		// Three constructors [Default, 1-P, 2-P]
-		FSArray() : size_(8), data_(new value_type[size_]) // Default Constructor
-		{}
-		FSArray(size_type size) : size_(size), data_(new value_type[size])
-		{}
-		FSArray(size_type size, const value_type& val) : size_(size), data_(new value_type[size])
+		// Default Constructor
+		FSArray() : size_(8), data_(new ValType[8]) {}
+
+		explicit FSArray(SizeType size) : size_(size), data_(new ValType[size]) {}
+		FSArray(SizeType size, const ValType& val) : size_(size), data_(new ValType[size])
 		{
-			// Auto Fill
-			//std::fill(data_, data_ + size_, val);
-			// Manual Fill
-			for (size_type i = 0; i < size; ++i) {
+			for (SizeType i = 0; i < size_; ++i) {
 				data_[i] = val;
 			}
 		}
@@ -75,47 +72,39 @@ class FSArray {
 		{
 			delete[] data_;
 		}
+
 		// Copy Constructor
-		FSArray(const FSArray& other) : size_(other.size_), data_(new value_type(size_))
+		FSArray(const FSArray& other) : size_(other.size_), data_(new ValType(other.size_))
 		{
-			// Auto Copy
-			//std::copy(other.data_, other.data_ + size_, data_);
-			// Manual Copy
-			for (size_type i = 0; i < size_; ++i) {
+			for (SizeType i = 0; i < size_; ++i) {
 				data_[i] = other.data_[i];
 			}
 		}
-		// Copy Assignment
-		FSArray & operator=(const FSArray & other) 
-		{
-			if (this != &other) {
-				delete[] data_;
-				size_ = other.size_;
-				data_ = new value_type[size_];
-				//std::copy(other.data_, other.data_ + size_);
-				for (size_type i = 0; i < size_; ++i) {
-					data_[i] = other.data_[i];
-				}
-				delete[] other.data_;
-			}
-			return *this;
-		}
+
 		// Move Constructor
 		FSArray(FSArray && other) noexcept : size_(other.size_), data_(other.data_) 
 		{
-			other.size = 0;
+			other.size_ = 0;
 			other.data_ = nullptr;
 		}
+
+		// Copy Assignment
+		FSArray & operator=(const FSArray & other) 
+		{
+			if (this != &other) 
+			{
+				FSArray fsarray_temp(other);
+				swap(fsarray_temp);
+			}
+			return *this;
+		}
+
 		// Move Assignment
 		FSArray & operator=(FSArray && other) noexcept
 		{
-			if (this != &other) {
-				delete[] data_;
-				size_ = other.size_;
-				data_ = other.data_;
-				other.size_ = 0;
-				delete[] other.data_;
-				//other.data_ = nullptr;
+			if (this != &other) 
+			{
+				swap(other);
 			}
 			return *this;
 		}
@@ -123,79 +112,104 @@ class FSArray {
 	// *** Operators ***
 
 		// Bracket Operator
-		value_type & operator[](size_type index)
+		ValType & operator[](SizeType index)
 		{
+			assert(index < size_);
 			return data_[index];
 		}
 
-		const value_type & operator[](size_type index) const
+		const ValType & operator[](SizeType index) const
 		{
+			assert(index < size_);
 			return data_[index];
-		}
-
-		value_type size()
-		{
-			return size_;
 		}
 
 	// *** Member Functions ***
 
 		// Size returns the size of a given array
-		size_type size() const {
+		SizeType size() const 
+		{
 			return size_;
 		}
 		// Begin returns address of item 0
-		value_type* begin() {
+		ValType* begin() 
+		{
 			return data_;
 		} 
 		// Begin const returns the address of a const array item 0
-		const value_type* begin()  const
+		const ValType* begin() const
 		{
 			return data_;
 		}
 		// End returns address of one item past last
-		value_type* end()
+		ValType* end()
 		{
 			return data_ + size_;
 		}
 		// End const returns address of one item past last
-		const value_type* end() const
+		const ValType* end() const
 		{
 			return data_ + size_;
 		}
 
+		// *** Additional operators ***
+		// ==, !=, <, <=, >, >=
+		bool operator==(const FSArray& other) const 
+		{
+			if (size_ != other.size_) {
+				return false;
+			}
+			for (SizeType i = 0; i < size_; ++i) 
+			{
+				if (data_[i] != other.data_[i]) {
+					return false;
+				}
+			} 
+			return true;
+		}
+
+		bool operator!=(const FSArray& other) const
+		{
+				return !(other == *this);
+		}
+
+		bool operator<(const FSArray& other) const
+		{
+			for (SizeType i = 0; i < size_ && i < other.size_; ++i) {
+					if (data_[i] < other.data_[i]) {
+							return true;
+					} else if (other.data_[i] < data_[i]) {
+							return false;
+					}
+			}
+			return size_ < other.size_; // Compare sizes if no difference found
+		}
+
+		bool operator<=(const FSArray& other) const
+		{
+				return !(other < *this);
+		}
+
+		bool operator>(const FSArray& other) const 
+		{
+				return other < *this;
+		}
+
+		bool operator>=(const FSArray& other) const
+		{
+				return !(*this > other);
+		}
+
 	private:
-		size_type size_;
-		value_type* data_;
+		SizeType size_;
+		ValType* data_;
+
+		// Private swap function for efficient swapping
+		void swap(FSArray& other) noexcept {
+			std::swap(size_, other.size_);
+			std::swap(data_, other.data_);
+		}
 
 };
 
-template <typename T>
-bool operator==(const FSArray<T>& lhs, const FSArray<T>& rhs) {
-    return lhs.size() == rhs.size() && std::equal(lhs.begin(), lhs.end(), rhs.begin());
-}
-
-template <typename T>
-bool operator!=(const FSArray<T>& lhs, const FSArray<T>& rhs) {
-    return !(lhs == rhs);
-}
-
-template <typename T>
-bool operator<(const FSArray<T>& lhs, const FSArray<T>& rhs) {
-    return std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
-}
-
-template <typename T>
-bool operator>(const FSArray<T>& lhs, const FSArray<T>& rhs) {
-    return rhs < lhs;
-}
-
-template <typename T>
-bool operator<=(const FSArray<T>& lhs, const FSArray<T>& rhs) {
-    return !(rhs < lhs);
-}
-
-template <typename T>
-bool operator>=(const FSArray<T>& lhs, const FSArray<T>& rhs) {
-    return !(lhs < rhs);
-}
+#endif // #ifndef FILE_FSARRAY_HPP_INCLUDED

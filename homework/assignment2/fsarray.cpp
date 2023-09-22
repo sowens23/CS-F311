@@ -16,6 +16,7 @@ int main () {
 	FSArray<int> ia(8);           // Array of 8 ints
 	FSArray<int> iax;             // Another array of 8 ints
 	FSArray<double> da(40, 3.2);  // Array of 40 doubles; each is set to 3.2
+	// FSArray x(8);                 // DOES NOT COMPILE; no template parameter
 
 	// Set all items (counter loop)
 	for (int c = 0; c < ia.size(); ++c)
@@ -24,7 +25,7 @@ int main () {
 	}
 
 	// Range-based for-loop calls FSArray member functions begin, end
-	for (auto x : da)
+	for (auto x : ia)
 	{
 			cout << "Item :" << x << endl;
 	}
@@ -33,12 +34,17 @@ int main () {
 	if (ia2 == ia)                // Condition is true
 			cout << "Equal!" << endl;
 
-	//FSArray<int> iac(40,3);
-	FSArray<int> iab;
-
-
+	std::cout << "1\n";
 	//FSArray<double> da2;
+	FSArray<int> ib;
+	std::cout << "2\n";
 	//da2 = da;                     // Copy assignment
+	ia = ib;                     // Copy assignment
+	std::cout << "3\n";
+	// da2 = ia;                     // DOES NOT COMPILE; different value types
+
+	// if (da == ia)                 // DOES NOT COMPILE; different value types
+	// 		cout << "blah blah" << endl;
 	
 	return 0;
 }
