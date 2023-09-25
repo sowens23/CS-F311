@@ -34,6 +34,85 @@
 ## 2023-09-27
 ## 2023-09-25
   - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week5/230925): seqsearch_compare.cpp, binsearch2.cpp, binsearch3.cpp, binsearch4.cpp
+  ### Review: Recursion vs Iteration
+    - Use a tree to calculate calls an algorithm makes
+    - A choice in algorithm can make a huge difference in performance
+    - A running program uses a call stack, which holds stack frames
+      - Each stack frame corresponds to an *invocation* of a function. Which holds automatic variables + the functions return address
+      - When the function exits, the stack frame is **popped** off the stack
+    - **Recursion Depth** is the greatest number of stack frames on the call stack at *any one time* 
+
+  ### Search Algorithms II
+  - **Sequential Search**
+    - Sequential Search (also called **Linear Search**) is used to find a key in a list.
+      - You literally check the first item in the list, if it matches, return, if it doesn't match, check the next item in the list.
+  - **Binary Search** required that a list is sorted, but once that is done;
+    - Check the *pivot* of the list (key at half length of list) and cut the list in half depending on which side the search key is on.
+    - Binary Searched list should be *random-access*
+
+      | List Size | Binary Search | Sequential Search |
+      | --- | --- | --- |
+      | | Total Potential Lookups: | Total Potential Lookups: |
+      | 1 | 1 | 1 |
+      | 2 | 2 | 2 |
+      | 4 | 3 | 4 |
+      | 100 | 8 | 100 |
+      | 10,000 | 15 | 10,000 |
+      | 1,000,000 | 21 | 1,000,000 |
+      | 10,000,000,000 | 35 | 10,000,000,000 |
+      | k | Roughly 2^(k) | k |
+  - “Iron Law of Computer Science”. As computational power increases, the efficiency of algorithms becomes even more crucial. This is because as machines become more powerful, they are tasked with solving increasingly complex problems. Efficient algorithms can significantly reduce the time and resources required to solve these problems.
+  - TODO: Sequential vs Binary
+
+  ### Elmininating Recursion
+  - In General
+    - Recursion can sometimes have serious drawbacks. This sometimes we may want to **eliminate recursion**
+    - **Fact**: Every recursive function can be re-written as a non-recursive function that uses essentially the same algorithm.
+      - This is true because we can simulate the call stack ourselves.
+    - Strategies for re-writing recursive functions in iterative form
+      1. Declare an appropriate stack.
+      2. Replace each automatic variable with it's field in the top Stack item.
+      3. Put a loop around the *rest* of the function
+      4. Replace each recursive call with;
+        - Push an object with parameter values and current execution location.
+        - Restart the loop (continue).
+        - A label marking the current location.
+        - Pop the stack. Make use of the return value (if any)
+      5. Replace each *return* with:
+        - If the return address is the outside world, then actually return
+        - Otherse, set the return value, and skip to the proper label (goto ?)
+  - Tail Calls
+    - **Tail Call**: Is when calling a function is the last thing a function does.
+    - Tail call optimization (TCO) is when a tail call reuses the same stack frame as the function that makes the call
+  - Tail Recursion
+    - If a tail call is a recursive call, this is **tail recursion**, and is *tail-recursive*
+    - Elimination steps:
+      1. Surround the function body with a big loop.
+      2. Replace the tail-recrusive call with Set parameters to their new values
+  - TODO: binsearch3, and binsearch4
+
+  ### Search in the C++ STL
+  - Binary Search
+    - std::binary_search (<algorithms>) searchs and returns a bool for if found
+      - std::lower_bound // Lowest iterator that the search value could be inserted
+      - std::upper_bound // Highest iterator that the search value could be inserted
+      - std::equal_range // Not sure **LOOKUP**
+    - Usage: std::binary_search(behi(v1), end(v1), key);
+  - Custom Comparison
+    - All STL Binary Search algorithms will take an additional parameter to specify a comparison other than '<'
+      ```
+      #include <algorithm> // For std::binary_search
+      #include <functional> // For std::greater
+      vector<int> v2 = …; // Dataset, sorted DESCENDING
+      int key = …; // Key to find
+      bool found = std::binary_search(begin(v2), end(v2), key,
+      std::greater<int>());
+      ```
+  - Sequential Search
+    - std::find(<algorithm>) will search for equality, not equivalence
+      - auto iter = std::find(begin(v3), end(v3), key);
+      - if (iter == end(v3)) cout << "Not found";
+  - Algorithms for Specific Data Structures
 
 # Week-4
 [Top](#TOP)

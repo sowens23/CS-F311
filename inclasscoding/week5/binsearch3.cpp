@@ -1,10 +1,12 @@
-// seqsearch_compare.cpp  UNFINISHED
+// binsearch3.cpp
 // Glenn G. Chappell
-// 2023-09-24
+// 2023-09-20
+// 2023-09-25
 //
 // For CS 311 Fall 2023
-// Compare Sequential Search with Binary Search
-// Uses Binary Search implementation from binsearch2.cpp
+// Binary Search
+// Implementation #3: single tail recursive call
+// Based on binsearch1.cpp
 
 #include <iostream>
 using std::cout;
@@ -77,12 +79,15 @@ bool binSearch(FDIter first,      // [first, last) is range to search
 
     if (findme < *pivotiter)
     {   // Recursively search first half of range
-        return binSearch(first, pivotiter, findme);
+        // return binSearch(first, pivotiter, findme);
+        last = pivotiter;
     }
     else
     {   // Recursively search second half of range
-        return binSearch(pivotiter, last, findme);
+        // return binSearch(pivotiter, last, findme);
+        first = pivotiter;
     }
+    return binSearch(first, last, findme);
 }
 
 
@@ -118,70 +123,6 @@ void tryBinSearch(const vector<bignum> & data,  // Data to search in
     cout << endl;
 }
 
-
-// seqSearch
-// Does Sequential Search on a range specified with iterators. Returns
-// true if findme was found (using equality) in range, false otherwise.
-// Requirements on types:
-//     FDIter is a forward iterator type.
-//     ValueType is the value type of FDIter.
-//     ValueType has a public operator==.
-// Pre:
-//     [first, last) is a valid range.
-// Throws what & when a ValueType operation (op==) throws. If no
-// ValueType operation throws, then seqSearch does not throw.
-template <typename FDIter, typename ValueType>
-bool seqSearch(FDIter first,      // [first, last) is range to search
-               FDIter last,
-               const ValueType & findme)
-                                  // value to find
-{
-   /*  return false;  // DUMMY
-    */ // TODO: WRITE THIS!!!
-
-    // Essentially, we look at the first item of the list
-        // Does it contain the key? yes, return true, no, check next
-        // Have we exhausted the list? Yes, return false.
-
-    for (auto it = first; it != last; ++it) {
-        if (*it == findme) return true;
-    }
-    return false;
-}
-
-
-// trySeqSearch
-// Try a search using function seqSearch with the given data & key.
-// Print result.
-// Pre:
-//     expect is true if key is equal to an item in data, false
-//      otherwise.
-// Throws what & when seqSearch throws. If seqSearch does not throw,
-// then trySeqSearch does not throw.
-void trySeqSearch(const vector<bignum> & data,  // Data to search in
-                  bignum key,                   // Key to search for
-                  bool expect)                  // Expected result
-{
-    // Do search
-    cout << "Doing Sequential Search for: " << key;
-    cout.flush();
-
-    bool success = seqSearch(begin(data), end(data), key);
-
-    // Print result
-    cout << " - result: " << (success ? "found" : "not found");
-    if (success == expect)
-    {
-        cout << " [correct]";
-    }
-    else
-    {
-        cout << " [INCORRECT] ****************************************";
-    }
-    cout << endl;
-}
-
-
 // userPause
 // Wait for user to press ENTER: read all chars through first newline.
 void userPause()
@@ -215,16 +156,11 @@ string intWithSep(IntType num,               // Integer to stringify
 
 
 // Main program
-// Do several searches using binSearch, then do the same searches with
-// seqSearch. Print results.
+// Do several searches using binSearch. Print results.
 int main()
 {
     // Size of dataset - CHANGE THIS! - MUST BE GREATER THAN 100
     const size_t SIZE = 500'000'000;
-    cout << "If this program is too slow/fast, then change the value of"
-         << "\n";
-    cout << "SIZE, in function main, appropriately" << endl;
-    cout << endl;
 
     assert(SIZE > 100);
 
@@ -256,11 +192,6 @@ int main()
         { (SIZE*10),     false }
     };
 
-    // Wait for user before Binary Search calls
-    cout << "Press ENTER for Binary Search calls ";
-    userPause();
-    cout << endl;
-
     // Do Binary Search calls
     for (const auto & p : searchfor)
     {
@@ -268,20 +199,9 @@ int main()
     }
     cout << endl;
 
-    // Wait for user before Sequential Search calls
-    cout << "Press ENTER for Sequential Search calls ";
-    userPause();
-    cout << endl;
-
-    // Do Sequential Search calls
-    for (const auto & p : searchfor)
-    {
-        trySeqSearch(data, p.first, p.second);
-    }
-    cout << endl;
-
     // Wait for user
     cout << "Press ENTER to quit ";
     userPause();
+    return 0;
 }
 
