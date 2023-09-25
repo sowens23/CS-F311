@@ -22,11 +22,18 @@
 # Class Notes and Assignments
   | Weekly Notes | Assignments | Other Notes |
   | --- | --- | --- |
-  | [Week-1](#Week-1) | [HW01](https://github.com/sowens23/CS-F311/tree/main/homework/assignment1) | |
-  | [Week-2](#Week-2) | [HW02](https://github.com/sowens23/CS-F311/tree/main/homework/assignment2) | |
-  | [Week-3](#Week-3) | | |
-  | [Week-4](#Week-4) | | |
+  | [Week-1](#Week-1) | | |
+  | [Week-2](#Week-2) | [HW01](https://github.com/sowens23/CS-F311/tree/main/homework/assignment1) | |
+  | [Week-3](#Week-3) | [HW02](https://github.com/sowens23/CS-F311/tree/main/homework/assignment2) | |
+  | [Week-4](#Week-4) | [HW03](https://github.com/sowens23/CS-F311/tree/main/homework/assignment3)| |
   | [Week-5](#Week-5) | | |
+
+# Week-5
+[Top](#TOP)
+## 2023-09-29
+## 2023-09-27
+## 2023-09-25
+  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week5/230925): seqsearch_compare.cpp, binsearch2.cpp, binsearch3.cpp, binsearch4.cpp
 
 # Week-4
 [Top](#TOP)
