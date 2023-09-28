@@ -53,7 +53,7 @@
     3. Then output a full solution
     - So essentially, create the **nonrecursive wrapper function** that will create an empty partial solution, then call the workhorse function with this partial solution
     - Then call the **Recursive workhouse function** with the given partial solution then print out ful solutions.ss
-  - Counting Solutions is nice to see how effective we are
+  - Counting Solutions is nice to see how effective we are *REMOVE THIS*
 
 ## 2023-09-25
   - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week5): seqsearch_compare.cpp, binsearch2.cpp, binsearch3.cpp, binsearch4.cpp
