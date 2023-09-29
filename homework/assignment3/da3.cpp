@@ -7,17 +7,41 @@
 	 Program Function: for testing purposes
 */
 
-#include "da3.hpp"
-#include "da3.hpp"
-#include "llnode.hpp"
-#include "llnode.hpp"
+#include "da3.hpp"     // For Assignment 3 prototypes & templates
 
-#include <cstddef>
+#include<iostream>
+#include <functional>
+using std::function;
 
-ValueType lookup(const LLNode<ValueType> * head, std::size_t index) {
 
-};
+void didItThrow(const function<void()> & ff,
+                bool & threw)
+{
+    // TODO: WRITE THIS!!!
+}
+
+
+int gcd(int a,
+        int b)
+{
+    return 42;  // DUMMY
+    // TODO: WRITE THIS!!!
+}
 
 int main() {
+	// TESTING
+	std::cout<<"testing\n";
+	// Filling Node
+	LLNode<int> *node=new
+	LLNode<int>(5);
+	node->_next = new LLNode<int>(10);
+	node->_next->_next = new LLNode<int>(15);
+	// Printing Node
+	LLNode<int> *current = node;
+	while (current != nullptr) {
+			std::cout << current->_data << std::endl;
+			current = current->_next;
+	}
+	delete node;
 	return 0;
 }
