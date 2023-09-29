@@ -17,7 +17,12 @@
   - [CPP Reference Page](https://en.cppreference.com/w/)
 
 ### Big Notes
-  - Compiling: g++ -std=c++17 -o program program.cpp
+  - Compiling: 
+    - g++ -std=c++17 -o program program.cpp
+    - python3 program.py
+
+  **The Cauchy-Schwarz Inequality**
+    $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$
 
 # Class Notes and Assignments
   | Weekly Notes | Assignments | Other Notes |
@@ -31,8 +36,36 @@
 # Week-5
 [Top](#TOP)
 ## 2023-09-29
+  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week5/): hsscount_test.cpp, hsscount.cpp, important.py
+  ### Review: Backtracking
+    - Searching for a solution can require backtracking
+    - All attempts are partial solution
+  ### Thoughts on assignment 4
+  - Writing It
+    - vector<vector<int>> board(dim_x, vector<int>(dim_y,0));
+    - board[i][j]
+    - See notes in slides
+  ### 3 Analysis of Algorithms
+  - Efficincy
+    - We can measure efficiency of a program that does not depend on system chosen or current state of technology.
+    - We simply take a sum of the number of algorithms performed 
+  - Big-O Notation
+    -   Algorithm A is **order** f(n) [written O(f(n))] if there exists constants k and n_0 such that algorithm A performs no more than k*f(n) basic operations when given input of size n ≥ n_0
+    - A competent programmer is expected to understand it
+    - You can measure the worst-case and average-case. You can caluclate this yourself
+    - An algorithm that works well when used with increasingly large problems & large systems is said to be scalable. Or, it **scales well**
+    - Efficiency categories
+      - O(1) is **constant time**
+      - O(log_(b)n) is **logarithmic time**
+      - o(n) is **linear time**
+      - O(n log_(b)n) [for some b>1] is **log-linear time**
+      - O(n^2) is **quadratic time**
+      - O(n^3) is **cubic time**
+        - You can see how this works now.
+      - O(c^n) is **exponential time**
+
 ## 2023-09-27
-  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week5/230925): nqueen.cpp, nqueencount.cpp
+  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week5/): nqueen.cpp, nqueencount.cpp
   - Go collect this new, finished program.
   ### Review: Search Algorithms
     - Binary search using a key with a sorted list
