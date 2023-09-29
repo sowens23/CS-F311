@@ -32,8 +32,31 @@
 [Top](#TOP)
 ## 2023-09-29
 ## 2023-09-27
+  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week5/230925): nqueen.cpp, nqueencount.cpp
+  - Go collect this new, finished program.
+  ### Review: Search Algorithms
+    - Binary search using a key with a sorted list
+    - Sequential search (linear search) is very slow, list does not need to be sorted
+    - Binary seach is significantly fast
+    - Sometimes it can be beneficial to eliminate recursion
+      - Tail call is the last thing a function does
+      - Tail recursion is when that last thing, is referencing itself
+      - Eliminating tail recursion is easy and practical
+  ### Recursive Backtracking
+  - Basics
+    - When solving problems, sometimes we may need to backtrack
+    - This usually happens when we need to search for a solution
+    - Recursive solutions work well 
+  - Example
+    1. We want to figure out how to get a partial solution
+    2. Then figure out how to represent a partial solution
+    3. Then output a full solution
+    - So essentially, create the **nonrecursive wrapper function** that will create an empty partial solution, then call the workhorse function with this partial solution
+    - Then call the **Recursive workhouse function** with the given partial solution then print out ful solutions.ss
+  - Counting Solutions is nice to see how effective we are *REMOVE THIS*
+
 ## 2023-09-25
-  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week5/230925): seqsearch_compare.cpp, binsearch2.cpp, binsearch3.cpp, binsearch4.cpp
+  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week5): seqsearch_compare.cpp, binsearch2.cpp, binsearch3.cpp, binsearch4.cpp
   ### Review: Recursion vs Iteration
     - Use a tree to calculate calls an algorithm makes
     - A choice in algorithm can make a huge difference in performance
