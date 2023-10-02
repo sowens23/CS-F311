@@ -33,6 +33,59 @@
   | [Week-4](#Week-4) | [HW03](https://github.com/sowens23/CS-F311/tree/main/homework/assignment3)| |
   | [Week-5](#Week-5) | | |
 
+# Week-6
+[Top](#TOP)
+## 2023-10-02
+  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week6/): insertion_sort.cpp, bubble_sort.cpp
+  ### Review: Analysis of Algorithms
+    - Efficient: Using few resources
+      - We can measure this by calculating sum of basic operations
+    - Our *usual* **model of computation**:
+      - Legal operations: No data access except thru provided channels
+      - Basic operations (the operations we count)
+      - We are given a colleciton. It's size is the numbers of items in it
+    - Efficiency expressed using big-O tells us much of what we need to know to determine if an algorithm is scalable.
+      - In nested loops, if each is executed n times, i times, where i goes up to n, then the order is O(n^t)
+  ### Introduction to Sorting
+  - Basics
+    - To **sort** a collection of data means to rearrange its items in an order
+      - We like to sort collections of data, the part we sort is the **key**
+      - **Sort** is an algorithm that does sorting
+      - **Comparison sort** gets information about the data items using a *comparison function*
+      - **General-purpose comparison sorts** means that we place no restrictions on the size of the list to be sorted
+  - Overview of Algorithms
+    - We analyze a general-purpose comparison sort using five factors.
+      - Time/Efficiency
+      - Requirements on data
+      - Space Efficiency
+      - Stability
+        - Never reverses the relative order of equivalent items
+        - We want to order the keys, but we want them to stay in order of associated data
+        - When we move items up the list, down the list in the process of sorting, we keep the data in the order it was found. So we move our first '5' key back, then the next '5' we find, we move it back, but ordered after the first '5' we found. This is a *stabile* sorting algorithm.
+      - Performance on Nearly Sorted Data
+        1. All items close to proper spots
+        2. Few items out of order
+    - Speeds of sorts?
+      - Quadtratic-Time [O(n^2)] Comparison Sorts
+        - Bubble Sort, Insertion Sort, Quicksort
+      - Log-Linear-Time [O(n log n )] Comparison Sorts
+        - Merge Sort, Heap Sort, Introsort
+      - Special Purpose-Not Comparison Sorts
+        - Pigeonhole Sort, Radix Sort
+  ### Comparison Sorts I
+  - Bubble Sort
+    - TODO: Very slow when data set is large and things are out of order
+    - Virtually never used in practice.
+    - Esentially will read one item and it's neighbor, compare, and swap.
+  - Insertion Sort
+    - We can flip the process of bubble sort, instead of looking through the positions and determinig what item belonds
+    - We look at the item and determine the position.
+    - We can do a backward sequential search to find the location to move the item
+    - TODO: insertion_sort.cpp
+  - Insertion is generally one of the move effective way to organize a small list.
+  - Optimized Sort and Quick Sort will utilize Insertion Sort.
+
+
 # Week-5
 [Top](#TOP)
 ## 2023-09-29
