@@ -106,7 +106,7 @@ namespace scuttleSpider {
 		// Consider next legal move
 			int move_x, move_y = 0;
 			// Diagonal UPLEFT, UP and Diagonal UPRIGHT
-/* 			if (curr_y-1 >= 0) {
+			if (curr_y-1 >= 0) {
 				if (curr_x-1 >= 0 && board[curr_x-1][curr_y-1] == 0) {
 					cout << "UP/LEFT move found\n";
 				}
@@ -116,7 +116,7 @@ namespace scuttleSpider {
 				if (curr_x+1 < board.size() && board[curr_x+1][curr_y-1] == 0) {
 					cout << "UP/RIGHT move found\n";
 				}
-			} */
+			}
 			// Left and Right movements
   		if (curr_x-1 >= 0 && board[curr_x-1][curr_y] == 0) {
 				cout << "LEFT move found\n";
