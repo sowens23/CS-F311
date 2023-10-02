@@ -24,12 +24,10 @@
 using std::cout;
 using std::cin;
 using std::endl;
-#include <string>
-using std::string;
-using std::to_string;
 #include <vector>
 using std::vector;
-#include <stdexcept>
+#include <utility> 
+using std::pair;
 #include "hsscount.hpp"
 
 int hssCount(int dim_x, int dim_y,
@@ -37,40 +35,27 @@ int hssCount(int dim_x, int dim_y,
 							int start_x, int start_y,
 							int finish_x, int finish_y) 
 {
+	// Check dimensions
+		if (dim_x < 0 || dim_y < 0) return 0;
+		else if ((start_x > dim_x || start_y > dim_y) || (start_x < 0 || start_y < 0)) return 0;
+		else if ((hole_x > dim_x || hole_y > dim_y) || (hole_x < 0 || hole_y < 0)) return 0;
+		else if ((finish_x > dim_x || finish_y > dim_y) || (finish_x < 0 || finish_y < 0)) return 0;
+		else if (start_x == hole_x && start_y == hole_y) return 0;
+		else if (hole_x == finish_x && hole_y == finish_y) return 0;
+		else if (finish_x == start_x && finish_y == start_y) return 0;
 
-	// Step 1) Error Checking for invariants
-		// INVARIANTS: BOARD SIZE IS NOT NEGATIVE, AND [HOLE,START,FINISH] ARE ON BOARD
-		try {
-			scuttleSpider::checkDimensions(dim_x, dim_y, hole_x, hole_y, start_x, start_y, finish_x, finish_y);
-			// Step 2) Create Board vector and place markers
-				vector<vector<int>> board (dim_x, vector<int>(dim_y,0)); // 2x8 Board should return 64
-				board[hole_x][hole_y] = 1;
+	// Create Board vector and place markers
+	vector<vector<int>> board (dim_x, vector<int>(dim_y,0)); // 2x8 Board should return 64
+	board[hole_x][hole_y] = 1;
 
-			// Step 3) Testing for errors
-				// Various testing functions
-				scuttleSpider::printDimensions(dim_x, dim_y, hole_x, hole_y, start_x, start_y, finish_x, finish_y);
-				scuttleSpider::printBoard(board);
-
-			// Step 4) Begin Recursive Workhorse to count scuttles
-				int squaresLeft=(dim_x*dim_y)-2;
-				int curr_x=start_x;
-				int curr_y=start_y;
-				int scuttleCount = 1;
-				scuttleSpider::hssCount_recurse(board, start_x, start_y, finish_x, finish_y, squaresLeft);
-			return scuttleCount;
-		} catch (const std::out_of_range& e) {
-			std::cout << "Error: " << e.what() << std::endl;
-		}
-		return 0;
+	// Begin Recursive Workhorse to count scuttles
+	return hssCount_recurse(board, start_x, start_y, finish_x, finish_y, (dim_x*dim_y)-2);
 }
 
-int main() {
+/* int main() {
 	// Board x,y. Hole x,y. Start x,y. Finish x,y.
-	//cout << hssCount(3,2, 2,0, 1,0, 2,1) <<endl; // Should return 2
-	cout << hssCount(5,5, 2,2, 5,5, 0,5) <<endl; // Should return 2
-			// 0 0 H 
-			// 0 0 S
-	//hssCount(4,1, 1,0, 0,0, 3,0); // Should return 0
-	//hssCount(5,4, 4,3, 4,2, 0,0); // Should return 40`887
+	cout << hssCount(3,2, 2,0, 1,0, 2,1) <<endl; // Should return 2
+	cout << hssCount(4,1, 1,0, 0,0, 3,0) <<endl; // Should return 0
+	cout << hssCount(5,4, 4,3, 4,2, 0,0) <<endl; // Should return 40`887
 	return 0;
-}
+} */

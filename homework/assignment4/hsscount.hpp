@@ -23,132 +23,75 @@
 #ifndef FILE_HSSCOUNT_HPP_INCLUDED
 #define FILE_HSSCOUNT_HPP_INCLUDED
 
-// *** NAMESPACE SCUTTLESPIDER PROVIDERS HELPER FUNCTIONS TO PUBLIC INTERFACE FUNCTION HSSCOUNT
+#include <iostream>
+using std::cout;
+using std::cin;
+using std::endl;
+#include <vector>
+using std::vector;
+#include <utility> 
+using std::pair;
 
+// Forward declaration of hssCount_recurse
+int hssCount_recurse(vector<vector<int>> board, 
+									int curr_x, int curr_y, 
+									int finish_x, int finish_y, 
+									int squaresLeft);
+
+// Recursive wrapper, defined in source
 int hssCount(int dim_x, int dim_y,
 							int hole_x, int hole_y,
 							int start_x, int start_y,
-							int finish_x, int finish_y);
+							int finish_x, int finish_y) {
+	// Check dimensions
+		if (dim_x < 0 || dim_y < 0) return 0;
+		else if ((start_x > dim_x || start_y > dim_y) || (start_x < 0 || start_y < 0)) return 0;
+		else if ((hole_x > dim_x || hole_y > dim_y) || (hole_x < 0 || hole_y < 0)) return 0;
+		else if ((finish_x > dim_x || finish_y > dim_y) || (finish_x < 0 || finish_y < 0)) return 0;
+		else if (start_x == hole_x && start_y == hole_y) return 0;
+		else if (hole_x == finish_x && hole_y == finish_y) return 0;
+		else if (finish_x == start_x && finish_y == start_y) return 0;
 
-// *** NAMESPACE SCUTTLESPIDER PROVIDERS HELPER FUNCTIONS TO PUBLIC INTERFACE FUNCTION HSSCOUNT
+	// Create Board vector and place markers
+	vector<vector<int>> board (dim_x, vector<int>(dim_y,0)); // 2x8 Board should return 64
+	board[hole_x][hole_y] = 1;
 
-namespace scuttleSpider {
+	// Begin Recursive Workhorse to count scuttles
+	return hssCount_recurse(board, start_x, start_y, finish_x, finish_y, (dim_x*dim_y)-2);
+};
 
-	// 1) Function to check dimensions
-	void checkDimensions (int dim_x, int dim_y,
-							int hole_x, int hole_y,
-							int start_x, int start_y,
-							int finish_x, int finish_y) 
-	{
-		if (dim_x < 0 || dim_y < 0) throw std::out_of_range("Board size cannot be negative");
-		if ((start_x > dim_x || start_y > dim_y) || (start_x < 0 || start_y < 0)) throw std::out_of_range("Start must be located on the board");
-		if ((hole_x > dim_x || hole_y > dim_y) || (hole_x < 0 || hole_y < 0)) throw std::out_of_range("Hole must be located on the board");
-		if ((finish_x > dim_x || finish_y > dim_y) || (finish_x < 0 || finish_y < 0)) throw std::out_of_range("Finish must be located on the board");
-		if (start_x == hole_x && start_y == hole_y) throw std::out_of_range("Start is hole");
-		if (hole_x == finish_x && hole_y == finish_y) throw std::out_of_range("Hole is finish");
-		if (finish_x == start_x && finish_y == start_y) throw std::out_of_range("Finish is start");
+// Recursive Workhorse
+int hssCount_recurse(vector<vector<int>> board, 
+									int curr_x, int curr_y, 
+									int finish_x, int finish_y, 
+									int squaresLeft) {
+
+	// Base Case: Check if next move is invalid and if there are any moves left
+	if (curr_x >= board.size() || curr_x < 0 ||
+		curr_y >= board[0].size() || curr_y < 0) {
+		return 0;
+	}
+	if (board[curr_x][curr_y] == 1) return 0;
+
+	// Base Case: FULL SOLUTION
+	if (squaresLeft == 0 && curr_x == finish_x && curr_y == finish_y) return 1;
+
+	// Mark current position
+	board[curr_x][curr_y] = 1;
+	int total = 0;
+
+	// Consider all legal moves
+	vector<pair<int, int>> moves = {{0,-1}, {1,-1}, {1,0}, {1,1}, {0,1}, {-1,1}, {-1,0}, {-1,-1}};
+	for (auto move : moves) {
+		int new_x = curr_x + move.first;
+		int new_y = curr_y + move.second;
+		total += hssCount_recurse(board, new_x, new_y, finish_x, finish_y, squaresLeft-1);
 	}
 
-	// 3) Function to print out dimensions
-	void printDimensions (int dim_x, int dim_y,
-							int hole_x, int hole_y,
-							int start_x, int start_y,
-							int finish_x, int finish_y) 
-	{
-		string dimensions="";
-		dimensions += "\n** Printing Dimensions **\n";
-		dimensions += "Board: " + to_string(dim_x) + " by " + to_string(dim_y) + "\n";
-		dimensions += "Hole: [" + to_string(hole_x) + "," + to_string(hole_y) + "]\n";
-		dimensions += "Start: [" + to_string(start_x) + "," + to_string(start_y) + "]\n";
-		dimensions += "End : [" + to_string(finish_x) + "," + to_string(finish_y) + "]\n\n";
-		cout << dimensions;
-	}
+	// Unmark current position (backtrack)
+	board[curr_x][curr_y] = 0;
 
-	// 3) Function to print board
-	void printBoard (vector<vector<int>> board_temp) 
-	{
-		cout << "** Printing Board **\n";
-		for (int height = 0; height < board_temp[0].size(); height++) {
-			for (int width = 0; width < board_temp.size(); width++) {
-				cout << board_temp[width][height] << " ";
-			}
-			cout << endl;
-		}
-	}
-
-	// 4) Recursive Workhorse
-	int hssCount_recurse(vector<vector<int>> board, 
-										int curr_x, int curr_y, 
-										int finish_x, int finish_y, 
-										int squaresLeft) {
-
-		// Base Case: Check if next move is invalid and if there are any moves left
-		if (board[curr_x][curr_y] == 1 || 
-				curr_x > board.size() || curr_x < 0 ||
-				curr_y > board[0].size() || curr_y < 0) {
-			cout << board[curr_x][curr_y] << " == 1\n"; 
-			cout << curr_x << " >= " << board.size() << " or " << curr_x << " < 0\n";
-			cout << curr_y << " >= " << board[0].size() << " or " << curr_y << " < 0\n";
-			cout << "invalid or no moves\n";
-			return 0;
-		}
-
-		// Base Case: FULL SOLUTION
-		if (squaresLeft == 0 && curr_x == finish_x && curr_y == finish_y) {
-			cout << "full solution\n";
-			return 1;
-		}
-
-		// Mark current position
-		cout << "Legal move made\n";
-		board[curr_x][curr_y] = 1;
-
-		// Consider next legal move
-			int move_x, move_y = 0;
-			// Diagonal UPLEFT, UP and Diagonal UPRIGHT
-			if (curr_y-1 >= 0) {
-				if (curr_x-1 >= 0 && board[curr_x-1][curr_y-1] == 0) {
-					cout << "UP/LEFT move found\n";
-				}
-				if (board[curr_x][curr_y-1] == 0) {
-					cout << "UP move found\n";
-				}
-				if (curr_x+1 < board.size() && board[curr_x+1][curr_y-1] == 0) {
-					cout << "UP/RIGHT move found\n";
-				}
-			}
-			// Left and Right movements
-  		if (curr_x-1 >= 0 && board[curr_x-1][curr_y] == 0) {
-				cout << "LEFT move found\n";
-			}
-			if (curr_x+1 < board.size() && board[curr_x+1][curr_y] == 0) {
-				cout << "RIGHT move found\n";
-			} 
-			// Diagonal DOWNLEFT, DOWN and Diagonal DOWNRIGHT
-			if (curr_y+1 < board[0].size()) {
-				if (curr_x-1 >= 0 && board[curr_x-1][curr_y-1] == 0) {
-					cout << "DOWN/LEFT move found\n";
-				}
-				if (board[curr_x][curr_y+1] == 0) {
-					cout << "DOWN move found\n";
-				}
-				if (curr_x+1 < board.size() && board[curr_x+1][curr_y+1] == 0) {
-					cout << "DOWN/RIGHT move found\n";
-				}
-			}
-
-		// All legal moves are identified by this point.
-
-		int total = 0;
-		/* total += hssCount_recurse(board, curr_x + move_x, curr_y + move_y, 
-														finish_x, finish_y, squaresLeft-1); */
-
-		// Unmark current position (backtrack)
-		board[curr_x][curr_y] = 0;
-
-		return total;
-	}
-
+	return total;
 };
 
 #endif //#ifndef FILE_HSSCOUNT_HPP_INCLUDED

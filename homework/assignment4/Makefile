@@ -3,11 +3,11 @@ Prog1 =
 CXX = g++
 CXXFLAGS = -std=c++17
 
-$(Prog): $(Prog).o
-	$(CXX) $(CXXFLAGS) -o $(Prog) $(Prog).o
+#$(Prog): $(Prog).o
+#	$(CXX) $(CXXFLAGS) -o $(Prog) $(Prog).o
 
-$(Prog).o: $(Prog).cpp $(Prog).hpp #$(Prog1).hpp
-	$(CXX) $(CXXFLAGS) -c $(Prog).cpp
+#$(Prog).o: $(Prog).cpp $(Prog).hpp #$(Prog1).hpp
+#	$(CXX) $(CXXFLAGS) -c $(Prog).cpp
 
 $(Prog)_test: $(Prog)_test.o $(Prog).o
 	$(CXX) $(CXXFLAGS) -o $(Prog)_test $(Prog)_test.o $(Prog).o
