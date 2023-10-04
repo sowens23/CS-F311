@@ -24,6 +24,10 @@
   **The Cauchy-Schwarz Inequality**
     $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$
 
+  **The Quadratic Formula**
+  When $a \ne 0$, there are two solutions to $(ax^2 + bx + c = 0)$ and they are 
+$$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
+
 # Class Notes and Assignments
   | Weekly Notes | Assignments | Other Notes |
   | --- | --- | --- |
@@ -36,16 +40,69 @@
 # Week-6
 [Top](#TOP)
 ## 2023-10-02
+  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week6/): iterative_merge_sort.cpp
+  ### Review: Analysis of Algorithms
+  - Efficiency in time, space, etc.
+  - Top is the most fast (usually) and bottom is the lowest (usually)
+    | **Using Big-O** | **In Words** |
+    | --- | --- |
+    | O(1) | Constant time |
+    | O(log n) | Logarithmic time |
+    | **Above this line** | **Cannot read all input** |
+    | O(n) | Linear time |
+    | O(n log n) | Log-linear time |
+    | **Below this line** | **Probably not scalable** |
+    | O(n2) | Quadratic time |
+    | O(cn), for some c > 1 | Exponential time |
+  - Nested "real" loops becauses Quadratic, which becomes non-scalable really quick.
+  - *Bubble Sort* 
+    - Efficiency: O(n^2) for average case
+    - Works for linked lists, etc.
+    - Space efficienc: In place
+    - Stable (Never reverses the relative order of equivalent items)
+    - O-Linear speed when list is *nearly* sorted, otherwise quadratic, and super slow.
+  - *Insertion Sort*
+    - Mostly same as Bubble sort, too slow.
+  - Using std::move(utlity) will cast an Rvalue
+  ### Asymptotic 
+  - Asymptotic notionations will define a few details of an algorithm
+    - Omega ( ) says that the worst-case number of basic operations is atleast k*f(n)
+    - Theta ( ) says that a function always lies between 
+
+    | 1 | n | nlog(n) | n2 | 5n2 | n^(2)log(n) |  n3|  n4 |
+    | --- | --- | --- | --- | --- | --- | --- | --- |
+    | O(n2) | yes | yes | yes | yes | yes|  no|  no|  no |
+    | Ω(n2) | no | no | no | yes | yes |  yes | yes |  yes |
+    | Θ(n2) | no | no | no | yes | yes |  no|  no|  no |
+
+  ### Divide and Conquer
+  - An algorithmic strategy is a general method for putting together an algorithm
+  - Divide and Conquer is used by a number of fast algorthms to split the input into parts and handle them individually
+  - Decrease and Concquer works the same but is applied when recursive calls are necessary. You reduce what needs to be called recursively.
+
+      **The Master Theorem**
+  *Where a >= 1, b > 1, and f(n) is Θ(n^d) - "n/b" can be a nearby integer*
+  $$ T(n) = a*T(n/d) + f(n) $$
+  
+  ### Comparison Sorts II
+  - Merge Sort [John von Neumann, 1945]
+  - **Stable Merge** is when we *do not* reverse the order of equivalent items
+  - TODO: merge_sort.cpp
+  s the characteristics we are most interested in:
+  - Merge Sort is stable and runs Θ(n*log(n))
+
+## 2023-10-02
   - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week6/): insertion_sort.cpp, bubble_sort.cpp
   ### Review: Analysis of Algorithms
-    - Efficient: Using few resources
-      - We can measure this by calculating sum of basic operations
-    - Our *usual* **model of computation**:
-      - Legal operations: No data access except thru provided channels
-      - Basic operations (the operations we count)
-      - We are given a colleciton. It's size is the numbers of items in it
-    - Efficiency expressed using big-O tells us much of what we need to know to determine if an algorithm is scalable.
-      - In nested loops, if each is executed n times, i times, where i goes up to n, then the order is O(n^t)
+  - Efficient: Using few resources
+    - We can measure this by calculating sum of basic operations
+  - Our *usual* **model of computation**:
+    - Legal operations: No data access except thru provided channels
+    - Basic operations (the operations we count)
+    - We are given a colleciton. It's size is the numbers of items in it
+  - Efficiency expressed using big-O tells us much of what we need to know to determine if an algorithm is scalable.
+    - In nested loops, if each is executed n times, i times, where i goes up to n, then the order is O(n^t)
+
   ### Introduction to Sorting
   - Basics
     - To **sort** a collection of data means to rearrange its items in an order
@@ -72,6 +129,7 @@
         - Merge Sort, Heap Sort, Introsort
       - Special Purpose-Not Comparison Sorts
         - Pigeonhole Sort, Radix Sort
+
   ### Comparison Sorts I
   - Bubble Sort
     - TODO: Very slow when data set is large and things are out of order
@@ -91,8 +149,8 @@
 ## 2023-09-29
   - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week5/): hsscount_test.cpp, hsscount.cpp, important.py
   ### Review: Backtracking
-    - Searching for a solution can require backtracking
-    - All attempts are partial solution
+  - Searching for a solution can require backtracking
+  - All attempts are partial solution
   ### Thoughts on assignment 4
   - Writing It
     - vector<vector<int>> board(dim_x, vector<int>(dim_y,0));
