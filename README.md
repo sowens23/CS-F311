@@ -39,7 +39,61 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 
 # Week-6
 [Top](#TOP)
-## 2023-10-02
+## 2023-10-06
+  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week6/): quicksort1.cpp, quicksort2.cpp, and stirling.py 
+  ### Review: Analysis of Algorithms
+  - We really want to avoid using anything with a quadratic or higher power.
+  - Constant, linear, and log times are ideal.
+  - Bubble and merge sort are In-Place. Meaning they require no large addition in space.
+  - Remember the Master Theorem
+    - b is the number of nearly equal-sized parts
+    - a is the number of recursive calls
+    - f(n) is the amount of other work done in the body of the algorithm
+      - Other work means anthing the algorithm does other than making recursive calls
+    - Compare a to b^d
+      - Case 1. If a < b^d, then T(n) is O(n^d)
+      - Case 2. If a = b^d, then T(n) is O(n^d log n)
+      - Case 2. If a > b^d, then T(n) is O(n^k), where k = log_(b)a
+  - Merge Sort is practical and often used.
+    - This is because it is stable, (log n) space efficient, and (n log n) efficiency
+
+  ### The Limits of Sorting
+  - Introduction
+    - We know that we have slow sorts (quadratic +) and fast sorts (log/ linear/ constant)
+    - This does not change **with general purpose comparison sort**
+    - (Big Omega Ω) is lower bound, meaning best case scenario 
+    - (Big Theta Θ) is the tight bound, meaning average case scenario
+    - (Big O O) is the upper bound, meaning worst case scenario
+  - Proof
+    - We can prove 
+
+      **Stirling's Approximation** FIX ME
+
+  $$ n! = ((n^n)\over (e^n)) sqrt(2)+ f(n) $$
+
+  ### Comparison Sorts III
+  - Quicksort
+    - Basically we pick a pivot, which starts as the first item
+    - Then it put's all numbers smaller than the pivot on the left, higher on the right
+    - Then moves to the next item and does the same thing
+    - As the pivot moves up the list, we recursively sort the numbers on the left
+    - Invented by **C.A.R ("Tony") Hoare, 1961**
+    - If we compare Merge Sort and Quicksort
+      - We can see that both use Divide and Conquer strategies.
+      - Both have an auxiliary operation (Stable Merge, Partition)
+      - Merge sort recurses first, Quicksort recurses last
+    - **Hoare's Partition Algorithm**
+      - Essentially you pick a pivot somewhere in the middle
+      - Iterator left to the first item right of pivot
+      - Iterator Right to the last item
+      - Move left up, and right down, moving low items left of left, and high right of high
+      - Once left and right cross, put pivot right of last left value.
+  - Better Quicksort
+    - 
+  - Introsort
+    - 
+
+## 2023-10-04
   - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week6/): iterative_merge_sort.cpp
   ### Review: Analysis of Algorithms
   - Efficiency in time, space, etc.
