@@ -20,6 +20,7 @@
   - Compiling: 
     - g++ -std=c++17 -o program program.cpp
     - python3 program.py
+  - VSCode: ctrl-k ctrl-s opens hotkey
 
   **The Cauchy-Schwarz Inequality**
     $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$
@@ -36,6 +37,34 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
   | [Week-3](#Week-3) | [HW02](https://github.com/sowens23/CS-F311/tree/main/homework/assignment2) | |
   | [Week-4](#Week-4) | [HW03](https://github.com/sowens23/CS-F311/tree/main/homework/assignment3)| |
   | [Week-5](#Week-5) | | |
+  | [Week-6](#Week-6) | | |
+  | [Week-7](#Week-7) | [HW04](https://github.com/sowens23/CS-F311/tree/main/homework/assignment4) | |
+
+# Week-7
+[Top](#TOP)
+## 2023-10-09
+  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week7/): quicksort2.cpp, introsort.cpp 
+  ### Review: Multifaceted Review
+  - Facts about algorithm speeds
+    1. An algorithm that reads all of its input must be Omega(n)
+    2. A general-purpose comparison sort must be Omega(nlog n)
+  - We can refer to the BAD table to reference the Master Theorem/Big-O speeds of sorts
+    | Sort Method | b | a | d |
+    | -- | -- | -- | -- |
+    | Merge Sort | 2 | 2 | 1 |
+    | Binary Search | 2 | 1 | 0 |
+  
+  ### Comparison Sorts III
+  - Better Quicksort
+    - Quicksort has an issue of dealing with where to start the pivtot
+    - Choose the pivot using **median of 3**
+      - Look at the 3 items: first, middle, last
+      - Let the pivot be the one that is between the other two.
+    - Our *ideal* pivot will be the median of the list.
+    - So can we find the median of a list in linear time?
+      - Yes! Using the **BFPRT** algorithm (**B**lum-**F**loyd-**P**ratt-**R**ivest-**T**arjan Algorithm)  
+  - Introspection is when an algorithm can examine it's own performance
+    - See [Introspective Sorting and Selection Algorithms](https://onlinelibrary.wiley.com/doi/pdf/10.1002/%28SICI%291097-024X%28199708%2927%3A8%3C983%3A%3AAID-SPE117%3E3.0.CO%3B2-%23?casa_token=m5iw1z5gcykAAAAA:6CQGikUcYgmAD-aeQdnAWVsjG8IXTTaCujFh2FiL2fpwbI2AFe3AZt5UuXRhCWjzwe-wKXYiyjJ_llE): David R. Musser, CS professor at Polytechnic Institute
 
 # Week-6
 [Top](#TOP)
@@ -48,6 +77,7 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
   - Remember the Master Theorem
     - b is the number of nearly equal-sized parts
     - a is the number of recursive calls
+    - d is essentially the depth of it's recursive loops
     - f(n) is the amount of other work done in the body of the algorithm
       - Other work means anthing the algorithm does other than making recursive calls
     - Compare a to b^d
@@ -108,6 +138,7 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
     | **Below this line** | **Probably not scalable** |
     | O(n2) | Quadratic time |
     | O(cn), for some c > 1 | Exponential time |
+
   - Nested "real" loops becauses Quadratic, which becomes non-scalable really quick.
   - *Bubble Sort* 
     - Efficiency: O(n^2) for average case

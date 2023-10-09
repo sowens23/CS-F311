@@ -1,4 +1,4 @@
-// assertion.cpp  UNFINISHED
+// assertion.cpp
 // Glenn G. Chappell
 // 2023-08-30
 // Demo of assert in C++
@@ -11,6 +11,8 @@ using std::cin;
 using std::vector;
 #include <cstddef>
 using std::size_t;
+#include <cassert>
+// For assert
 
 
 // userPause
@@ -29,7 +31,8 @@ int sumTwo(const vector<int> & v,
            size_t idx1,
            size_t idx2)
 {
-    
+    assert(idx1 < v.size());
+    assert(idx2 < v.size());
     return v[idx1] + v[idx2];
 }
 
