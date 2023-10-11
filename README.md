@@ -38,10 +38,92 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
   | [Week-4](#Week-4) | [HW03](https://github.com/sowens23/CS-F311/tree/main/homework/assignment3)| |
   | [Week-5](#Week-5) | | |
   | [Week-6](#Week-6) | | |
-  | [Week-7](#Week-7) | [HW04](https://github.com/sowens23/CS-F311/tree/main/homework/assignment4) | |
+  | [Week-7](#Week-7) | [HW04](https://github.com/sowens23/CS-F311/tree/main/homework/assignment4) | Midterm I |
 
 # Week-7
 [Top](#TOP)
+## 2023-10-11
+  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week7/): 
+    - comparison.cpp [C++ source]
+      - Passing comparisons to STL sorts
+      - Also demonstrates use of lambdas
+    - radix_sort.cpp [C++ source]
+      - Radix Sort for 9-digit numbers
+    - pigeonhole_sort.cpp [C++ source]
+      - Pigeonhole Sort for 3-digit numbers
+  ### Non-Comparison Sorts
+  - Pigeonhole Sort has linear time, because it only touched each item once.  
+    - It reviews the key, and puts it into an array of that same key called a bucket. All 2's go in bucket "2"
+    - Once all items are put in buckets, you merge the buckets in order, for an organized list.
+    - While this is fast, it's not great because it requires nice keys.
+  - Radix Sort, pigeonhole sorts based on the value of the key, for strange values, like strings.
+    - pigeonhole sort the list using last character of string of key.
+    - pigeonhole sort the pigeonhole sorted keys using next-to-last character of string of key
+    - then continue to do this, until you've sorted by the first character of each string.
+      - Unsorted list: 583 226 508 183 90 223 924 4 426 106 624
+      - First PH Sort (single's place): [90] [583 183 223] [924 4 624] [226 426 106] [508]
+      - Second PH Sort (ten's place): [4 106 508] [223 924 624 226 426] [583 183] [90]
+      - Third PH Sort (hundred's place): [4 90] [106 183] [223 226] [426] [508 583] [624] [924]
+      - Now as you see, it's been sorted.
+    - We like Radix sort, for a lot of situations. It's a bit slower for mostly sorted data.
+  ### Sorting in th C++ STL
+  - STL includes seven sorting algorithms, all of which are log-linear time
+  - All sorts try to replicate one of **only three** good sorts: Intro Sort, Merge Sort, and Heap Sort.
+    - Global function std::sort.
+      - takes a range of 2 random-access iterators
+      - not stable
+      - memory O(log) 
+      - Intended algorithm: Intro sort
+    - Global function std::stable_sort.
+      - takes 2 random access iterators
+      - memory: O(n)
+      - intended algorithm merge sort
+    - Member function sort of std::list<T>.
+      - takes a doubly-linked "list" and sorts it.
+    - Member function sort of std::forward_list<T>.
+      - Sorts a container, takes no arguments, stable
+    - Global function std::partial_sort.
+      - Takes three iterators, first, middle, last
+      - Intended algorithm is a variant of Heap Sort
+    - Global function std::partial_sort_copy.
+      - Same as above, just creates a copy.
+    - Combination of two global functions: std::make_heap & std::sort_heap.
+      - Variant of heap sort.
+  - Every STL sorting algorithm will take an optional comparison specified using lambda functions
+  - A **lambda function** is a function with no name.
+    - start iwth a pair of brackets, a normal function parameter, with no return type.
+    - takes two ints, and returns their sums.
+      ```
+      [](int a, int b) { return a+b};
+      ```
+    - You can store a lambda function in a variable
+      ```
+      auto add = [](int a, int b) { return a+b};
+      cout << add(2,3) << endl;
+      ```
+    - We can give it a definite type by using #include <functional>; using std::function
+      ```
+      function<int (int,int)> add = [](int a, int b) { return a+b};
+      ```
+    - Additionally, you can capture existing variables to execute operations with
+    - Give a lambda access to outside variables, as they are at the point 
+      ```  
+      the lambda is defined, by capturing them.
+      auto mult_cp = [k](int n) { return k*n; };
+      auto mult_ref = [&k](int n) { return k*n; };
+      ```
+    - Other fancier capture techniques
+      ```
+      [a,b,&c,&d](int n){ … // Capture a, b by copy,
+      // c, d by reference
+      [=](int n){ … // Capture any needed by copy
+      [&](int n){ … // Capture any needed by reference
+      [=,&c,&d](int n){ … // Capture c, d by reference,
+      // any other needed by copy
+      [&,a,b](int n){ … // Capture a, b by copy,
+      // any other needed by reference
+      ```
+  - TODO: Comparison.cpp
 ## 2023-10-09
   - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week7/): quicksort2.cpp, introsort.cpp 
   ### Review: Multifaceted Review
@@ -369,9 +451,10 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 # Week-4
 [Top](#TOP)
 ## 2023-09-22
-  - TODO: [fibo_fast.py](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week4/230920)
-  - TODO: [fibo_formula.cpp](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week4/230920)
-  - TODO: [fibo_fast.cpp](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week4/230920)
+  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week4)
+    - fibo_fast.py
+    - fibo_formula.cpp
+    - fibo_fast.cpp
   ### Review: Search Algorithms I
     - Binary Search finds a given key in a sorted list
     - Pivot is the item in the middle of a list, you compare the key to
@@ -454,7 +537,6 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
   - Reminder that the fibo.cpp program we worked on yesterday gets really slow, pretty quickly
 
 ### Search Algorithms I
-- TODO: [Binary Search](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week4/230920)
 - Binary Search
   - Finds a given **key** in a sorted **list**
   - Procedure is to;  
@@ -507,7 +589,6 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
     - std::distance(iter1, iter2); // Is like iter2 - iter1
       - These two functions are fast for random-access iteratorsl they may be slower for other iterators.
   - Improvement:
-    - [Better Binary Search](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week4/230920)
     - Check equivalence in the base case. Never use "==" on the value type.
     - Computer the size of the range once. Save this for later use
     - Only check for the base case once 
@@ -534,7 +615,6 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
   - We can't adjust the head to temporarily point farther down the list, because you would lose the addresses to the nodes in front of it.
   - We can quickly insert if we know the pointer address of one Node
     - Say, this node now points to new node, new node points to next node.
-  - TODO: [Linked List Example](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week4/230918)
   - A Doubly Linked List provides two points and a value. This is so it can be bi-directional
   - A Singly Linked List is your standard Linked List
 
@@ -554,7 +634,6 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
       - F0 = 0
       - F1 = 1
       - For n >= 2, Fn = Fn-2 + Fn-1
-  - TODO: [Fibonacci](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week4/230918)
 
 # Week-3
 [Top](#TOP)
@@ -671,7 +750,7 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
     - Because dctors should not throw, they are generally marked as noexcept implicitly
       - We can make a dctor that is not noexcept using "noexcept (false)" Never do this.
   - CODE
-    - To-Do [Iterators.cpp](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week3/230915)
+    - To-Do [Iterators.cpp](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week3)
       - Write a function allocate2 that: (See allocate2.cpp)
         - Attempts to allocate two dynamic objects
         - Returns pointers to these objects, using referene parameters.
@@ -703,7 +782,7 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
       [STL Algorithms](https://en.cppreference.com/w/cpp/algorithm)
       - #include <algorithm>
       - Be familiar with std::copy, std::equal, std::sort, std::fill
-    - To-Do [Iterators.cpp](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week3/230913)
+    - To-Do [Iterators.cpp](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week3)
 
   ### Software Engineering Concepts: Invariants
   - Basics
@@ -731,7 +810,7 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
       - Assertions about the data members of an object
     - Preconditions and class invariants should be documented in comments, however do not restate class invariants before the function(?)
     - To-Do 
-      - [timeofday.cpp & timeofday.hpp](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week3/230913)
+      - [timeofday.cpp & timeofday.hpp](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week3)
   
   ### Invisible Functions II
   - Recall the big five
