@@ -38,7 +38,7 @@ int hssCount_recurse(vector<vector<int>> board,
 									int finish_x, int finish_y, 
 									int squaresLeft);
 
-// Recursive wrapper, defined in source
+// Recursive wrapper
 int hssCount(int dim_x, int dim_y,
 							int hole_x, int hole_y,
 							int start_x, int start_y,
