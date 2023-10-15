@@ -160,6 +160,10 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
     - b is the number of nearly equal-sized parts
     - a is the number of recursive calls
     - d is essentially the depth of it's recursive loops
+      - where c is a constant. Comparing this with the general form, we have:
+      - a=1, b=3, and f(n)=c
+      - Therefore, the value of d is:
+      -  d=log(_3)​1=0
     - f(n) is the amount of other work done in the body of the algorithm
       - Other work means anthing the algorithm does other than making recursive calls
     - Compare a to b^d
