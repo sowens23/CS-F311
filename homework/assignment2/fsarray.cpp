@@ -7,7 +7,7 @@
 	 Program Function: for testing purposes
 */
 
-#include "brucefsarray.hpp"
+#include "fsarray.hpp"
 #include <iostream>
 	using std::cout;
 	using std::endl;
