@@ -6,12 +6,10 @@
 			"label": "C/C++: cl.exe build active file",
 			"command": "cl.exe",
 			"args": [
-				//"/Zi",
-				"/EHsc",
-				"/nologo",
+				"/Zi", // enable debugging information
+				"/EHsc", // enable C++ RTTI
+				"/nologo", // suppress copyright message
 				"/std:c++17",
-				//"/Fe${fileDirname}\\${fileBasenameNoExtension}.exe",
-				//"${file}"
 				"${file}",
 				"${fileDirname}\\da3.cpp"
 			],
