@@ -1,0 +1,12 @@
+# Ignore everything
+*
+
+# But not these files...
+!*.cpp
+!*.hpp
+!*.h
+!.gitignore
+
+# Explicit Exceptions
+/Makefile
+/fsarray

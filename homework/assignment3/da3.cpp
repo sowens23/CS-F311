@@ -18,7 +18,6 @@ using std::string;
 #include <functional>
 using std::function;
 
-
 void didItThrow(const function<void()> & ff,
                 bool & threw)
 {
