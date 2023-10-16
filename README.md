@@ -39,6 +39,57 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
   | [Week-5](#Week-5) | | |
   | [Week-6](#Week-6) | | |
   | [Week-7](#Week-7) | [HW04](https://github.com/sowens23/CS-F311/tree/main/homework/assignment4) | Midterm I |
+  | [Week-8](#Week-7) | | |
+
+# Week-8
+[Top](#TOP)
+## 2023-10-20
+## 2023-10-18
+## 2023-10-16
+  - **General Comparison Sorts**
+    - **Bubble Sort**: This simple sorting algorithm iteratively compares pairs of adjacent elements and swaps them if they are in the wrong order. Works for linked lists. O-Linear speed when list is nearly sorted, otherwise quadratic, and super slow. 
+      - Space Efficiency: O(1)
+      - Sort Stability: Stable
+      - Best: Ω(n) Average: θ(n^2) Worst: O(n^2)
+    - **Selection Sort**: This algorithm divides the input into a sorted and an unsorted region. It repeatedly selects the smallest (or largest) element from the unsorted region and moves it to the sorted region. 
+      - Space Efficiency: O(1)
+      - Sort Stability: Stable
+      - Best: Ω(n²) Average: θ(n²) Worst: O(n²)
+    - **Insertion Sort**: This algorithm builds a sorted array one item at a time. It is much less efficient on large lists than more advanced algorithms such as quicksort, heapsort, or merge sort. However, insertion sort provides several advantages: simple implementation, efficient for (quite) small data sets and adaptive. 
+      - Space Efficiency: O(1)
+      - Sort Stability: Stable
+      - Best: Ω(n) Average: θ(n²) Worst: O(n²)      
+    - **Merge Sort**: Another divide-and-conquer algorithm that works by dividing the unsorted list into n sublists, each containing one element (a list of one element is considered sorted), and then repeatedly merging sublists to produce new sorted sublists until there is only one sublist remaining. 
+      - Space Efficiency: O(1)
+      - Sort Stability: Stable
+      - Best: Ω(N log N) Average: θ(N log N) Worst: O(N log N)  
+    - **Heap Sort**: This comparison-based sorting algorithm divides its input into a sorted and an unsorted region, and it iteratively shrinks the unsorted region by extracting the largest element and moving that to the sorted region. 
+      - Space Efficiency: O(1)
+      - Sort Stability: Unstable
+      - Best: Ω(N log N) Average: θ(N log N) Worst: O(N log N)         
+    - **Quick Sort**: This is a divide-and-conquer algorithm that works by selecting a ‘pivot’ element from the array and partitioning the other elements into two sub-arrays according to whether they are less than or greater than the pivot. The sub-arrays are then recursively sorted. 
+      - Space Efficiency: O(log N)
+      - Sort Stability: Unstable
+      - Best: Ω(N log N) Average: θ(N log N) Worst: O(n²)     
+    - **Radix Sort**: This non-comparative integer sorting algorithm sorts data with integer keys by grouping keys by individual digits which share the same significant position and value. It starts by sorting numbers digit by digit from least significant to most significant. Works well with large data sets where values have the same number of digits. 
+      - Space Efficiency: O(N + k)
+      - Sort Stability: Stable
+      - Best: Ω(N + k) Average: θ(N + k) Worst: O(N + k)     
+    - **Count Sort**
+      - Space Efficiency: O(1)
+      - Sort Stability: 
+      - Best: Ω(N log N) Average: θ(N log N) Worst: O(n²)         
+    - **Bucket Sort**       
+      - Space Efficiency: O(N)
+      - Sort Stability: 
+      - Best: Ω(N + k) Average: θ(N + k) Worst: O(n²)         
+    - **Intro-spective Sort**: This hybrid sorting algorithm provides both fast average performance and optimal worst-case performance. It begins with quicksort, it switches to heapsort when the recursion depth exceeds a level based on the number of elements being sorted and insertion sort when the partition size is below some threshold. This combines the good parts of all three algorithms.  Works well with large data sets and provides good average-case and worst-case complexity. 
+      - Space Efficiency: Best: O(N log N) Average: O(N log N) Worst: O(N log N)
+      - Sort Stability: Stable
+      - Best: Ω(N log N) Average: θ(N log N) Worst (When switched to HeapSort): O(N log N)  
+    - **Shell Sort**
+
+
 
 # Week-7
 [Top](#TOP)
@@ -51,6 +102,7 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
       - Radix Sort for 9-digit numbers
     - pigeonhole_sort.cpp [C++ source]
       - Pigeonhole Sort for 3-digit numbers
+
   ### Non-Comparison Sorts
   - Pigeonhole Sort has linear time, because it only touched each item once.  
     - It reviews the key, and puts it into an array of that same key called a bucket. All 2's go in bucket "2"
@@ -66,6 +118,7 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
       - Third PH Sort (hundred's place): [4 90] [106 183] [223 226] [426] [508 583] [624] [924]
       - Now as you see, it's been sorted.
     - We like Radix sort, for a lot of situations. It's a bit slower for mostly sorted data.
+
   ### Sorting in th C++ STL
   - STL includes seven sorting algorithms, all of which are log-linear time
   - All sorts try to replicate one of **only three** good sorts: Intro Sort, Merge Sort, and Heap Sort.
@@ -124,6 +177,7 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
       // any other needed by reference
       ```
   - TODO: Comparison.cpp
+
 ## 2023-10-09
   - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week7/): quicksort2.cpp, introsort.cpp 
   ### Review: Multifaceted Review
