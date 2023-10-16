@@ -83,8 +83,32 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
   ### Intro to Sequences
   - A **Sequence** is a colleciton of items that are in order. (We are concerned with **finite** sequences right now)
   ### Interface for a Smart Array
-  - 
-
+  - When creating your smart array, consider the necessary operations
+    - CreateEmpty (Default Ctor)
+    - Create Sized (Ctor given size)
+    - Destroy (Dctor)
+    - Copy (Copy ctor, copy assignment, move ctor, move assignment)
+    - LookUpByIndex (Bracket Operator)
+    - Size (Member funciton *size*)
+    - Empty (Member function *empty*)
+    - Sort (Handle externally with iterators, use member functions *begin* and *end*, *std::sort* or *std::stablesort*)
+    - Resize (Member function *resize*) 
+    - InsertByPos (Member function *insert*) - RemoveByPos (Member function *erase*)
+    - InsertBeg (insert with begin)- RemoveBeg (erase with begin) - InsertEnd (push_back) - RemoveEnd (pop_back) 
+    - Splice (A->C, B->A, C->B)
+    - Traverse (bracket operator, for loop, index(size) or for each) - Swap (member function swap (A->C, B->A, C->B))
+  - Insert
+    - Takes iterator and item
+    - Inserts just before or after the iterator
+    - Return value is an iterator referencing the inserted item
+  - Erase
+    - Takes iterator
+    - removes item
+    - return value is iterator to item following one removed, or end iterator if removed item was last
+  - swap
+    - Takes another sequence by reference
+    - exchanges the values of sequence and given one
+    - no return value
 
 ## **General Comparison Sorts**
 - **Bubble Sort**: This simple sorting algorithm iteratively compares pairs of adjacent elements and swaps them if they are in the wrong order. Works for linked lists. O-Linear speed when list is nearly sorted, otherwise quadratic, and super slow. 
