@@ -46,48 +46,88 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 ## 2023-10-20
 ## 2023-10-18
 ## 2023-10-16
-  - **General Comparison Sorts**
-    - **Bubble Sort**: This simple sorting algorithm iteratively compares pairs of adjacent elements and swaps them if they are in the wrong order. Works for linked lists. O-Linear speed when list is nearly sorted, otherwise quadratic, and super slow. 
-      - Space Efficiency: O(1)
-      - Sort Stability: Stable
-      - Best: Ω(n) Average: θ(n^2) Worst: O(n^2)
-    - **Selection Sort**: This algorithm divides the input into a sorted and an unsorted region. It repeatedly selects the smallest (or largest) element from the unsorted region and moves it to the sorted region. 
-      - Space Efficiency: O(1)
-      - Sort Stability: Stable
-      - Best: Ω(n²) Average: θ(n²) Worst: O(n²)
-    - **Insertion Sort**: This algorithm builds a sorted array one item at a time. It is much less efficient on large lists than more advanced algorithms such as quicksort, heapsort, or merge sort. However, insertion sort provides several advantages: simple implementation, efficient for (quite) small data sets and adaptive. 
-      - Space Efficiency: O(1)
-      - Sort Stability: Stable
-      - Best: Ω(n) Average: θ(n²) Worst: O(n²)      
-    - **Merge Sort**: Another divide-and-conquer algorithm that works by dividing the unsorted list into n sublists, each containing one element (a list of one element is considered sorted), and then repeatedly merging sublists to produce new sorted sublists until there is only one sublist remaining. 
-      - Space Efficiency: O(1)
-      - Sort Stability: Stable
-      - Best: Ω(N log N) Average: θ(N log N) Worst: O(N log N)  
-    - **Heap Sort**: This comparison-based sorting algorithm divides its input into a sorted and an unsorted region, and it iteratively shrinks the unsorted region by extracting the largest element and moving that to the sorted region. 
-      - Space Efficiency: O(1)
-      - Sort Stability: Unstable
-      - Best: Ω(N log N) Average: θ(N log N) Worst: O(N log N)         
-    - **Quick Sort**: This is a divide-and-conquer algorithm that works by selecting a ‘pivot’ element from the array and partitioning the other elements into two sub-arrays according to whether they are less than or greater than the pivot. The sub-arrays are then recursively sorted. 
-      - Space Efficiency: O(log N)
-      - Sort Stability: Unstable
-      - Best: Ω(N log N) Average: θ(N log N) Worst: O(n²)     
-    - **Radix Sort**: This non-comparative integer sorting algorithm sorts data with integer keys by grouping keys by individual digits which share the same significant position and value. It starts by sorting numbers digit by digit from least significant to most significant. Works well with large data sets where values have the same number of digits. 
-      - Space Efficiency: O(N + k)
-      - Sort Stability: Stable
-      - Best: Ω(N + k) Average: θ(N + k) Worst: O(N + k)     
-    - **Count Sort**
-      - Space Efficiency: O(1)
-      - Sort Stability: 
-      - Best: Ω(N log N) Average: θ(N log N) Worst: O(n²)         
-    - **Bucket Sort**       
-      - Space Efficiency: O(N)
-      - Sort Stability: 
-      - Best: Ω(N + k) Average: θ(N + k) Worst: O(n²)         
-    - **Intro-spective Sort**: This hybrid sorting algorithm provides both fast average performance and optimal worst-case performance. It begins with quicksort, it switches to heapsort when the recursion depth exceeds a level based on the number of elements being sorted and insertion sort when the partition size is below some threshold. This combines the good parts of all three algorithms.  Works well with large data sets and provides good average-case and worst-case complexity. 
-      - Space Efficiency: Best: O(N log N) Average: O(N log N) Worst: O(N log N)
-      - Sort Stability: Stable
-      - Best: Ω(N log N) Average: θ(N log N) Worst (When switched to HeapSort): O(N log N)  
-    - **Shell Sort**
+  ### Where are we?
+  - Upon completion of this course you will;
+    - Have experience writing and documenting high-quality code
+    - Understand proper err U
+    - Understand proper error handling, enabling software components to support robust, reliable applications.
+    - Be able to perform basic analyses of algorithmic efficiency, including use of big-O and related notation.
+    - Be familiar with various standard algorithms, including those for searching and sorting.
+    - Understand what data abstraction is, and how it relates to software design.
+    - Be familiar with standard container data structures, including implementations and relevant trade-offs.
+  - Solutions to many problems come in the form of how to store, access, manipulate, and delete data. These operations are done in **containers**
+  - We are particularly interested in **generic containers**
+  ### Data Abstraction
+  - **Data Abstraction**: Applying abstraction to the structure of data.
+  - This can be the process of assigning keys for organizational purposes.
+  - An **Abstract Data Type (ADT)** is a collection of data, along with a set of operations on that data.
+    - They are independent of implementation, and even programming languages.
+    - Heavily used in software development, but not often mentioned.
+  - A **Data Structure** is a construct within a programming language that stores a collection of data
+  - A particular ADT is a **ADT Triple**
+    - This holds 3 values with a few operations
+    - To ceate a *complete, minimal* interface you must have the first 4 of 7 operations
+      1. Create with unspecified values
+      2. Destroy
+      3. Get a value
+      4. Change a value
+      5. Create with specified values
+      6. Copy (create or assign)
+      7. Output (if each item can be output)
+  - We like ADT interfaces that are
+    - Complete: All required operations are *possible*
+    - Minimal: Built without redundant functionality
+    - Convenient: The interface is simple to understand, and use (often battles with Minimal)
+    - Facilitate Efficiency: Allows data to be dealt with efficiently
+    - Generic: Avoid restricting implementations and internal data types (often battles with Facilitate Efficiency)
+  ### Intro to Sequences
+  - A **Sequence** is a colleciton of items that are in order. (We are concerned with **finite** sequences right now)
+  ### Interface for a Smart Array
+  - 
+
+
+## **General Comparison Sorts**
+- **Bubble Sort**: This simple sorting algorithm iteratively compares pairs of adjacent elements and swaps them if they are in the wrong order. Works for linked lists. O-Linear speed when list is nearly sorted, otherwise quadratic, and super slow. 
+  - Space Efficiency: O(1)
+  - Sort Stability: Stable
+  - Best: Ω(n) Average: θ(n^2) Worst: O(n^2)
+- **Selection Sort**: This algorithm divides the input into a sorted and an unsorted region. It repeatedly selects the smallest (or largest) element from the unsorted region and moves it to the sorted region. 
+  - Space Efficiency: O(1)
+  - Sort Stability: Stable
+  - Best: Ω(n²) Average: θ(n²) Worst: O(n²)
+- **Insertion Sort**: This algorithm builds a sorted array one item at a time. It is much less efficient on large lists than more advanced algorithms such as quicksort, heapsort, or merge sort. However, insertion sort provides several advantages: simple implementation, efficient for (quite) small data sets and adaptive. 
+  - Space Efficiency: O(1)
+  - Sort Stability: Stable
+  - Best: Ω(n) Average: θ(n²) Worst: O(n²)      
+- **Merge Sort**: Another divide-and-conquer algorithm that works by dividing the unsorted list into n sublists, each containing one element (a list of one element is considered sorted), and then repeatedly merging sublists to produce new sorted sublists until there is only one sublist remaining. 
+  - Space Efficiency: O(1)
+  - Sort Stability: Stable
+  - Best: Ω(N log N) Average: θ(N log N) Worst: O(N log N)  
+- **Heap Sort**: This comparison-based sorting algorithm divides its input into a sorted and an unsorted region, and it iteratively shrinks the unsorted region by extracting the largest element and moving that to the sorted region. 
+  - Space Efficiency: O(1)
+  - Sort Stability: Unstable
+  - Best: Ω(N log N) Average: θ(N log N) Worst: O(N log N)         
+- **Quick Sort**: This is a divide-and-conquer algorithm that works by selecting a ‘pivot’ element from the array and partitioning the other elements into two sub-arrays according to whether they are less than or greater than the pivot. The sub-arrays are then recursively sorted. 
+  - Space Efficiency: O(log N)
+  - Sort Stability: Unstable
+  - Best: Ω(N log N) Average: θ(N log N) Worst: O(n²)     
+- **Radix Sort**: This non-comparative integer sorting algorithm sorts data with integer keys by grouping keys by individual digits which share the same significant position and value. It starts by sorting numbers digit by digit from least significant to most significant. Works well with large data sets where values have the same number of digits. 
+  - Space Efficiency: O(N + k)
+  - Sort Stability: Stable
+  - Best: Ω(N + k) Average: θ(N + k) Worst: O(N + k)     
+- **Count Sort**
+  - Space Efficiency: O(1)
+  - Sort Stability: 
+  - Best: Ω(N log N) Average: θ(N log N) Worst: O(n²)         
+- **Bucket Sort**       
+  - Space Efficiency: O(N)
+  - Sort Stability: 
+  - Best: Ω(N + k) Average: θ(N + k) Worst: O(n²)         
+- **Intro-spective Sort**: This hybrid sorting algorithm provides both fast average performance and optimal worst-case performance. It begins with quicksort, it switches to heapsort when the recursion depth exceeds a level based on the number of elements being sorted and insertion sort when the partition size is below some threshold. This combines the good parts of all three algorithms.  Works well with large data sets and provides good average-case and worst-case complexity. 
+  - Space Efficiency: Best: O(N log N) Average: O(N log N) Worst: O(N log N)
+  - Sort Stability: Stable
+  - Best: Ω(N log N) Average: θ(N log N) Worst (When switched to HeapSort): O(N log N)  
+- **Shell Sort**
 
 
 

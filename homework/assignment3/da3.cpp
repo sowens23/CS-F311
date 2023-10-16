@@ -42,7 +42,7 @@ void myFunc() {
 	throw std::runtime_error("Oh no!"); 
 }
 
-/* int main() {
+int main() {
 	// TESTING NODE INITIALIZATION
 		std::cout<<"Testing initialization\n";
 		LLNode<int> *node=new
@@ -106,4 +106,4 @@ void myFunc() {
 	// Delete and return
 		delete node;
 		return 0;
-} */
+}
