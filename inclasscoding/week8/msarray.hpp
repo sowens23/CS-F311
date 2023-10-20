@@ -151,20 +151,20 @@ public:
     }
 
   // Pushback and pop back and swap
+  // IDK why value_type needs to be reference to const, but it needs to be
+    // Because in our version the object type will be larger than an int
     void push_back(value_type value)
     {
       // TOOD: WRITE THIS!!
       // If you have written a function to do something, and, 
         // you want to do that something, then, 
         // call the function
-      resize(size() + 1);
-      begin()[size() - 1] = value;
+      insert(end(), item);
     }
 
     void pop_back(value_type value)
     {
-      // TOOD: WRITE THIS!!
-      begin()[size() - 1];
+      erase(end() -1);
     }
 
     void swap(MSArray & other) noexcept

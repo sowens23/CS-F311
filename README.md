@@ -44,6 +44,37 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 # Week-8
 [Top](#TOP)
 ## 2023-10-20
+  ### Review
+  - For assignment 5, we will need;
+    1. Ctors & Dctor: Default ctor, Ctor given size, Copy ctor, Move ctor, Dctor
+    2. Member Operations: Copy assignment, Move assignment, Bracket operators
+    3. Global Operators: None
+    4. Named Global Functions: None
+    5. Named Public Member Functions: size, empty, begin, end, resize, insert, erase, push_back, pop_back, swap
+  - The value_type will need to be generic, so the user may define the container type
+  - We cannot use automatically generated versions of any of the big 5, we are managing owned resources
+
+  ### Exception Safety
+  - *new* and built in types, do not throw
+  - You need to make sure that you catch your function throws, or your program, will throw.
+  - The following issues are called **safety**
+    - Does a function signal client code of errors, if it does; 
+      - Are resource leaks avoided?
+      - Are data left in usable states
+      - Do we know anything about the states
+  - A functions **guarantee**states the safety assurances it makes
+  - In the context of exceptions we use the term **exception safety**
+  - **Three Standard Guarantees**
+    1. **Basic Guarantee**: Data remains usable, no leaks even with exceptions.
+      - If a member function throws, the state of data may be unknown, but it must be a *valid* state, with invariants maintained.
+    2. **Strong Guarantee**: If an exception is thrown, it makes no changes visible to client
+      - If the function throws an exception then it must be invisible to client. Must maintain a **commit-or-roll bac semantics**. We also would like to log incidents.
+      - Sometimes this guarantee is not reasonable due to efficiency issues.
+    3. **No-Throw Guarantee**: The function will never throw an exception
+      - Also known as the **No-Fail Guarantee**. Highest level of safetly, but not always the best choice.
+    - *Notes*: Each guarantee includes the previous guarantees. Basic is minimum standard for all code. Strong is the one we generally prefer. No-Throw is required in some special situations.
+  -   
+    
 ## 2023-10-18
   ### Review
   - Our problem for the rest of the semester;
