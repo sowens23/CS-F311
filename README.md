@@ -45,6 +45,33 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 [Top](#TOP)
 ## 2023-10-20
 ## 2023-10-18
+  ### Review
+  - Our problem for the rest of the semester;
+    1. How to *store* items
+    2. What *operations* to make with these items
+    3. How to make the required *time and space* desirably efficient
+    - The general solution to this issue is a **Container**, specifically a **generic container** whose type is client code specified
+  - **Abstract data tyoe (ADT)** is a collection of data with a set of operations. Usually independent of implementation and language
+  - Remember your many many member functions for a smart array
+  ### Basic Array Implementation
+  - Let's create a smart array, whose functions are defined in yesterdays notes.
+  - We will define public member types to help  
+  - Design Decisions
+    - Array Type: User defined
+    - Array Size: std::size_t
+    - Store data: int type values
+    - Implement Iterators: with int * and const int *
+    - Member Types defined as:
+    - Data Members: 
+      1. Size of array: size_type _size; 
+      2. Pointer to array: value_type * _data;
+    - Class Invariants:
+      1. _size is non negative
+      2. _data points to an int array, allocated with new [], owned by *this, holding _size ints
+    - What will [] operator return: const and non-const value_types &
+    - What should begin and end return: const, and non const iteratives
+    - Can we use automatically generated Big Five: ???
+
 ## 2023-10-16
   ### Where are we?
   - Upon completion of this course you will;
