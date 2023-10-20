@@ -1,18 +1,36 @@
 // msarray.hpp  UNFINISHED
+// VERSION 2
 // Glenn G. Chappell
-// 2023-10-17
+// Started: 2023-10-17
+// Updated: 2023-10-18
 //
 // For CS 311 Fall 2023
 // Header for class MSArray
 // Marvelously smart array of int
 // Preliminary to Assignment 5
 
+// History:
+// - v1:
+//   - Bare-bones only, does not compile. Header & source files,
+//     #ifndef, #include, empty class definition.
+// - v2:
+//   - Add member types value_type, size_type, iterator, const_iterator.
+//   - Add dummy versions (at least) of all member functions, including
+//     dummy return statements for non-void functions. Package compiles.
+//   - Add data members.
+//   - Add class invariants.
+//   - Write (untested versions of) the following member functions:
+//     default ctor, ctor from size (these two are single func), dctor,
+//     op[], size, empty, begin, end, push_back, pop_back.
+// - v3: Add guarantees to all functions
+
 #ifndef FILE_MSARRAY_HPP_INCLUDED
 #define FILE_MSARRAY_HPP_INCLUDED
 
-// For size_t
 #include <cstddef>
-using std::size_t;
+#include <algorithm>
+// For std::size_t
+
 
 // *********************************************************************
 // class MSArray - Class definition
@@ -23,160 +41,181 @@ using std::size_t;
 // Marvelously Smart Array of int.
 // Resizable, copyable/movable, exception-safe.
 // Invariants:
-//    _size >= 0
-//    _data points to an array of value_type, allocated with new [], owned by *this, holding _size value_type values
-//     
+//     _size >= 0.
+//     _data points to an array of value_type, allocated with new [],
+//      owned by *this, holding _size value_type values.
 class MSArray {
 
 // ***** MSArray: types *****
 public:
 
-  // This allows you to define the types further in this class
-    // IE if you need to make this an array for long, you can simply update it here, once.
-  using size_type = std::size_t;
-  using value_type = int;
-  using iterator = value_type*;
-  using const_iterator = const value_type*;
+    // value_type: type of data items
+    using value_type = int;
+
+    // size_type: type of sizes & indices
+    using size_type = std::size_t;
+
+    // iterator, const_iterator: random-access iterator types
+    using iterator = value_type *;
+    using const_iterator = const value_type *;
 
 // ***** MSArray: ctors, op=, dctor *****
 public:
 
-  // Default ctor AND ctor with size
+    // Default ctor & ctor from size
+    // Strong Guarantee 
     explicit MSArray(size_type thesize=0)
-    : _size(thesize), // This is executed in the order in which the values are declared in the private variables area. Make sure you 
-      _data(new value_type[thesize])
+        :_size(thesize),
+         _data(new value_type[thesize])
     {}
 
-  // Move constructors
+    // Copy ctor
+    // Strong Guarantee
     MSArray(const MSArray & other)
+        :_size(other.size(),
+        _data(new value_type[other.size()]))
     {
-      // TOOD: WRITE THIS!!
+        // This is a bad thing for assignment 5, because our copy might throw.
+        // If the copy throws, then you must deallocate the new container
+        std::copy(other.begin(), other.end(), begin());
+
     }
-    
+
+    // Move ctor
+    // No-Throw Guarantee
     MSArray(MSArray && other) noexcept
     {
-      // TOOD: WRITE THIS!!
+        // TODO: WRITE THIS!!!
     }
 
-    // Delete Constructor
-    ~MSArray()
-    {
-      // TOOD: WRITE THIS!!
-      delete [] _data;
-    }
-
-  // Copy Constructors
+    // Copy assignment operator
+    // ??? Guarantee
     MSArray & operator=(const MSArray & other)
     {
-      // TOOD: WRITE THIS!!
-      return *this;
+        // TODO: WRITE THIS!!!
+        return *this; // DUMMY
     }
-    
+
+    // Move assignment operator
+    // No-Throw Guarantee
     MSArray & operator=(MSArray && other) noexcept
     {
-      // TOOD: WRITE THIS!!
-      return *this;
+        // TODO: WRITE THIS!!!
+        return *this; // DUMMY
+    }
+
+    // Dctor (Always noexcept)
+    // No-Throw Guarantee
+    // Value_type destructors are not allowed to throw (For homework)
+    ~MSArray()
+    {
+        delete [] _data;
     }
 
 // ***** MSArray: general public operators *****
 public:
 
-  value_type & operator[](size_type index)
-  {
-    return _data[index];
-  }
-
-  const value_type & operator[](size_type index) const 
-  {
-    return _data[index];
-  }
+    // operator[] - non-const & const
+    // Pointers are built in operation types, they do not throw, and we are returning by value, so
+    // No-Throw Guarantee
+    value_type & operator[](size_type index)
+    {
+        return _data[index];
+    }
+    const value_type & operator[](size_type index) const
+    {
+        return _data[index];
+    }
 
 // ***** MSArray: general public functions *****
 public:
 
-  // Member function size return size
+    // size
+    // No-Throw Guarantee
     size_type size() const
     {
-      return _size;
+        return _size;
     }
 
-  // Is empty member function
-    size_type empty() const
+    // empty
+    // No-Throw Guarantee
+    bool empty() const
     {
-      return size() == 0;
+        return size() == 0;
     }
 
-  // Iterator begin and end member functions
+    // begin - non-const & const
+    // No-Throw Guarantee
     iterator begin()
     {
-      // TOOD: WRITE THIS!!
-      return _data;
+        return _data;
     }
-
     const_iterator begin() const
     {
-      // TOOD: WRITE THIS!!
-      return _data;
+        return _data;
     }
+
+    // end - non-const & const
+    // No-Throw Guarantee
     iterator end()
     {
-      // TOOD: WRITE THIS!!
-      return _data + size();
+        return begin() + size();
     }
-
     const_iterator end() const
     {
-      // TOOD: WRITE THIS!!
-      return _data + size();
+        return begin() + size();
     }
 
-  // Erase, Resize, Insert
+    // resize
+    // ??? Guarantee
     void resize(size_type newsize)
     {
-      // TOOD: WRITE THIS!!
+        // TODO: WRITE THIS!!!
     }
 
+    // insert
+    // ??? Guarantee
     iterator insert(iterator pos,
-      value_type value)
+                    value_type item)
     {
-      // TOOD: WRITE THIS!!
-      return pos; // DUMMY
+        // TODO: WRITE THIS!!!
+        return begin();  // DUMMY
     }
 
-    iterator erase(iterator pos,
-      value_type value)
+    // erase
+    // ??? Guarantee
+    iterator erase(iterator pos)
     {
-      // TOOD: WRITE THIS!!
-      return pos; // DUMMY
+        // TODO: WRITE THIS!!!
+        return begin();  // DUMMY
     }
 
-  // Pushback and pop back and swap
-  // IDK why value_type needs to be reference to const, but it needs to be
-    // Because in our version the object type will be larger than an int
-    void push_back(value_type value)
+    // push_back
+    // ??? Guarantee
+    void push_back(value_type item)
     {
-      // TOOD: WRITE THIS!!
-      // If you have written a function to do something, and, 
-        // you want to do that something, then, 
-        // call the function
-      insert(end(), item);
+        insert(end(), item);
     }
 
-    void pop_back(value_type value)
+    // pop_back
+    // ??? Guarantee
+    void pop_back()
     {
-      erase(end() -1);
+        erase(end()-1);
     }
 
+    // swap
+    // No-Throw Guarantee (noexcept)
     void swap(MSArray & other) noexcept
     {
-      // TOOD: WRITE THIS!!
+        // TODO: WRITE THIS!!!
     }
 
 // ***** MSArray: data members *****
 private:
 
-  size_type _size;
-  value_type * _data;
+    size_type    _size;  // Size of our array
+    value_type * _data;  // Pointer to our array
 
 };  // End class MSArray
 
