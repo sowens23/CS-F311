@@ -10,8 +10,7 @@
 				"/EHsc", // enable C++ RTTI
 				"/nologo", // suppress copyright message
 				"/std:c++17",
-				"${file}",
-				"${fileDirname}\\da3.cpp"
+				"${file}"
 			],
 			"options": {
 				"cwd": "${fileDirname}"
