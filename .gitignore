@@ -6,7 +6,6 @@
 !*.hpp
 !*.h
 !.gitignore
+!Makefile
 
 # Explicit Exceptions
-/Makefile
-/fsarray
