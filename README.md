@@ -40,6 +40,41 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
   | [Week-6](#Week-6) | | |
   | [Week-7](#Week-7) | [HW04](https://github.com/sowens23/CS-F311/tree/main/homework/assignment4) | Midterm I |
   | [Week-8](#Week-7) | | |
+  | [Week-9](#Week-7) | | |
+
+# Week-9
+[Top](#TOP)
+## 2023-10-23
+  ### Review
+  - Three things you can do with exceptions
+    1. Catch
+    2. Throw
+    3. Catch all & re-throw
+    * We only write one of these.
+  - The following issues are collectively called "safety" in the context of exceptions "exception safety"
+    - Does a function signal client code with errors, if it does;
+      1. Are resource leaks avoided
+      2. Are data left in usable states
+      3. Do we know anything about those states
+  - 3 types of function guarantees
+    1. Basic Guarantee: Minimum standard for all code.
+      - Data remain in usable state and resources are not leaked.
+    2. Strong Guarantee: Our preferred standard
+      - Exceptions make no client-visible changes
+    3. No-Throw Guarantee: Required, and also improbable in some cases
+      - Function will never throw an exception.
+    * Each progressive guarantee, includes previous standard levels.
+  - **Single Responsibility Principle (SRP)**: Every software component should have exactly one well defined responsibility
+  - To make a Strong Guarantee, we need to make sure that 
+
+  ### Exception Safety
+  - When placing a *noexcept* tag after a parameter list, declares a function as with a **noexcept specification**
+  - We want **move** functions to be *noexcept*, because if an exception is thrown, mid operation, this can result in actual issues.
+  - A **Commit Function** can be used to finalize a throwable computation result to client data using a non-throwing function after the computation has completed.
+    - It can be tricky to offer a Strong Guarantee when a single function modifies multple parts of an object.
+    - Sometimes we can create an entirely new object with the new value(s), if there is an error, destroy the new object. This way, there are no changes to client visible data. If we are successful, then we commit changes using a non-throwing function.
+  - 
+
 
 # Week-8
 [Top](#TOP)

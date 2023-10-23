@@ -1,8 +1,8 @@
 // msarray.hpp  UNFINISHED
-// VERSION 2
+// VERSION 3
 // Glenn G. Chappell
 // Started: 2023-10-17
-// Updated: 2023-10-18
+// Updated: 2023-10-20
 //
 // For CS 311 Fall 2023
 // Header for class MSArray
@@ -22,14 +22,17 @@
 //   - Write (untested versions of) the following member functions:
 //     default ctor, ctor from size (these two are single func), dctor,
 //     op[], size, empty, begin, end, push_back, pop_back.
-// - v3: Add guarantees to all functions
+// - v3:
+//   - Document exception-safety guarantees for most functions.
+//   - Write copy ctor.
 
 #ifndef FILE_MSARRAY_HPP_INCLUDED
 #define FILE_MSARRAY_HPP_INCLUDED
 
 #include <cstddef>
-#include <algorithm>
 // For std::size_t
+#include <algorithm>
+// For std::copy
 
 
 // *********************************************************************
@@ -63,7 +66,7 @@ public:
 public:
 
     // Default ctor & ctor from size
-    // Strong Guarantee 
+    // Strong Guarantee
     explicit MSArray(size_type thesize=0)
         :_size(thesize),
          _data(new value_type[thesize])
@@ -72,13 +75,13 @@ public:
     // Copy ctor
     // Strong Guarantee
     MSArray(const MSArray & other)
-        :_size(other.size(),
-        _data(new value_type[other.size()]))
+        :_size(other.size()),
+         _data(new value_type[other.size()])
     {
-        // This is a bad thing for assignment 5, because our copy might throw.
-        // If the copy throws, then you must deallocate the new container
         std::copy(other.begin(), other.end(), begin());
-
+        // The above call to std::copy does not throw, since it copies
+        // int values. But if value_type is changed, then the call may
+        // throw, in which case this copy ctor may need to be rewritten.
     }
 
     // Move ctor
@@ -104,9 +107,8 @@ public:
         return *this; // DUMMY
     }
 
-    // Dctor (Always noexcept)
+    // Dctor
     // No-Throw Guarantee
-    // Value_type destructors are not allowed to throw (For homework)
     ~MSArray()
     {
         delete [] _data;
@@ -116,7 +118,6 @@ public:
 public:
 
     // operator[] - non-const & const
-    // Pointers are built in operation types, they do not throw, and we are returning by value, so
     // No-Throw Guarantee
     value_type & operator[](size_type index)
     {
@@ -177,6 +178,9 @@ public:
     // ??? Guarantee
     iterator insert(iterator pos,
                     value_type item)
+        // Above, passing by value is appropriate, since our value type
+        // is int. However, if the value type is changed, then a
+        // different parameter-passing method may need to be used.
     {
         // TODO: WRITE THIS!!!
         return begin();  // DUMMY
@@ -193,6 +197,9 @@ public:
     // push_back
     // ??? Guarantee
     void push_back(value_type item)
+        // Above, passing by value is appropriate, since our value type
+        // is int. However, if the value type is changed, then a
+        // different parameter-passing method may need to be used.
     {
         insert(end(), item);
     }
@@ -205,7 +212,7 @@ public:
     }
 
     // swap
-    // No-Throw Guarantee (noexcept)
+    // No-Throw Guarantee
     void swap(MSArray & other) noexcept
     {
         // TODO: WRITE THIS!!!
