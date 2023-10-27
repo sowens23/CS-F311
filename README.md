@@ -7,7 +7,7 @@
     return 0;
   }
   ```
-  ![Farmers Market Finder - Animated gif demo](https://giphy.com/embed/cOiKbCtrbXqVi)
+  ![Hitchhikers Guide to the Galaxy](https://github.com/sowens23/CS-F311/blob/main/inclasscoding/week1/tenor.gif)
 
 ### Class Repositories and References
   - [sowens23-GitHub](https://github.com/sowens23)
@@ -58,6 +58,12 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
       - Uses a **reference count**. Destroys object when the count hits 0
       - Moveable but not copyable. Moving transfers ownership.
   - When using Smart Pointers, **do not** do the *delete* or the *new*
+  - Moral for our class Story: There are two design decisions that affect the efficiency of code:
+    1. Deciding how to *process* data (Algorithms)
+    2. Deciding how to *store* data (Data Structures)
+    - The latter has the greater impact
+    - Use arrays when you want a fast look-up
+    - Use Linked Lists when we want fast insert & delete (by iterator)
   - 
   ### More on Linked Lists
 ## 2023-10-25
