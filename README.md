@@ -7,6 +7,7 @@
     return 0;
   }
   ```
+  ![Farmers Market Finder - Animated gif demo](https://giphy.com/embed/cOiKbCtrbXqVi)
 
 ### Class Repositories and References
   - [sowens23-GitHub](https://github.com/sowens23)
@@ -44,6 +45,21 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 
 # Week-9
 [Top](#TOP)
+## 2023-10-27
+  ### Node-Based Structures
+  - A **node** is usually a small blok of memory that is referenced via a pointer.
+  - In 2011 **smart pointer** class templates were added to the C++STL Library, using RAII to handle ownership of dynamic objects automatically
+    - **std::unique_ptr<T>(<memory>)**
+      - One-owner-at-a-time ownership of dynamic object type **T**
+      - The destructor of owner owning *unique_ptr* destroys the object pointed to.
+      - Moveable but not copyable. Moving transfers ownership.
+    **std::shared_ptr<T>(<memory>)**
+      - Allows for shared ownership of a dynmaic object of type **T**
+      - Uses a **reference count**. Destroys object when the count hits 0
+      - Moveable but not copyable. Moving transfers ownership.
+  - When using Smart Pointers, **do not** do the *delete* or the *new*
+  - 
+  ### More on Linked Lists
 ## 2023-10-25
   ### Review
   - Placing a **noexcept specification** on a function after it's parameter list declares that the function will never throw an exception
