@@ -7,6 +7,7 @@
     return 0;
   }
   ```
+  ![Hitchhikers Guide to the Galaxy](https://github.com/sowens23/CS-F311/blob/main/inclasscoding/week1/tenor.gif)
 
 ### Class Repositories and References
   - [sowens23-GitHub](https://github.com/sowens23)
@@ -40,6 +41,121 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
   | [Week-6](#Week-6) | | |
   | [Week-7](#Week-7) | [HW04](https://github.com/sowens23/CS-F311/tree/main/homework/assignment4) | Midterm I |
   | [Week-8](#Week-7) | | |
+  | [Week-9](#Week-7) | [HW04](https://github.com/sowens23/CS-F311/tree/main/homework/assignment4) | |
+
+# Week-9
+[Top](#TOP)
+## 2023-10-27
+  ### Node-Based Structures
+  - A **node** is usually a small blok of memory that is referenced via a pointer.
+  - In 2011 **smart pointer** class templates were added to the C++STL Library, using RAII to handle ownership of dynamic objects automatically
+    - **std::unique_ptr<T>(<memory>)**
+      - One-owner-at-a-time ownership of dynamic object type **T**
+      - The destructor of owner owning *unique_ptr* destroys the object pointed to.
+      - Moveable but not copyable. Moving transfers ownership.
+    **std::shared_ptr<T>(<memory>)**
+      - Allows for shared ownership of a dynmaic object of type **T**
+      - Uses a **reference count**. Destroys object when the count hits 0
+      - Moveable but not copyable. Moving transfers ownership.
+  - When using Smart Pointers, **do not** do the *delete* or the *new*
+  - Moral for our class Story: There are two design decisions that affect the efficiency of code:
+    1. Deciding how to *process* data (Algorithms)
+    2. Deciding how to *store* data (Data Structures)
+    - The latter has the greater impact
+    - Use arrays when you want a fast look-up
+    - Use Linked Lists when we want fast insert & delete (by iterator)
+  - 
+  ### More on Linked Lists
+## 2023-10-25
+  ### Review
+  - Placing a **noexcept specification** on a function after it's parameter list declares that the function will never throw an exception
+    - A destructor is implicitly marked noexcept, unless something evil is going on with your cod
+    - The noexcept status of a function call can be tested using **noexcept operator**
+      ``` 
+      if (noexcept( foo() ) ) {}
+      ```
+  - A **commit function** is a non-throwing function used to finalize the result of computations, this helps split a throwing operation from a non-throwing operation. 
+    - Attempt to construct the altered version of the data.
+    - If this fails, then exit, destroying the attempt (generally automatic)
+    - If the attempt succeeds, then use a commit function to commit to the new version of the data.
+  ### Allocation & Efficiency
+  - We're considering how an array reallocate-and-copy might work when it's necessary to resize an array.
+    - We would do this when push_back operation has no room to add an addiitonal item to the end of an array.
+  - We need to insert-at-end, but we'll need to reallocate-and-copy to increase the size of the array;
+    - We could add one additional space for an item, but this would require frequent allocation-and-copy operations
+    - We could also just, say, double the size of the array.
+    - What time would this take?
+      - It would take *amortized constant-time* by observing that the basic operations for this will only ever take 3 times the number of inserts being done (based on size of array) 
+  - **amortized constant-time** means that over *k* operations that on average require *O(k)* time. 
+  - In the heiarchy of **Using Big-O*, amortized constant-time fits in as follows
+    1. (Fastest) O(1) : Constant Time : Look-up by index
+    2. O(log n) : Logarithmic Time : Binary Search
+    3. O(n) : Linear Time : Lot's of possibilities
+    4. O(n log n) : Log-Linear Time : Merge Sort, Introsort, and Heap Sort
+    5. **Amortized Constant-Time** : Insert-at-end for a well writen resizable array
+    6. O(n^2) : Quadratic Time : Lots.
+    7. O(c^n) : Exponential Time
+  - For MSArray, this now means that;
+    - We need 3 member variables: size, data, and capacity
+    - Invariants will now be 
+      - 0 <= _size <= capacity
+      - data points to an array _capacity of data_type, or a null pointer if capacity is 0
+    - Resizing to a smaller array, just changes size, not capacity
+    - Resizing to a bigger array, we'll just double the capacity
+  ### Generic Containers
+  - When we call client-provided functions, the client code generally needs to handle any exceptions.
+  - **exception-neutral** code allos exceptions thrown by client-provided code, to propagate unchanged to the caller.
+    - When an exception neutral function runs client code that throws, it must do one of two things;
+      1. Call the function outside a try block, so that an exceptions terminate our code immediately.
+      2. or call the function inside a try block, catch all exceptions, do necessary clean-up, and re-throw
+  ### Thoughts on Assignment 5
+  ##### The Coding Standards
+    - Document everything properly
+  ##### Exception Safety
+    - All member functions must make at least the Basic Guarantee
+    - Constructors make Strong Guarantee
+    - Dctor's, move, and swap must make No-Throw
+    - Complex modification functins might not offer the Strong Guarantee
+    - Check *every* operation that might throw!
+    -   For class template, this includes std::copy, std::rotate
+  ##### Allocation & Efficiency
+    - Are resize, insert, and push_back written to handle operations efficiently
+  ##### Generic Containers
+    - Are all functions exception-neutral
+  - Information relevant to writing swap, copy, move; See slides: Invisible Functions II, Exception Safety: Commit,Functions, Generic Containers: Exception Neutrality, and Allocation & efficiency; generic containers
+  - 
+
+## 2023-10-23
+  ### Review
+  - Three things you can do with exceptions
+    1. Catch
+    2. Throw
+    3. Catch all & re-throw
+    * We only write one of these.
+  - The following issues are collectively called "safety" in the context of exceptions "exception safety"
+    - Does a function signal client code with errors, if it does;
+      1. Are resource leaks avoided
+      2. Are data left in usable states
+      3. Do we know anything about those states
+  - 3 types of function guarantees
+    1. Basic Guarantee: Minimum standard for all code.
+      - Data remain in usable state and resources are not leaked.
+    2. Strong Guarantee: Our preferred standard
+      - Exceptions make no client-visible changes
+    3. No-Throw Guarantee: Required, and also improbable in some cases
+      - Function will never throw an exception.
+    * Each progressive guarantee, includes previous standard levels.
+  - **Single Responsibility Principle (SRP)**: Every software component should have exactly one well defined responsibility
+  - To make a Strong Guarantee, we need to make sure that 
+
+  ### Exception Safety
+  - When placing a *noexcept* tag after a parameter list, declares a function as with a **noexcept specification**
+  - We want **move** functions to be *noexcept*, because if an exception is thrown, mid operation, this can result in actual issues.
+  - A **Commit Function** can be used to finalize a throwable computation result to client data using a non-throwing function after the computation has completed.
+    - It can be tricky to offer a Strong Guarantee when a single function modifies multple parts of an object.
+    - Sometimes we can create an entirely new object with the new value(s), if there is an error, destroy the new object. This way, there are no changes to client visible data. If we are successful, then we commit changes using a non-throwing function.
+  - 
+
 
 # Week-8
 [Top](#TOP)

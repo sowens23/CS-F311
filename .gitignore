@@ -8,5 +8,6 @@
 !*.h
 !.gitignore
 !Makefile
+!*.gif
 
 # Explicit Exceptions
