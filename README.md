@@ -399,7 +399,7 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 # Week-7
 [Top](#TOP)
 ## 2023-10-11
-  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week7/): 
+  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding): 
     - comparison.cpp [C++ source]
       - Passing comparisons to STL sorts
       - Also demonstrates use of lambdas
@@ -484,7 +484,7 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
   - TODO: Comparison.cpp
 
 ## 2023-10-09
-  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week7/): quicksort2.cpp, introsort.cpp 
+  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding): quicksort2.cpp, introsort.cpp 
   ### Review: Multifaceted Review
   - Facts about algorithm speeds
     1. An algorithm that reads all of its input must be Omega(n)
@@ -510,7 +510,7 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 # Week-6
 [Top](#TOP)
 ## 2023-10-06
-  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week6/): quicksort1.cpp, quicksort2.cpp, and stirling.py 
+  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding): quicksort1.cpp, quicksort2.cpp, and stirling.py 
   ### Review: Analysis of Algorithms
   - We really want to avoid using anything with a quadratic or higher power.
   - Constant, linear, and log times are ideal.
@@ -569,7 +569,7 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
     - 
 
 ## 2023-10-04
-  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week6/): iterative_merge_sort.cpp
+  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding): iterative_merge_sort.cpp
   ### Review: Analysis of Algorithms
   - Efficiency in time, space, etc.
   - Top is the most fast (usually) and bottom is the lowest (usually)
@@ -622,7 +622,7 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
   - Merge Sort is stable and runs Θ(n*log(n))
 
 ## 2023-10-02
-  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week6/): insertion_sort.cpp, bubble_sort.cpp
+  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding): insertion_sort.cpp, bubble_sort.cpp
   ### Review: Analysis of Algorithms
   - Efficient: Using few resources
     - We can measure this by calculating sum of basic operations
@@ -677,7 +677,7 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 # Week-5
 [Top](#TOP)
 ## 2023-09-29
-  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week5/): hsscount_test.cpp, hsscount.cpp, important.py
+  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding): hsscount_test.cpp, hsscount.cpp, important.py
   ### Review: Backtracking
   - Searching for a solution can require backtracking
   - All attempts are partial solution
@@ -706,7 +706,7 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
       - O(c^n) is **exponential time**
 
 ## 2023-09-27
-  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week5/): nqueen.cpp, nqueencount.cpp
+  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding): nqueen.cpp, nqueencount.cpp
   - Go collect this new, finished program.
   ### Review: Search Algorithms
     - Binary search using a key with a sorted list
@@ -730,7 +730,7 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
   - Counting Solutions is nice to see how effective we are *REMOVE THIS*
 
 ## 2023-09-25
-  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week5): seqsearch_compare.cpp, binsearch2.cpp, binsearch3.cpp, binsearch4.cpp
+  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding): seqsearch_compare.cpp, binsearch2.cpp, binsearch3.cpp, binsearch4.cpp
   ### Review: Recursion vs Iteration
     - Use a tree to calculate calls an algorithm makes
     - A choice in algorithm can make a huge difference in performance
@@ -814,7 +814,7 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 # Week-4
 [Top](#TOP)
 ## 2023-09-22
-  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week4)
+  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding)
     - fibo_fast.py
     - fibo_formula.cpp
     - fibo_fast.cpp
@@ -1113,7 +1113,7 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
     - Because dctors should not throw, they are generally marked as noexcept implicitly
       - We can make a dctor that is not noexcept using "noexcept (false)" Never do this.
   - CODE
-    - To-Do [Iterators.cpp](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week3)
+    - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding) Iterators.cpp
       - Write a function allocate2 that: (See allocate2.cpp)
         - Attempts to allocate two dynamic objects
         - Returns pointers to these objects, using referene parameters.
@@ -1145,7 +1145,7 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
       [STL Algorithms](https://en.cppreference.com/w/cpp/algorithm)
       - #include <algorithm>
       - Be familiar with std::copy, std::equal, std::sort, std::fill
-    - To-Do [Iterators.cpp](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week3)
+    - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding) Iterators.cpp
 
   ### Software Engineering Concepts: Invariants
   - Basics
@@ -1172,8 +1172,7 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
       - Assertions about the parameters of a function
       - Assertions about the data members of an object
     - Preconditions and class invariants should be documented in comments, however do not restate class invariants before the function(?)
-    - To-Do 
-      - [timeofday.cpp & timeofday.hpp](https://github.com/sowens23/CS-F311/tree/main/inclasscoding/week3)
+    - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding) timeofday.cpp & timeofday.hpp
   
   ### Invisible Functions II
   - Recall the big five
