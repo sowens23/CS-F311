@@ -219,7 +219,8 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
     3. **No-Throw Guarantee**: The function will never throw an exception
       - Also known as the **No-Fail Guarantee**. Highest level of safetly, but not always the best choice.
     - *Notes*: Each guarantee includes the previous guarantees. Basic is minimum standard for all code. Strong is the one we generally prefer. No-Throw is required in some special situations.
-  -   
+  - The **Single Responsibility Principle (SRP)** says every software component should have exactly one well defined responsibility can be helpful here.
+  - A *non-const* member function, **should not** return an object by value.
     
 ## 2023-10-18
   ### Review
@@ -270,7 +271,7 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
   - A **Data Structure** is a construct within a programming language that stores a collection of data
   - A particular ADT is a **ADT Triple**
     - This holds 3 values with a few operations
-    - To ceate a *complete, minimal* interface you must have the first 4 of 7 operations
+    - To ceate a *minimal* interface you must have the first 4 of 7 operations
       1. Create with unspecified values
       2. Destroy
       3. Get a value
