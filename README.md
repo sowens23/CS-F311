@@ -46,6 +46,42 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 
 # Week-10
 [Top](#TOP)
+## 2023-11-01
+  ### To Do:
+  - *fibo_bf_elim.cpp*: Comuting Fibonacci numbers, recursion eliminated, brute-force method
+  - *rpneval_main.cpp* & *rpneval.hpp*: Reverse Polish Notation evaluation
+  ### Review
+  - Generic Container problems
+    1. Access items [single item: retreive/find, all items: traverse]
+    2. Add new item [insert]
+    3. Eliminate existing item [delete]
+  - 6 Generic Containers in the STL
+    - std::deque is basically an array with extra space already allocated in the *beginning* and *end* of the variable to reduce time taken to insert or remove at beginning or end.
+  ### Sequences in the C++ STL (Cont)
+  - See 2023-11-01 slide 10 for list of efficiency table for vector, basic_string, deque, and list. 
+  ### Stacks
+  - A **stack** container is an ADT, this works very similar to the *system call stack*.
+    - We only ever deal with the top of the stack. You pop, and push to the top of the stack.
+    - A stack allows **last-in-first-out (LIFO)** access to data. 
+    - This is a *restricted* version of a sequence.
+  - **Operations**
+    - getTop: Returns value of top item
+    - push/pop: Add or remove an item from the top
+    - isEmpty: Use this to make sure you are not manipulating something that doesn't exist!
+    - size: returns size 
+    - create/destroy/copy.
+  - std::stack(stack) : std::stack<T, container t>
+    - T is the value type
+    - container T can be any standard-conforming container with member functions: back, push_bacl, pop_back, empty, and size with comparison operators(==, <=, etc.)
+  - **Reverse Polish Notation (RPN)** is a way of writing expressions so that an operator comes after its operands.
+    - Normal (**infix**): "1 + 2"
+    - RPN (**postfix**): "1 2 +"
+    - Translate
+      1. (5-2) * 7 = 5 2 - 7 *
+      2. 5 - (2*7) = 5 2 7 * -
+      3. (5-2) * (7+5) = 5 2 - 7 5 + *
+    - To Do "rpneval.hpp"
+
 ## 2023-10-30
   ### To Do: 
   - *use_list2.cpp* (based on use_list.cpp, uses llnode2.hpp)
