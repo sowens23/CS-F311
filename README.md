@@ -40,8 +40,38 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
   | [Week-5](#Week-5) | | |
   | [Week-6](#Week-6) | | |
   | [Week-7](#Week-7) | [HW04](https://github.com/sowens23/CS-F311/tree/main/homework/assignment4) | Midterm I |
-  | [Week-8](#Week-7) | | |
-  | [Week-9](#Week-7) | [HW04](https://github.com/sowens23/CS-F311/tree/main/homework/assignment4) | |
+  | [Week-8](#Week-8) | | |
+  | [Week-9](#Week-9) | [HW04](https://github.com/sowens23/CS-F311/tree/main/homework/assignment4) | |
+  | [Week-10](#Week-10) | | |
+
+# Week-10
+[Top](#TOP)
+## 2023-10-30
+  ### To Do: 
+  - *use_list2.cpp* (based on use_list.cpp, uses llnode2.hpp)
+  - *llnode2.hpp* (Header for LLNode2, based on llnode.hpp, no cpp file)
+  ### More on Linked Lists
+  - When you use a standard linked list, if it's arbitrarily long, it will use *linear recursion depth* to destroy the rest of the list.
+    - We can use a smart pointer to eliminate the recursive destructor.
+  ### Sequences in the C++ STL
+  - There are 6 generic sequence containers
+    1. std::vector
+      - Smart resizable array
+    2. std::basic_string
+      - Much like a vector, but for character string operations
+      - *string* is *basic_string<char>*; other string-ish types are defined
+    3. std::array
+      - A-little-bit-smart array. Not resizable, Size is part of the type.
+      - Not the same as a c++ built-in array
+      - Data items are stored in the object
+      - Slightly faster than *vector*
+    4. std::forward_list
+      - Singly Linked List
+    5. std::list
+      - Doubly Linked List
+    6. std::deque
+      - Stands for Double-Ended QUEue; say "deck"
+      - Like *vector*, a little slower. Fast insert/remove at both ends
 
 # Week-9
 [Top](#TOP)
