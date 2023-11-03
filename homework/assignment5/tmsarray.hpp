@@ -1,12 +1,23 @@
 /* 
-    Name: Spencer Owens
-    Class: 23F CS-311 Data Structures and Algorithms
-    Assignment: TheMarvouslySmartArray (Assignment 5)
-    Created: 2023-Nov-01
-    Updated: 2023-Nov-02
+Name: Spencer Owens
+Class: 23F CS-311 Data Structures and Algorithms
+Assignment: TheMarvouslySmartArray (Assignment 5)
+Created: 2023-Oct-28
+Updated: 2023-Nov-02
+File Name: tsmarray.hpp
+Current Version: 7
+File Function: 
+    To serve as an array of a client-defined type with all of the generic container functionality
+    So it can interact with the STL library functions. 
 
-    File Name: tsmarray.hpp
-    File Function: 
+Version History:
+- v7:
+    - Updated array to template with user defined type
+    - Wrote operators, copy, const copy, move
+    - Wrote functions resize, insert, swap, and erase
+    - Wrote in function guarantees, preconditions, and asserts
+    - Program successfully runs using tmsarray_test.hpp 
+        - This demonstrates that the code written is written well enough to serve as a generic container.
 */
 
 // msarray.hpp  HAND-OFF
@@ -167,7 +178,7 @@ public:
 
     // operator[] - non-const & const
     // Pre:
-    //     Assuming index is [0, size()-1]
+    //     index is [0, size()-1]
     // No-Throw Guarantee
     value_type & operator[](size_type index)
     {
@@ -278,19 +289,18 @@ public:
             if (_size >= _capacity) {
                 resize(_size);
                 pos = begin() + index;
-            } //else {
-                // Shift elements to make space for the new item
-                std::move_backward(pos, end(), end() + 1);
-                
-                //_data[index] = std::move(item);
-                *(begin() + index) = std::move(item);
+            }
+            // Shift elements to make space for the new item
+            std::move_backward(pos, end(), end() + 1);
+            
+            //_data[index] = std::move(item);
+            *(begin() + index) = std::move(item);
 
-                // Increment size
-                ++_size;
+            // Increment size
+            ++_size;
 
-                // Return iterator to newly inserted item
-                return begin() + index;
-            //} 
+            // Return iterator to newly inserted item
+            return begin() + index;
         } catch (...) {
             return end();
         }
@@ -333,7 +343,7 @@ public:
     }
 
 // ***** TMSArray: data members *****
-public:
+private:
 
     // Below, _capacity must be declared before _data
     size_type    _capacity;  // Size of our allocated array
@@ -341,7 +351,6 @@ public:
     value_type * _data;      // Pointer to our array
 
 };  // End class TMSArray
-
 
 #endif  //#ifndef FILE_TMSArray_HPP_INCLUDED
 
