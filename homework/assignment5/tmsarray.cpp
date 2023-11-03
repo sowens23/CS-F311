@@ -1,3 +1,13 @@
+/* 
+    Name: Spencer Owens
+    Class: 23F CS-311 Data Structures and Algorithms
+    Created: 2023-Nov-01
+    Updated: 2023-Nov-01
+
+    File Name: tsmarray.cpp
+    File Function: 
+*/
+
 // msarray.cpp  HAND-OFF
 // VERSION 6
 // Glenn G. Chappell
@@ -10,19 +20,19 @@
 // Preliminary to Assignment 5
 
 
-#include "msarray.hpp"  // For class MSArray definition
+#include "tmsarray.hpp"  // For class TMSArray definition
 #include <algorithm>
 using std::copy;
 
 
 // *********************************************************************
-// class MSArray - Member function definitions
+// class TMSArray - Member function definitions
 // *********************************************************************
 
 
 // Copy ctor
 // See header for info.
-MSArray::MSArray(const MSArray & other)
+TMSArray::TMSArray(const TMSArray & other)
     :_capacity(other._capacity),
      _size(other.size()),
      _data(other._capacity == 0 ? nullptr
@@ -37,7 +47,7 @@ MSArray::MSArray(const MSArray & other)
 
 // Move ctor
 // See header for info.
-MSArray::MSArray(MSArray && other) noexcept
+TMSArray::TMSArray(TMSArray && other) noexcept
     :_capacity(other._capacity),
      _size(other._size),
      _data(other._data)
@@ -50,7 +60,7 @@ MSArray::MSArray(MSArray && other) noexcept
 
 // Copy assignment operator
 // See header for info.
-MSArray & MSArray::operator=(const MSArray & other)
+TMSArray & TMSArray::operator=(const TMSArray & other)
 {
     // TODO: WRITE THIS!!!
     return *this; // DUMMY
@@ -59,7 +69,7 @@ MSArray & MSArray::operator=(const MSArray & other)
 
 // Move assignment operator
 // See header for info.
-MSArray & MSArray::operator=(MSArray && other) noexcept
+TMSArray & TMSArray::operator=(TMSArray && other) noexcept
 {
     // TODO: WRITE THIS!!!
     return *this; // DUMMY
@@ -68,7 +78,7 @@ MSArray & MSArray::operator=(MSArray && other) noexcept
 
 // resize
 // See header for info.
-void MSArray::resize(MSArray::size_type newsize)
+void TMSArray::resize(TMSArray::size_type newsize)
 {
     // TODO: WRITE THIS!!!
 }
@@ -76,8 +86,8 @@ void MSArray::resize(MSArray::size_type newsize)
 
 // insert
 // See header for info.
-MSArray::iterator MSArray::insert(MSArray::iterator pos,
-                                  MSArray::value_type item)
+TMSArray::iterator TMSArray::insert(TMSArray::iterator pos,
+                                  TMSArray::value_type item)
 {
     // TODO: WRITE THIS!!!
     return begin();  // DUMMY
@@ -86,7 +96,7 @@ MSArray::iterator MSArray::insert(MSArray::iterator pos,
 
 // erase
 // See header for info.
-MSArray::iterator MSArray::erase(MSArray::iterator pos)
+TMSArray::iterator TMSArray::erase(TMSArray::iterator pos)
 {
     // TODO: WRITE THIS!!!
     return begin();  // DUMMY
@@ -95,7 +105,7 @@ MSArray::iterator MSArray::erase(MSArray::iterator pos)
 
 // swap
 // See header for info.
-void MSArray::swap(MSArray & other) noexcept
+void TMSArray::swap(TMSArray & other) noexcept
 {
     // TODO: WRITE THIS!!!
 }
