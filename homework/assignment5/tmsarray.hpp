@@ -227,7 +227,7 @@ public:
     {
         // newsize == _size
         // newsize < _size
-        if (newsize == _capacity) return;
+        //if (newsize == _capacity) return;
 
         if (newsize < _capacity) {
             _size = newsize;
@@ -235,16 +235,17 @@ public:
         }
 
         // newsize < _size
-        if (newsize > _capacity) {
+        if (newsize >= _capacity) {
             // Calculate new capacity
             size_type newcap = std::max(newsize, size_type(_capacity * 2));
             // Growth Factor Limitation
             
             // Allocate new block of memory
-            value_type* new_data = new value_type[newcap];
+            value_type* new_data = nullptr;
 
             // Copy old data to temp array
             try { 
+                new_data = new value_type[newcap];
                 std::copy(begin(), end(), new_data);
             } catch (...) {
                 delete [] new_data;
@@ -274,10 +275,10 @@ public:
         size_type index = pos - begin();
         try {
             // Resize if capacity is full
-            if (_size == _capacity) {
-                resize(_size + 1);
+            if (_size >= _capacity) {
+                resize(_size);
                 pos = begin() + index;
-            } else {
+            } //else {
                 // Shift elements to make space for the new item
                 std::move_backward(pos, end(), end() + 1);
                 
@@ -289,7 +290,7 @@ public:
 
                 // Return iterator to newly inserted item
                 return begin() + index;
-            } 
+            //} 
         } catch (...) {
             return end();
         }
