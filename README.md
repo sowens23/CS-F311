@@ -43,6 +43,46 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
   | [Week-8](#Week-8) | | |
   | [Week-9](#Week-9) | [HW04](https://github.com/sowens23/CS-F311/tree/main/homework/assignment4) | |
   | [Week-10](#Week-10) | | |
+  | [Week-11](#Week-11) | | |
+
+# Week-11
+[Top](#TOP)
+## 2023-11-06
+  ### Review
+  - Terminology of rooted trees: Root, Leaf, Parent, Child, sibling, Ancestor, Descedent, Level, Heigh, Subtree
+  - Informally, there are *bushy* and *Stringy* trees 
+  ### Binary Trees
+  - A binary tree contains a root, or can be totally empty with a height of -1
+  - A **Full** Binary Tree: Leaves all lie in the same level, all other nodes have two children each.
+  - A **Complete** Binary Tree: All levels above the bottom are full, and nodes are added in a left to right, top to bottom order. This can be stored in an array!
+  - A **Stringly Balanced** Binary Tree has an equal amount of *left* and *right* nodes.
+  - To **traverse** a binary tree we visit each node. There are various types of traversals: *preorder*, *inorder*, and *postorder*
+    - We can find these orders simply, by drawing a box around each node, and drawing a line going counter-clockwise around the tree, hitting each side of the nodes as the line circles through.
+    - Preorder, is as the line hits the left side of the boxes
+    - Inorder, is as the line hits the bottom side of the boxes
+    - Postorder, is as the line hits the right side of the boxes
+  - Any tree can be represented as a Binary Tree
+
+  ### Binary Search Trees
+  - A Binary Search Tree is a Binary Tree in which each node contains a single data item, which includes a **key**, and the keys have the following order relationship
+    1. All keys in a node's left subtree are <= the node's key
+    2. All keys in the node's right subtree are >= the node's key
+    - In other words, an inorder traersal gives the keys in sorted order.
+  - We consider Binary Search Tree as an **ADT** *(Abstract Data Type)*
+  - I will need to know how to perform a retreive, insert, and delete algorithms for;
+    1. Binary Search Tree BST
+      - Traverse: Inorder Traversal
+      - Insert: Compare value to node, go left if less than, go right if greater than, continue till you find an empty spot
+      - Delete: Same as insert
+    2. Binary Heap
+      - Traverse:
+      - Insert: 
+      - Delete: 
+    3. 2-3 Tree
+      - Traverse:
+      - Insert: 
+      - Delete: 
+  - 
 
 # Week-10
 [Top](#TOP)
