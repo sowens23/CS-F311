@@ -46,6 +46,37 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 
 # Week-10
 [Top](#TOP)
+## 2023-11-03
+  ### To Do:
+  - *da6.hpp*: Template for assignment 6, required da6_test.cpp and doctest.h
+  ### Queues
+  - A *Queue* allows **First-In-First-Out (FIFO)** access to data. Think waiting in line.
+    - **Enqueue (N Q)**: Adds a new value at the *back*.
+    - **Dequeue (D Q)**: Adds a new value at the *front*.
+    - Typically insert at one end, remove at another
+    - Typically cannot iterate through contents
+  - std::queue is another container adapater: wrapper around a container.
+    - `std::queue<T, container<T>>`
+      - T is the value type
+      - `container<T>` can be any standard-conforming container with member fucntions, front, push_back, pop_front, empty, and size, along with comparison operators
+    - vector or string do not work because they do not have pop_front.
+    - the container defauls to a queue
+  - queue's basically store information like a linked list, but as items are pushed and popped, the addresses move through the list, so when the queue reaches the last item, it circles back to the front.
+ ```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
+  
+  ### Introduction to Trees
+  - Trees contain **nodes**, between connected nodes, there is an **edge**, which joins two vertices.
+  - If there is a beginning, we can consider the first node as the **root** and the tree a **rooted tree**.
+    - Technically there is nothing the root is connected to, as it's the beginning.
+  - Each node will have other nodes connected to it, anywhere from (0, $$\infty$$)
+  - A leaf is a node that has no additional branches
+
 ## 2023-11-01
   ### To Do:
   - *fibo_bf_elim.cpp*: Comuting Fibonacci numbers, recursion eliminated, brute-force method
