@@ -48,6 +48,33 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 # Week-11
 [Top](#TOP)
 ## 2023-11-08
+  - Table implementations are not very efficient in general. But there are strategies to speed specific operations up
+    1. We can use Priority Queues, only allowing retrieve/delete on the greatest key
+    2. We can keep a balanced tree, restricting the height.
+    3. We can use a *Magic* function, ie (hash tables) 
+  ### Priority Queues
+    - This has almost the same operations as Queue
+    - We only retrieve/delete the element with the greatest key
+    - We implement this using a data structure called a Binary Heap, using a Heap Sort
+  ### Binary Heap Algorithms
+  - A **Binary Heap** or just **Heap** is a complete Binary Tree where each node has a single data item, a key, and it's childrens keys are <= it's own.
+    - Maxheap is where the largest key is the root
+    - Minheap is where the smallest key is the root
+  - Essentially the Binary Heap can be represented in an array, storing the nodes in an order from: Top to bottom, from left to right.
+    - ie: 0 | 10 | 20 | 30 | 40 | 50 | 60 | 70 | 80 | 90
+    - Where each node, contains to children only. Thus
+      - Height 1:           0
+      - Height 2:     10,       20
+      - Height 3:   30, 40,   50, 60
+      - Height 4: 70, 80, 90
+  - When we insert or delete, we may need to restructure the heap. We use a **sift-up** or **sift-down** operation to do this.
+    - To delete, in a Priority Queue we delete the root key.
+      - So we delete root, replace it with the **last** node, then we sift down, swapping it with a child that has a greater and the greatest value.
+      - Vice versa for Minheap.
+    - To insert, we insert it at the very end of the heap, and sift-up by swapping the inserted node with it's parents if they are smaller than it, until that's not the case.
+  -
+
+## 2023-11-08
   ###  Binary Search Trees (Cont'd)
   - When manipulating trees, the **delete** functionality becomes the most complex of the three single-item operations.
   - To delete, we must first search for the node holding the key, then we proceed to one of three cases
