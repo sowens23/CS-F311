@@ -25,11 +25,16 @@ Version History:
 */
 
 // Excercise A
-template<typename ValTypea>
-void reverseList(unique_ptr<LLNode2<ValTypea>> & head){
-  //DOES NOTHING
+template<typename ValType>
+void reverseList(unique_ptr<LLNode2<ValType>> & head){
   // Given a unique pointer, an empty unique pointer if the list is empty, and reverses it and points to the new list by reference
   // Performs no value type operations, all in-place, runs linear time
+  // DOES NOTHING
+  std::unique_ptr<LLNode2<ValType>> prev = nullptr;
+  std::unique_ptr<LLNode2<ValType>> curr = head;
+  std::unique_ptr<LLNode2<ValType>> curr = next;
+
+  while
 }
 
 // Excercise B
