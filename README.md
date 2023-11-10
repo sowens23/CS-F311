@@ -47,6 +47,66 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 
 # Week-11
 [Top](#TOP)
+## 2023-11-08
+  - Table implementations are not very efficient in general. But there are strategies to speed specific operations up
+    1. We can use Priority Queues, only allowing retrieve/delete on the greatest key
+    2. We can keep a balanced tree, restricting the height.
+    3. We can use a *Magic* function, ie (hash tables) 
+  ### Priority Queues
+    - This has almost the same operations as Queue
+    - We only retrieve/delete the element with the greatest key
+    - We implement this using a data structure called a Binary Heap, using a Heap Sort
+  ### Binary Heap Algorithms
+  - A **Binary Heap** or just **Heap** is a complete Binary Tree where each node has a single data item, a key, and it's childrens keys are <= it's own.
+    - Maxheap is where the largest key is the root
+    - Minheap is where the smallest key is the root
+  - Essentially the Binary Heap can be represented in an array, storing the nodes in an order from: Top to bottom, from left to right.
+    - ie: 0 | 10 | 20 | 30 | 40 | 50 | 60 | 70 | 80 | 90
+    - Where each node, contains to children only. Thus
+      - Height 1:           0
+      - Height 2:     10,       20
+      - Height 3:   30, 40,   50, 60
+      - Height 4: 70, 80, 90
+  - When we insert or delete, we may need to restructure the heap. We use a **sift-up** or **sift-down** operation to do this.
+    - To delete, in a Priority Queue we delete the root key.
+      - So we delete root, replace it with the **last** node, then we sift down, swapping it with a child that has a greater and the greatest value.
+      - Vice versa for Minheap.
+    - To insert, we insert it at the very end of the heap, and sift-up by swapping the inserted node with it's parents if they are smaller than it, until that's not the case.
+  -
+
+## 2023-11-08
+  ###  Binary Search Trees (Cont'd)
+  - When manipulating trees, the **delete** functionality becomes the most complex of the three single-item operations.
+  - To delete, we must first search for the node holding the key, then we proceed to one of three cases
+    1. No children (leaf) - Just delete the node
+    2. One child - Replace the subtree rooted at the node with the subtree rooted at it's child
+    3. Two children:
+      - Replace it's data with data in it's *inorder successor* (copy or swap)
+      - Delete the inorder successor, which must have at most one child.
+    - The **Inorder Successor** is the node that comes next in an inorder traversal (Counter Clockwise - Bottom hitting).
+      - Go to the right child, then walk down left children until you find one without a *left* child. Move it up.
+  - Algorithms for the three primary single-item BST operations are; Retrieve, Insert, and Delete.
+    - All operations in the worst case, require a number of steps that is something like the *height of the tree*
+    - If the height of the tree is small, the operations are fast, and the tree is *strongly balanced*
+  - Fibonacci Sequence actually helps measure the linear time of a search for a BST.
+  ### Introduction to Tables
+  - Position-Oriented ADT
+    - Get item based on where it is stored.
+    - Organize data according to where the client wants it
+    - Examples: Sequence, Stack, Queue, Binary Tree
+  - Value Oriented ADT's
+    - Get item based on it's value or *part* of the value: **key** based lookup.
+      - Organize data for greatest efficiency.
+      - Examples: SortedSequence, Binary Search Tree
+    - A **Table** is a general value-oriented ADT, not tied to any particular implementation.
+      - Operations: retrieve, insert, delete, traverse, creat, destroy, copy, isEmpty, size.
+    - A **Set**
+  - We can loosen the restrictions on a *strongly balanced* tree, to make it more tantalizing for developers to use for basic sorting algorithms.
+    - We can have more than 2 children, we can loosen the height restrictions, etc.
+    - This leads to many variations of really quck ABT's.
+    - 2-3 Tree, 2-3-4 Tree, Red-Black Tree, AVL Tree, B-Tree and Variations (B+ Tree)
+
+
 ## 2023-11-06
   ### Review
   - Terminology of rooted trees: Root, Leaf, Parent, Child, sibling, Ancestor, Descedent, Level, Heigh, Subtree
@@ -58,9 +118,9 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
   - A **Stringly Balanced** Binary Tree has an equal amount of *left* and *right* nodes.
   - To **traverse** a binary tree we visit each node. There are various types of traversals: *preorder*, *inorder*, and *postorder*
     - We can find these orders simply, by drawing a box around each node, and drawing a line going counter-clockwise around the tree, hitting each side of the nodes as the line circles through.
-    - Preorder, is as the line hits the left side of the boxes
-    - Inorder, is as the line hits the bottom side of the boxes
-    - Postorder, is as the line hits the right side of the boxes
+    - **Preorder**, is as the line hits the left side of the boxes
+    - **Inorder**, is as the line hits the bottom side of the boxes
+    - **Postorder**, is as the line hits the right side of the boxes
   - Any tree can be represented as a Binary Tree
 
   ### Binary Search Trees
