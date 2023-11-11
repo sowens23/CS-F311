@@ -32,9 +32,16 @@ void reverseList(unique_ptr<LLNode2<ValType>> & head){
   // DOES NOTHING
   std::unique_ptr<LLNode2<ValType>> prev = nullptr;
   std::unique_ptr<LLNode2<ValType>> curr = head;
-  std::unique_ptr<LLNode2<ValType>> curr = next;
+  std::unique_ptr<LLNode2<ValType>> curr = head->next;
 
-  while
+  while (curr){
+    next = std::move(curr->next); // 
+    curr->next_ = std::move(prev);
+    prev = std::move(curr);
+    curr = std::move(next);
+  }
+
+  head = std::move(prev);
 }
 
 // Excercise B
@@ -43,7 +50,10 @@ class SlowMap {
 public:
   /*
   Default ctor. Creates an empty dataset.
-  Dctor. As usual.
+  Dctor. As usual. */
+  // Default ctor & ctor 
+  SlowMap()
+  /*
   Function size. No parameters. Returns an integer of an appropriate type giving the number of key-value pairs in the dataset.
   Function empty. No parameters. Returns bool. The return value is true if there are no key-value pairs in the stored dataset, and false otherwise.
   Function present. One parameter: a key. Returns bool. The return value is true if a key equal to that given lies in the stored dataset, and false otherwise.
