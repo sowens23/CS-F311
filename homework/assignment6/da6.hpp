@@ -23,13 +23,23 @@ Version History:
 - v1:
 
 */
+#include "llnode2.hpp"
+#include <cstddef>
+// For std::size_t
+#include <algorithm>
+// For std::copy, std::move, std::move_backward, std::fill
+#include <memory>
+// For std::unique_ptr, std::make_unique
+#include <stdexcept>
+// For std::out_of_range
+#include <cassert>
+// For assert
 
 // Excercise A
 template<typename ValType>
-void reverseList(unique_ptr<LLNode2<ValType>> & head){
+void reverseList(std::unique_ptr<LLNode2<ValType>> & head){
   // Given a unique pointer, an empty unique pointer if the list is empty, and reverses it and points to the new list by reference
   // Performs no value type operations, all in-place, runs linear time
-  // DOES NOTHING
   std::unique_ptr<LLNode2<ValType>> prev = nullptr;
   std::unique_ptr<LLNode2<ValType>> curr = head;
   std::unique_ptr<LLNode2<ValType>> next;
@@ -58,41 +68,84 @@ public:
   // Default Constructor
   SlowMap() : _head(nullptr) {}
 
+  // Deconstructor
+  ~SlowMap() = default;
+
   // Size Function
   size_t size() {
     // TODO: Implement this
+    size_t size_temp = 0;
+    return size_temp;
   }
 
   // Empty function
   bool empty() {
     // TODO: Implement this
+    bool empty_t = true;
+    return empty_t;
   }
 
-  // Present function
+  // Present function: Return value is true is a key equal to that given lies in the stored dataset
   bool present(const KeyType & key) const {
     // TODO: Implement this
+    bool present_t = false;
+    return present_t;
   }
 
-  // Get function
+  // Get function: If an equal key lies in the stored data set, return the associated value
+  // otherwise std::out_of_range is thrown with the what member set to some appropriate human-readable string
+  // Guarantee:
+  // 
   DataType & get(const KeyType & key) {
-    // TODO: Implement this
-  }
-  const DataType & get(const KeyType & key) const {
-    // TODO: Implement this
+    auto curr = _head.get();
+    while (curr != nullptr) {
+      if (curr->kv.key == key) {
+        // Found the key, return a reference to the associated value
+        return curr->kv.data;
+      }
+      curr = curr->next.get();
+    }
+    // Key not found, throw exception
+    std::string errorMsg = "Key `" + std::to_string(key) + "' not found in SlowMap";
+    throw std::out_of_range(errorMsg);
   }
 
+  // Const Get function
+  const DataType & get(const KeyType & key) const {
+    auto curr = _head.get();
+    while (curr != nullptr) {
+      if (curr->kv.key == key) {
+        // Found the key, return a reference to the associated value
+        return curr->kv.data;
+      }
+      curr = curr->next.get();
+    }
+    // Key not found, throw exception
+    std::string errorMsg = "Key `" + std::to_string(key) + "' not found in SlowMap";
+    throw std::out_of_range(errorMsg);
+  }
+
+  // If an equal key does not lie in the dataset, then the key-value pair is inserted, if it does exist, then the existing pair is replaced with that given
   void set(const KeyType & key, const DataType & data) {
     // TODO: Implement this
   }
 
+  // If a key is matched, remove the pair
   void erase(const KeyType & key) {
     // TODO: Implement this
   }
 
+  // Passed function is expected to take two parameters, and is called on every pair in the dataset
   template<typename Func>
   void traverse(Func f) {
     // TODO
   }
+
+  // Delete Copy Ctor, Move Ctor, Copy assignment, Move assignment
+  SlowMap(const SlowMap & other) = delete;
+  SlowMap & operator=(const SlowMap & other) = delete;
+  SlowMap(SlowMap && other) = delete;
+  SlowMap & operator=(SlowMap && other) = delete;
 
 private:
   // One and only one data member which is of type unique_ptr<LLNode2<KVTYPE>>, where KVTYPE is a type that can hold a single key-value pair (e.g., an appropriate std::pair or struct)
