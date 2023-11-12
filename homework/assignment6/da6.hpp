@@ -32,7 +32,7 @@ void reverseList(unique_ptr<LLNode2<ValType>> & head){
   // DOES NOTHING
   std::unique_ptr<LLNode2<ValType>> prev = nullptr;
   std::unique_ptr<LLNode2<ValType>> curr = head;
-  std::unique_ptr<LLNode2<ValType>> curr = head->next;
+  std::unique_ptr<LLNode2<ValType>> next;
 
   while (curr){
     next = std::move(curr->next); // 
@@ -45,32 +45,63 @@ void reverseList(unique_ptr<LLNode2<ValType>> & head){
 }
 
 // Excercise B
-template<typename ValTypeb>
+template<typename KeyType, typename DataType>
 class SlowMap {
 public:
-  /*
-  Default ctor. Creates an empty dataset.
-  Dctor. As usual. */
-  // Default ctor & ctor 
-  SlowMap()
-  /*
-  Function size. No parameters. Returns an integer of an appropriate type giving the number of key-value pairs in the dataset.
-  Function empty. No parameters. Returns bool. The return value is true if there are no key-value pairs in the stored dataset, and false otherwise.
-  Function present. One parameter: a key. Returns bool. The return value is true if a key equal to that given lies in the stored dataset, and false otherwise.
-  Function get. One parameter: a key. Returns const DATA_TYPE & for a const SlowMap and DATA_TYPE & for a non-const SlowMap. If an equal key lies in the stored dataset, then the associated value is returned as indicated. Otherwise, an exception of type std::out_of_range is thrown, with the what member set to some appropriate human-readable string.
-  Function set. Two parameters: a key and an associated value. Returns nothing. If an equal key does not lie in the dataset, then the key-value pair is inserted. If an equal key does lie in the dataset, then the existing key-value pair is replaced with that given.
-  Function erase. One parameter: a key. Returns nothing. If an equal key lies in the dataset, then that key-value pair is removed. If an equal key does not lie in the dataset, then the function does nothing.
-  Function traverse. One parameter: a function or function object (its type can simply be a template parameter). Returns nothing. The passed function is expected to take two parameters, key type and data type, and return nothing. The passed function is called on each key-value pair in the dataset.
-  Again, SlowMap must not have any other public member functions. In particular, all of the following must be deleted.
-  Copy ctor.
-  Move ctor.
-  Copy assignment operator.
-  Move assignment operator.
-  */
+  //Define the key-value pair structure
+  struct KVPair {
+    KeyType key;
+    DataType data;
+    KVPair(KeyType k, DataType d) : key(std::move(k)), data(std::move(d)) {}
+  };
 
+  // Default Constructor
+  SlowMap() : _head(nullptr) {}
+
+  // Size Function
+  size_t size() {
+    // TODO: Implement this
+  }
+
+  // Empty function
+  bool empty() {
+    // TODO: Implement this
+  }
+
+  // Present function
+  bool present(const KeyType & key) const {
+    // TODO: Implement this
+  }
+
+  // Get function
+  DataType & get(const KeyType & key) {
+    // TODO: Implement this
+  }
+  const DataType & get(const KeyType & key) const {
+    // TODO: Implement this
+  }
+
+  void set(const KeyType & key, const DataType & data) {
+    // TODO: Implement this
+  }
+
+  void erase(const KeyType & key) {
+    // TODO: Implement this
+  }
+
+  template<typename Func>
+  void traverse(Func f) {
+    // TODO
+  }
 
 private:
   // One and only one data member which is of type unique_ptr<LLNode2<KVTYPE>>, where KVTYPE is a type that can hold a single key-value pair (e.g., an appropriate std::pair or struct)
+  struct LLNode {
+    KVPair kv;
+    std::unique_ptr<LLNode> next;
+    LLNode(KeyType k, DataType d, std::unique_ptr<LLNode> n = nullptr)
+      : kv(std::move(k), std::move(d)), next(std::move(n)) {}
+  };
 
-
+  std::unique_ptr<LLNode> _head; // Pointer to the head
 };
