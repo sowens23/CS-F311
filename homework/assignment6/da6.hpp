@@ -23,6 +23,10 @@ Version History:
 - v1:
 
 */
+
+#ifndef FILE_DA6_HPP_INCLUDED
+#define FILE_DA6_HPP_INCLUDED
+
 #include "llnode2.hpp"
 #include <cstddef>
 // For std::size_t
@@ -41,14 +45,16 @@ void reverseList(std::unique_ptr<LLNode2<ValType>> & head){
   // Given a unique pointer, an empty unique pointer if the list is empty, and reverses it and points to the new list by reference
   // Performs no value type operations, all in-place, runs linear time
   std::unique_ptr<LLNode2<ValType>> prev = nullptr;
-  std::unique_ptr<LLNode2<ValType>> curr = head;
-  std::unique_ptr<LLNode2<ValType>> next;
+  std::unique_ptr<LLNode2<ValType>> next = nullptr;
+
+  LLNode2<ValType>* curr = head.get();
 
   while (curr){
-    next = std::move(curr->next); // 
-    curr->next_ = std::move(prev);
-    prev = std::move(curr);
-    curr = std::move(next);
+    next = std::move(curr->_next); // 
+    curr->_next = std::move(prev);
+    prev = std::move(head);
+    head = std::move(next);
+    curr = head.get();
   }
 
   head = std::move(prev);
@@ -72,30 +78,35 @@ public:
   ~SlowMap() = default;
 
   // Size Function
-  size_t size() {
-    // TODO: Implement this
+  size_t size() const {
     size_t size_temp = 0;
+    auto curr = _head.get();
+    while (curr != nullptr) {
+      size_temp++;
+    }
     return size_temp;
   }
 
   // Empty function
-  bool empty() {
-    // TODO: Implement this
-    bool empty_t = true;
-    return empty_t;
+  bool empty() const {
+    if (_head == nullptr) return true;
+    else return false;
   }
 
   // Present function: Return value is true is a key equal to that given lies in the stored dataset
   bool present(const KeyType & key) const {
-    // TODO: Implement this
-    bool present_t = false;
-    return present_t;
+    auto curr = _head.get();
+    while (curr != nullptr) {
+      if (curr->kv.key == key) {
+        // Found the key, return a reference to the associated value
+        return true;
+      }
+    }
+    return false;
   }
 
   // Get function: If an equal key lies in the stored data set, return the associated value
   // otherwise std::out_of_range is thrown with the what member set to some appropriate human-readable string
-  // Guarantee:
-  // 
   DataType & get(const KeyType & key) {
     auto curr = _head.get();
     while (curr != nullptr) {
@@ -106,7 +117,7 @@ public:
       curr = curr->next.get();
     }
     // Key not found, throw exception
-    std::string errorMsg = "Key `" + std::to_string(key) + "' not found in SlowMap";
+    std::string errorMsg = "Key not found in SlowMap";
     throw std::out_of_range(errorMsg);
   }
 
@@ -121,24 +132,49 @@ public:
       curr = curr->next.get();
     }
     // Key not found, throw exception
-    std::string errorMsg = "Key `" + std::to_string(key) + "' not found in SlowMap";
+    std::string errorMsg = "Key not found in SlowMap";
     throw std::out_of_range(errorMsg);
   }
 
   // If an equal key does not lie in the dataset, then the key-value pair is inserted, if it does exist, then the existing pair is replaced with that given
   void set(const KeyType & key, const DataType & data) {
-    // TODO: Implement this
+    for (auto curr = _head.get(); curr != nullptr; curr = curr->next.get()) {
+      if (curr->kv.key == key) {
+        // Key found, update data
+        curr->kv.data = data;
+        return;
+      }
+
+      // Key not found, need to add new pair
+      _head = std::make_unique<LLNode>(key, data, std::move(_head));
+    }
   }
 
   // If a key is matched, remove the pair
   void erase(const KeyType & key) {
-    // TODO: Implement this
+    // Removing head, or empty list.
+    if (!_head || _head->kv.key == key) {
+      _head = std::move(_head->next);
+      return;
+    }
+
+    // General case: traverse the list to find the node to remove
+    for (auto curr = _head.get(); curr->next; curr = curr->next.get()){
+      if (curr->next->kv.key == key) {
+        // Remove the node
+        curr->next = std::move(curr->next->next);
+        return;
+      }
+    }
   }
 
   // Passed function is expected to take two parameters, and is called on every pair in the dataset
   template<typename Func>
   void traverse(Func f) {
-    // TODO
+    for (auto curr = _head.get(); curr != nullptr; curr = curr->next.get()) {
+      f(curr->kv.key, curr->kv.data);
+    }
+    return;
   }
 
   // Delete Copy Ctor, Move Ctor, Copy assignment, Move assignment
@@ -158,3 +194,5 @@ private:
 
   std::unique_ptr<LLNode> _head; // Pointer to the head
 };
+
+#endif // #ifndef FILE_DA6_HPP_INCLUDED
