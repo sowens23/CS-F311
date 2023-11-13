@@ -53,9 +53,9 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
     2. We can keep a balanced tree, restricting the height.
     3. We can use a *Magic* function, ie (hash tables) 
   ### Priority Queues
-    - This has almost the same operations as Queue
-    - We only retrieve/delete the element with the greatest key
-    - We implement this using a data structure called a Binary Heap, using a Heap Sort
+  - This has almost the same operations as Queue
+  - We only retrieve/delete the element with the greatest key
+  - We implement this using a data structure called a Binary Heap, using a Heap Sort
   ### Binary Heap Algorithms
   - A **Binary Heap** or just **Heap** is a complete Binary Tree where each node has a single data item, a key, and it's childrens keys are <= it's own.
     - Maxheap is where the largest key is the root
@@ -195,6 +195,7 @@ graph TD;
     - We only ever deal with the top of the stack. You pop, and push to the top of the stack.
     - A stack allows **last-in-first-out (LIFO)** access to data. 
     - This is a *restricted* version of a sequence.
+    - Default container of stack is std::deque
   - **Operations**
     - getTop: Returns value of top item
     - push/pop: Add or remove an item from the top
