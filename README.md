@@ -44,6 +44,27 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
   | [Week-9](#Week-9) | [HW04](https://github.com/sowens23/CS-F311/tree/main/homework/assignment4) | |
   | [Week-10](#Week-10) | | |
   | [Week-11](#Week-11) | | |
+  | [Week-12](#Week-12) | | |
+
+# Week-12
+[Top](#TOP)
+## 2023-11-15
+  ### 2-3 Trees
+  - 2-3, 2-3-4, Red-Black, B-Trees, and B+ Trees are all log everything
+  - Hash Table (Forget about em)
+  - Prefix Tree (Raxis Sort of Table Implementation)
+  - **Strongly Balanced Trees** are nice, but we like to loosen our restrictions to make **self-balancing search trees** more often.
+    - Keep height small, we don't require vising many nodes to find a given key, and insert/delete algorithms that *keep* the height small.
+  - A binary-search-tree style node is a **2-node**
+    - A node with 2 subrees & 1 key. Left Child <= Node <= Right Child
+  - In a 2-3 Tree we can have a **3-node**
+    - A node with 3 subrees & 2 keys.
+  - To retrieve a key in a 2-3 Tree, search start at root and proceed downward making comparisons
+  - To insert search and find the leaf, then add the node to the leaf, if it's over full move the middle up and repeat.
+  - To delete, search for key, start at leaf.
+## 2023-11-13
+  ### Binary Heap Algorithms
+  - I didn't have a charged laptop.
 
 # Week-11
 [Top](#TOP)
