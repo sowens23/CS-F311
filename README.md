@@ -45,9 +45,79 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
   | [Week-10](#Week-10) | | |
   | [Week-11](#Week-11) | | |
   | [Week-12](#Week-12) | | |
+  | [Week-13](#Week-13) | [HW05](https://github.com/sowens23/CS-F311/tree/main/homework/assignment5) | |
+
+# Week-13
+[Top](#TOP)
+## 2023-11-24
+  - Holiday Break
+## 2023-11-22
+  - Holiday Break
+## 2023-11-20
+  ### Review
+  - A **Table** allows for arbitrary key-based lookups
+  - A table implementation typically holds **key-value pairs**
+  - We cover the following advanced Table implementations
+    - These are all Self-Balancing Trees
+    - These all have O(log n) retrieve, insert, & delete
+    - And O(n) traverse (sorted)
+    1. 2-3 Tree
+      - 2-nodes & 3-nodes
+      - Every node has max number of children or no children.
+      - All leaves, same level
+    2. 2-3-4 Tree
+      - Same as above, but 4-nodes are also allowed
+    3. Red-Black Tree
+      - Each node is either *red* or *black*.
+      - Each black node corresponds to a 2-3-4 Tree node
+      - Each red node are extras as needed 
+      - Not always strongly balanced, but have logarithmic height
+    4. AVL Tree
+      - Strongly balanced binary search tree in which each node holds it's *balance*
+      - Retrieve, insert, and delete have O(log n)
+  - Alternatively we also cover **Hash Table** and **Prefix Tree**
+  - Generally, Red-Black tree has best *overall* performance.
+    - Usual implementation for std::map or similar STL container
+  - AVL Trees have a niche, but used less often.
+  - 2-3 and 2-3-4 Trees are fine data structures, but are not often used.
+  ### Hash Tables
+  - Self-balancing search tree operations(retrieve, insert, and delete) at O(log n)
+  - A Hash Table will store each item in a location based on a hash code which is built from it's key.
+    - Each array index is called a slot
+    - A hash table will take a key, run it through a hash function, modulo the *hash code* by the array size, and store it in that slot.
+    - A collision will happen when an item gets assigned to a slot that alread holds an item, dealing with this is called a **collision resolution**
+    - When hashing key sets, you will get collisions. There are ~3.6 x 10^39 possible 20-char string variations.
+    - Four issues when putting together a Hash Table
+      1. What function is used for the hash function
+      2. How is a collision resolution done
+      3. What if the dataset outgrows the array?
+      4. And how efficient is the resulting data structure?
+  - A hash funciton must
+    - Take a key, return a nonnegative integer (hash code)
+    - Be deterministic: output depends only on input, so the same key, always gives the same hash code
+    - Return the same hash code for equal keys
+  - Sometimes a hash function is specified by the clinet code.
+  - The hash table implementation will determine requirements of hash function
+  - There is no possible way to generate hash functions automatically for all possible key types
+  - Generally if you provide your own type for the keys, you provide a hash function and an equality comparison.
+  - Sometimes... You don't need to hash the key for improved performance.
+  - Collision Resolution methods come in two categories
+    - **Closed hashing**
+      - A slot may only hold at most, 1 item. Empty slots are marked as empty
+      - When we conduct a search, the first search is done in the slot computed from the hash code.
+      - Each time we check a slot, we are doing a **probe**
+      - The sequence of slots to check is called a **probe sequence**
+      - **linear probing** is when you search the hash code slot called *t*, can't find it, so you move to *t+1*, then *t+2*, ...
+      - Linear probing tends to form **clusters**, we can avoid this using **quadratic probing**
+    - **Open hashing**
+      - A slot can hold multiple data items, this data structure is called a bucket.
+      - Buckets are vitually always singly linked lists, to search for a key we use a Sequential Search
+      - When buckets or the table gets too full we need to **rehash**    
 
 # Week-12
 [Top](#TOP)
+## 2023-11-17
+  ### Sick - Need to review lecture notes
 ## 2023-11-15
   ### 2-3 Trees
   - 2-3, 2-3-4, Red-Black, B-Trees, and B+ Trees are all log everything
