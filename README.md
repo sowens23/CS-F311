@@ -46,6 +46,28 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
   | [Week-11](#Week-11) | | |
   | [Week-12](#Week-12) | | |
   | [Week-13](#Week-13) | [HW05](https://github.com/sowens23/CS-F311/tree/main/homework/assignment5) | |
+  | [Week-13](#Week-13) | [HW05](https://github.com/sowens23/CS-F311/tree/main/homework/assignment5) | Fall Break |
+  | [Week-14](#Week-14) | | |
+
+# Week-14
+[Top](#TOP)
+## 2023-11-27
+  ### Hash Tables
+  - Load factor for a hash table is calculated by taking the # of key's inserted (included linked list buckets) divided by total buckets available.
+    - This means that for open hashing, your load factor can be greater than 1.
+    - For closed hashing, and for your average hash table, the load factor is generally less than 1.
+  - Worst-case performance for Hash Table is Linear time.
+  - Average-case performance for Hash Table is Amortized-Constant, for rehashing
+  - Malicious users can force poor hash table performance, which can be countered sometimes with cryptographic hash functions, but adds an overhead cost making it unsuitable for most applications.
+  ### Prefix Trees
+  - Also called "Trie", which is fucking dumb.
+  - Prefix Trees are table whose keys are strings. 
+    - Each child is associated with a character
+    - Each node has at most one child for each character
+    - Each node has a boolean, whether it represents a stored key
+    - Each node also has a child pointer, and a value associated with a key, if needed.
+  - Retrieve, insert, and delete all take time equal to the length of the key, so this is basically logarithmic
+  - **Hash Trees** are a good way to get the Prefix Tree implementation but with basically any value type, by using hash codes.
 
 # Week-13
 [Top](#TOP)
