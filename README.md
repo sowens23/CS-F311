@@ -51,6 +51,26 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 
 # Week-14
 [Top](#TOP)
+## 2023-11-29
+  ### Thoughts on Assignment 8
+  - Part a: We will be writing a program that takes a total count of all unique words in a text document
+    - It would be cool to implement a open hash table for this.
+  - Part b: Write a function that returns the squared value of a given number (int/float)
+  ### Review
+  - 
+  ### Tables in the C++ Library
+  - Of the 4 general STL tables, none of them allow for duplicate (equivalent) keys.
+    - There are 4 multi-key variations for the 4 tables, totaling 8 available stl tables.
+    - std::multiset, std::multimap, std::unordered_multiset, std::unordered_multimap
+
+  | | tree | | hash table | |
+  | --- | --- | --- | --- |--- |
+  | | _**just key**_ | _**key/value**_ | _**just key**_ | _**key value**_ |
+  | **no dup keys** | set | map | unordered_set | unordered map |
+  | **dup keys** | multiset | multimap | unordered_multiset | unordered_multimap |
+
+  - 
+
 ## 2023-11-27
   ### Hash Tables
   - Load factor for a hash table is calculated by taking the # of key's inserted (included linked list buckets) divided by total buckets available.
@@ -60,7 +80,7 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
   - Average-case performance for Hash Table is Amortized-Constant, for rehashing
   - Malicious users can force poor hash table performance, which can be countered sometimes with cryptographic hash functions, but adds an overhead cost making it unsuitable for most applications.
   ### Prefix Trees
-  - Also called "Trie", which is fucking dumb.
+  - Also called "Trie", which is hilarious.
   - Prefix Trees are table whose keys are strings. 
     - Each child is associated with a character
     - Each node has at most one child for each character
