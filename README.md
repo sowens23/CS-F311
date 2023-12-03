@@ -65,11 +65,9 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 
   | | tree | | hash table | |
   | --- | --- | --- | --- |--- |
-  | | _**just key**_ | _**key/value**_ | _**just key**_ | _**key value**_ |
+  | | _**just key**_ | _**key/value**_ | _**just key**_ | _**key/value**_ |
   | **no dup keys** | set | map | unordered_set | unordered map |
   | **dup keys** | multiset | multimap | unordered_multiset | unordered_multimap |
-
-  - 
 
 ## 2023-11-27
   ### Hash Tables
