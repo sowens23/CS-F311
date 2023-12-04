@@ -51,6 +51,23 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 
 # Week-14
 [Top](#TOP)
+## 2023-12-01
+  ### External Data
+  - External storage is usually accessed in sizable chunks called blocks.
+  - Sorting and storing large tables externally are the considerations of data on external storage we are concerned about
+  - General Purpose Stable Merges are what we like
+  - Hash Tables and Self-Balancing Search Trees are possible implementations for external Tables
+    - Open hashing, or Red-Black trees work nicely for in-memory blocks, but they require too many blocks for external data
+  - B-Trees work nice for large nodes, B+-Trees also make a linear function, a little faster.
+    - Each Key in a B+-Tree is duplicated to the first entry in the child node to make traversing a bit easier (You don't have to retreat to the parent to get to the next child section)
+  ### Introduction to Graphs
+  - A graph consists of vertices and edges.
+    - In a weighted graph, each has contains a weight (or cost)
+    - In a directed graph, or Digraph, edges on a graph contain direction and are called arcs
+  - Adjacency matric is a 2D array containing values 0's and 1's. The y and x both represent all nodes in a graph. For each connection, the intersection of the two nodes in the matrix will contain a 1.
+  - An Adjacency list of arrays containing all nodes in the graph, containing labels of each node that that node is connected to.
+  $\begin{bmatrix}X\\Y\end{bmatrix}$
+  - 
 ## 2023-11-29
   ### Thoughts on Assignment 8
   - Part a: We will be writing a program that takes a total count of all unique words in a text document
@@ -73,7 +90,7 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 
 ## 2023-11-27
   ### Hash Tables
-  - Load factor for a hash table is calculated by taking the # of key's inserted (included linked list buckets) divided by total buckets available.
+  - Load factor for a hash table is calculated by taking the # of key's inserted (included linked list buckets) divided by total buckets available.6
     - This means that for open hashing, your load factor can be greater than 1.
     - For closed hashing, and for your average hash table, the load factor is generally less than 1.
   - Worst-case performance for Hash Table is Linear time.
