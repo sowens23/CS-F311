@@ -49,6 +49,17 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
   | [Week-13](#Week-13) | [HW05](https://github.com/sowens23/CS-F311/tree/main/homework/assignment5) | Fall Break |
   | [Week-14](#Week-14) | | |
 
+# Week-15!!!
+[Top](#TOP)
+## 2023-12-04
+  ### Graph Traversal
+  - We have previously covered Binary Tree traversals: preorder, inorder, postorder.
+  - We traverse graphs as well: visit each vertex once.
+    - In both of the following search functions, we visit the lower-numbered vertices first (weights)
+    
+    - **Depth-first search (DFS)**
+    - **Breadth-first search (BFS)**
+
 # Week-14
 [Top](#TOP)
 ## 2023-12-01
