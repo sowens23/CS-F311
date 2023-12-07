@@ -51,12 +51,56 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 
 # Week-15!!!
 [Top](#TOP)
+## 2023-12-06
+  - [TODO](https://github.com/sowens23/CS-F311/tree/main/inclasscoding): 
+    - prim.cpp [C++ source]
+  ### Spanning Trees
+  - A tree is a graph that is;
+    1. Connected (all nodes are connected to eachother)
+    2. Has no cycles (repeatedly connected nodes)
+  - A spanning tree in a graph
+    1. Includes only vertices and edges
+    2. Includes all vertices
+  - Every connected graph has a spanning tree
+  - Finding a **minimum spanning tree** is to determine how to reach all nodes, non cyclically, using the edges with the lowest possible sum cost
+  - A **Greedy** algorithm is one that I write.
+    - It's a "shortsighted" algorithm that determines lowest costs with the information it has at that time.
+    - It is Feasible, each movement makes sense.
+    - It's locally optimal, best choices are easily calculatable.
+    - Irrevocable, once a choice s made, it's permanent
+  - There are many useful greedy algorithms
+  ### Prim's Algorithm
+  - An idea for a greedy algorithm to find a minimum spanning ree in a connected weighted graph
+  - One vertext is specified as *start*
+  - We add edges to a tree as we move
+  - Rpeatedly add the lowest-weight edge from a reachable vertex to a non-reachable vertext, until we've reached them all.
+  - This results in a greedy algorithm to find the minimum spanning tree
+  - Also known as **Prim-Jarnik Algorithm [V. Jarnik 1930, R. C. Prim 1957, E. Dijkstra 1959]**
+  #### Procedure
+  - Given: Connected graph, weights on edges, one vertex as start
+  - Returns: Edge set of a minimum spanning tree
+  - Mark *start* vertex as reachable
+  - Repeatedly;
+    1. find the lowest weight edge joining a reachable vertex to a non-reachable
+    2. Add edge to tree
+    3. Mark non-reachable as reachable
+  - Return edge set of tree
+  - Use a Priority Queue to hold edges, ordered by weight, etc. see Slides 21 
+  - This results in a O(constant + log linear)
+  - We can improve this by having PQ hold vertices ordered by cost, or by using a Fibonnaci Heap instead of a Binary Heap.
+  - If we improve, we can get O(log linear)
+  #### Kruskal's Algorithm [J. Kruskal 1956]
+  - Here is an example of another greedy algorithm to find a minimum spanning tree.
+    1. Set edge set of tree to empty.
+    2. Repeat:
+      - Add the least-weight edge joining two vertices that cannot be reached from each other using edges added so far
+    3. Return edge set of tree
+  - 
 ## 2023-12-04
   ### Graph Traversal
   - We have previously covered Binary Tree traversals: preorder, inorder, postorder.
   - We traverse graphs as well: visit each vertex once.
     - In both of the following search functions, we visit the lower-numbered vertices first (weights)
-    
     - **Depth-first search (DFS)**
     - **Breadth-first search (BFS)**
 
