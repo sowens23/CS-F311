@@ -22,18 +22,6 @@ using std::endl;
 #include <vector>
 using std::vector;
 
-vector<int> generateRandArray(int size) {
-    // Seed random number generator
-    srand(static_cast<unsigned>(time(0)));
-
-    vector<int> array_t(size);
-    for (int i = 0; i < size; ++i) {
-        // Fill array with random numbers between 0 and 99
-        array_t[i] = rand() % 1000;
-    }
-    return array_t;
-}
-
 int main () {
     // User input to declare vector size
     int vectorsize=0;
@@ -41,20 +29,20 @@ int main () {
     cin >> vectorsize;
 
     // Initialize vector
-    cout << "Randomizing vector...\n\n";
-    vector<int> vector_1 = generateRandArray(vectorsize);
+        cout << "Randomizing vector...\n\n";
+        vector<int> vector_1 = generateRandArray(vectorsize);
 
     // Print unsorted vector
-        // cout << "Unsorted: ";
-        // for (int i : vector_1) cout << i << ", "; cout << "\n";
-        // cout << "\n";
+        cout << "Unsorted: ";
+        for (int i : vector_1) cout << i << ", "; cout << "\n";
+        cout << "\n";
 
     // Sort vector
         timSort(vector_1);
 
     // Print sorted vector
-        // cout << "\nSorted...\n";
-        // for (int i : vector_1) cout << i << ", "; cout << "\n\n";
+        cout << "\nSorted...\n";
+        for (int i : vector_1) cout << i << ", "; cout << "\n\n";
 
     return 0;
 }
