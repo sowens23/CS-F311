@@ -12,8 +12,8 @@ File Function:
   referencing Linked List nodes via unique_ptr, creating nodes using make_unique, or functions push_front in llnode2.hpp
   No using new or delete, you may use anything from C++ STL
 
-  Excersice A: Write an efficient reversing function for a linked list.
-  Excersice B: Write a class template that uses a linked list to hold an associative data set making use of smart-pointers, while signaling errors using exceptions.
+  Excersise A: Write an efficient reversing function for a linked list.
+  Excersise B: Write a class template that uses a linked list to hold an associative data set making use of smart-pointers, while signaling errors using exceptions.
     Store data using key-value pairs, this is called associative dataset
     Call the class "slowMap" as such slowMap<string, int> with only 1 data member = unique_ptr<LLNode2<KVTYPE>>
     KVTYPE is a struct or pair
